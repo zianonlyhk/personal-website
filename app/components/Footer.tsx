@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
     return (
@@ -40,7 +40,7 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="hover:text-gray-300 transition-colors"
                     >
-                        <FontAwesomeIcon icon={faTwitter} className="w-6 h-6" />
+                        <FontAwesomeIcon icon={faXTwitter} className="w-6 h-6" />
                     </Link>
                 </div>
             </div>

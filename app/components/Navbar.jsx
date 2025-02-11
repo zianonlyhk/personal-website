@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHome } from 'react-icons/fa'; // You'll need to install react-icons
+import { FaHome, FaCode, FaPenNib, FaImages, FaUser } from 'react-icons/fa';
 
 const Navbar = () => {
     return (
@@ -14,10 +14,22 @@ const Navbar = () => {
 
                 {/* Right side - Navigation buttons */}
                 <div className="flex gap-6">
-                    <a href="/projects" className="hover:text-gray-200 font-medium">Projects</a>
-                    <a href="/blog" className="hover:text-gray-200 font-medium">Blog</a>
-                    <a href="/gallery" className="hover:text-gray-200 font-medium">Gallery</a>
-                    <a href="/about" className="hover:text-gray-200 font-medium">About Me</a>
+                    <a href="/projects" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                        <FaCode />
+                        Projects
+                    </a>
+                    <a href="/blog" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                        <FaPenNib />
+                        Blog
+                    </a>
+                    <a href="/gallery" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                        <FaImages />
+                        Gallery
+                    </a>
+                    <a href="/about" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                        <FaUser />
+                        About Me
+                    </a>
                 </div>
             </div>
         </nav>
