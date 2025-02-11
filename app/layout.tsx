@@ -20,10 +20,10 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-screen flex flex-col`}>
+        <html lang="en" className="h-full">
+            <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased h-full flex flex-col`}>
                 <Navbar />
-                <main className="flex-grow flex-1">
+                <main className="flex-1">
                     {children}
                 </main>
                 <Footer />
