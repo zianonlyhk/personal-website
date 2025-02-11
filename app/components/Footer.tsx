@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Footer = () => {
     return (
-        <footer className="w-full border-t border-gray-200 py-4 px-6 bg-white">
+        <footer className="w-full border-t border-gray-700 py-4 px-6 bg-gray-900">
             <div className="container mx-auto flex justify-end items-center">
                 <div className="flex gap-4">
                     {/* GitHub */}
@@ -10,7 +10,7 @@ const Footer = () => {
                         href="https://github.com/yourusername"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-white hover:text-gray-300 transition-colors"
                     >
                         <svg
                             className="w-6 h-6"
@@ -31,7 +31,7 @@ const Footer = () => {
                         href="https://linkedin.com/in/yourprofile"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-white hover:text-gray-300 transition-colors"
                     >
                         <svg
                             className="w-6 h-6"
@@ -52,7 +52,7 @@ const Footer = () => {
                         href="https://twitter.com/yourusername"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-white hover:text-gray-300 transition-colors"
                     >
                         <svg
                             className="w-6 h-6"
