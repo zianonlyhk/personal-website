@@ -5,7 +5,7 @@ export default function About() {
                 <h1 className="text-4xl font-bold mb-8">About Me</h1>
                 <div className="prose prose-invert">
                     <p>
-                        Hello! I'm a passionate developer interested in building amazing web experiences.
+                        Hello! I&apos;m a passionate developer interested in building amazing web experiences.
                     </p>
                     <h2>Skills</h2>
                     <ul>

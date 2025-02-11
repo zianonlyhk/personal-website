@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaHome, FaCode, FaPenNib, FaImages, FaUser } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Navbar = () => {
     return (
@@ -7,29 +8,29 @@ const Navbar = () => {
             <div className="container mx-auto flex justify-between items-center">
                 {/* Left side - Home icon */}
                 <div className="flex items-center">
-                    <a href="/" className="text-2xl text-gray-400 hover:text-gray-200">
+                    <Link href="/" className="text-2xl text-gray-400 hover:text-gray-200">
                         <FaHome />
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Right side - Navigation buttons */}
                 <div className="flex gap-6">
-                    <a href="/projects" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                    <Link href="/projects" className="hover:text-gray-200 font-medium flex items-center gap-2">
                         <FaCode />
                         Projects
-                    </a>
-                    <a href="/blog" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                    </Link>
+                    <Link href="/blog" className="hover:text-gray-200 font-medium flex items-center gap-2">
                         <FaPenNib />
                         Blog
-                    </a>
-                    <a href="/gallery" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                    </Link>
+                    <Link href="/gallery" className="hover:text-gray-200 font-medium flex items-center gap-2">
                         <FaImages />
                         Gallery
-                    </a>
-                    <a href="/about" className="hover:text-gray-200 font-medium flex items-center gap-2">
+                    </Link>
+                    <Link href="/about" className="hover:text-gray-200 font-medium flex items-center gap-2">
                         <FaUser />
                         About Me
-                    </a>
+                    </Link>
                 </div>
             </div>
         </nav>
