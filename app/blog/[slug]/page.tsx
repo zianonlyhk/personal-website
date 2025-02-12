@@ -1,6 +1,10 @@
 import { getBlogPost, getListOfBlogPosts } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 
+type PageProps = {
+    params: Promise<{ slug: string }>
+}
+
 export async function generateStaticParams() {
     const posts = await getListOfBlogPosts();
     return posts.map((post) => ({
@@ -8,13 +12,13 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({ params }: PageProps) {
     // Got this error:
     // Error: Route "/blog/[slug]" used `params.slug`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
     // So I had to await the params
-    const awaited_params = await params;
-    const post = await getBlogPost(awaited_params.slug);
-    
+    const resolvedParams = await params;
+    const post = await getBlogPost(resolvedParams.slug);
+
     if (!post) {
         notFound();
     }
