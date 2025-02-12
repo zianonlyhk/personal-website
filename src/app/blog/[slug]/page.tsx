@@ -1,4 +1,4 @@
-import { getBlogPost, getListOfBlogPosts } from '@/lib/blog';
+import { getBlogPost, getListOfBlogPosts } from '@/src/lib/blog';
 import { notFound } from 'next/navigation';
 
 type PageProps = {

@@ -1,5 +1,5 @@
-import BlogPostPreview from '../components/blog/BlogPostPreview';
-import { getListOfBlogPosts } from '@/lib/blog';
+import BlogPostPreview from '@/src/components/blog/BlogPostPreview';
+import { getListOfBlogPosts } from '@/src/lib/blog';
 
 export default async function Blog() {
     const blogPosts = await getListOfBlogPosts();
