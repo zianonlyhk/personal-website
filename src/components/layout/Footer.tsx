@@ -8,9 +8,9 @@ const Footer = () => {
             <div className="container mx-auto flex justify-between items-center">
                 {/* Left side - Copyright text */}
                 <div className="text-gray-400 text-sm">
-                    Zian Huang © 2025. All Rights Reserved.
+                    © 2025 Zian Huang
                 </div>
-                
+
                 {/* Right side - Social Media Icons */}
                 <div className="flex gap-6">
                     {/* GitHub */}

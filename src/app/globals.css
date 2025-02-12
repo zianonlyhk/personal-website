@@ -2,51 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/* This section defines CSS custom properties (variables) for the light theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #0ea5e9;
-  --primary-foreground: #ffffff;
-  --accent: #d946ef;
-  --accent-foreground: #ffffff;
-  --muted: #f3f4f6;
-  --muted-foreground: #6b7280;
-  --border: #e5e7eb;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --card: #1a1a1a;
-    --card-foreground: #ededed;
-    --popover: #1a1a1a;
-    --popover-foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
+    --card: #ffffff;
+    --card-foreground: #171717;
+    --popover: #ffffff;
+    --popover-foreground: #171717;
     --primary: #0ea5e9;
     --primary-foreground: #ffffff;
     --accent: #d946ef;
     --accent-foreground: #ffffff;
-    --muted: #27272a;
-    --muted-foreground: #a1a1aa;
-    --border: #27272a;
-  }
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
+    --border: #e5e7eb;
+}
+
+/* This section defines CSS custom properties (variables) for the dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+        --card: #1a1a1a;
+        --card-foreground: #ededed;
+        --popover: #1a1a1a;
+        --popover-foreground: #ededed;
+        --primary: #0ea5e9;
+        --primary-foreground: #ffffff;
+        --accent: #d946ef;
+        --accent-foreground: #ffffff;
+        --muted: #27272a;
+        --muted-foreground: #a1a1aa;
+        --border: #27272a;
+    }
 }
 
 @layer base {
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
 }
 
 @layer components {
-  .prose-custom {
-    @apply prose prose-lg prose-slate dark:prose-invert 
-           prose-headings:font-bold prose-a:text-primary-500
-           prose-p:text-foreground prose-headings:text-foreground;
-  }
+    .prose-custom {
+        @apply prose prose-lg prose-slate dark:prose-invert prose-headings:font-bold prose-a:text-primary-500 prose-p:text-foreground prose-headings:text-foreground;
+    }
 }
