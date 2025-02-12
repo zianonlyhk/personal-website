@@ -6,7 +6,7 @@ export default function Projects() {
                 {/* Example project card */}
                 <div className="bg-gray-800 rounded-lg p-6">
                     <h2 className="text-xl font-semibold mb-2">Project Name</h2>
-                    <p className="text-gray-400 mb-4">Project description goes here...</p>
+                    <p className="mb-4">Project description goes here...</p>
                     <div className="flex gap-4">
                         <a href="#" className="text-primary-500 hover:text-primary-400">Demo</a>
                         <a href="#" className="text-primary-500 hover:text-primary-400">GitHub</a>

@@ -4,10 +4,10 @@ import { faGithub, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-i
 
 const Footer = () => {
     return (
-        <footer className="w-full border-t border-gray-700 py-4 px-6 bg-gray-900 text-gray-400">
+        <footer className="w-full border-t border-gray-200 dark:border-gray-700 py-4 px-6 bg-gray-100 dark:bg-gray-900">
             <div className="container mx-auto flex justify-between items-center">
                 {/* Left side - Copyright text */}
-                <div className="text-gray-400 text-sm">
+                <div className="text-sm">
                     © 2025 Zian Huang
                 </div>
 
@@ -18,7 +18,7 @@ const Footer = () => {
                         href="https://github.com/yourusername"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-gray-300 transition-colors"
+                        className="hover:opacity-80 transition-colors"
                     >
                         <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
                     </Link>
@@ -28,7 +28,7 @@ const Footer = () => {
                         href="https://linkedin.com/in/yourprofile"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-gray-300 transition-colors"
+                        className="hover:opacity-80 transition-colors"
                     >
                         <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
                     </Link>
@@ -38,7 +38,7 @@ const Footer = () => {
                         href="https://twitter.com/yourusername"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:text-gray-300 transition-colors"
+                        className="hover:opacity-80 transition-colors"
                     >
                         <FontAwesomeIcon icon={faXTwitter} className="w-6 h-6" />
                     </Link>

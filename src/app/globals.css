@@ -40,7 +40,7 @@
 
 @layer base {
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-black dark:text-white;
         font-feature-settings: "rlig" 1, "calt" 1;
     }
 }

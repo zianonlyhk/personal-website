@@ -26,8 +26,8 @@ export default async function BlogPost({ params }: PageProps) {
     return (
         <article className="max-w-3xl mx-auto p-8">
             <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-            <div className="text-gray-600 mb-8">{post.date}</div>
-            <div className="prose lg:prose-xl" dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className="mb-8">{post.date}</div>
+            <div className="prose-custom" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
     );
 } 

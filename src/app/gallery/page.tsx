@@ -5,8 +5,8 @@ export default function Gallery() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {/* Example gallery items */}
                 {[1, 2, 3, 4, 5, 6].map((item) => (
-                    <div key={item} className="aspect-square bg-gray-800 rounded-lg overflow-hidden">
-                        <div className="w-full h-full flex items-center justify-center text-gray-500">
+                    <div key={item} className="aspect-square rounded-lg overflow-hidden">
+                        <div className="w-full h-full flex items-center justify-center">
                             Image {item}
                         </div>
                     </div>
