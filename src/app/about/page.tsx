@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function About() {
     return (
-        <div className="h-full flex flex-col items-center justify-center p-8 font-[family-name:var(--font-geist-sans)]">
+        <div className="h-full flex flex-col items-center justify-center p-8]">
             <main className="flex flex-col gap-8 items-center sm:items-start">
                 <div>
                     <Image

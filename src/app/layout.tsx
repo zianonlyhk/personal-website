@@ -1,26 +1,29 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "@/src/app/globals.css";
-import Footer from "@/src/components/layout/Footer";
-import Navbar from '@/src/components/layout/Navbar';
+import "@/src/app/globals.css"
+import Footer from "@/src/components/layout/Footer"
+import Navbar from '@/src/components/layout/Navbar'
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+// Working on the website's font
+import { Roboto, Roboto_Mono } from 'next/font/google'
+const roboto = Roboto({
+    weight: '400',
+    subsets: ['latin'],
+    variable: '--font-roboto',
+    display: 'swap',
+})
+const roboto_mono = Roboto_Mono({
+    subsets: ['latin'],
+    variable: '--font-roboto-mono',
+    display: 'swap',
+})
 
 export default function RootLayout({
     children,
-}: Readonly<{
+}: {
     children: React.ReactNode;
-}>) {
+}) {
     return (
         <html lang="en" className="h-full">
-            <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased h-full flex flex-col`}>
+            <body className={`${roboto.variable} ${roboto_mono.variable} antialiased h-full flex flex-col`}>
                 <Navbar />
                 <main className="flex-1 p-20">
                     {children}

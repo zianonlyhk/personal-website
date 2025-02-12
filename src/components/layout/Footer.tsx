@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="container mx-auto flex justify-between items-center">
                 {/* Left side - Copyright text */}
                 <div className="text-sm">
-                    © 2025 Zian Huang
+                    &copy; 2025 Zian Huang
                 </div>
 
                 {/* Right side - Social Media Icons */}

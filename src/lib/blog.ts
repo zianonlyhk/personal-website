@@ -6,7 +6,6 @@ import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
-import 'katex/dist/katex.min.css'
 
 const postsDirectory = path.join(process.cwd(), 'content/blog');
 

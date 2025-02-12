@@ -1,35 +1,28 @@
 import React from 'react';
-import { FaHome, FaCode, FaPenNib, FaImages, FaUser } from 'react-icons/fa';
 import Link from 'next/link';
 
 const Navbar = () => {
     return (
         <nav className="fixed top-0 left-0 w-full z-50 border-t border-gray-200 dark:border-gray-700 py-4 px-6 bg-gray-100 dark:bg-gray-900">
-            <div className="container mx-auto flex justify-between items-center">
-                {/* Left side - Home icon */}
+            <div className="container mx-auto flex justify-between items-center font-roboto-mono">
                 <div className="flex items-center">
-                    <Link href="/" className="text-2xl hover:opacity-80">
-                        <FaHome />
+                    <Link href="/" className="hover:opacity-80 font-medium flex items-center gap-2">
+                        zianhuang
                     </Link>
                 </div>
 
-                {/* Right side - Navigation buttons */}
                 <div className="flex gap-6">
                     <Link href="/projects" className="hover:opacity-80 font-medium flex items-center gap-2">
-                        <FaCode />
-                        Projects
+                        projects
                     </Link>
                     <Link href="/blog" className="hover:opacity-80 font-medium flex items-center gap-2">
-                        <FaPenNib />
-                        Blog
+                        blog
                     </Link>
                     <Link href="/gallery" className="hover:opacity-80 font-medium flex items-center gap-2">
-                        <FaImages />
-                        Gallery
+                        gallery
                     </Link>
                     <Link href="/about" className="hover:opacity-80 font-medium flex items-center gap-2">
-                        <FaUser />
-                        About Me
+                        about_me
                     </Link>
                 </div>
             </div>

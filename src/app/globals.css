@@ -40,13 +40,20 @@
 
 @layer base {
     body {
+        /* if light mode then black text, if dark mode then white text */
         @apply bg-background text-black dark:text-white;
-        font-feature-settings: "rlig" 1, "calt" 1;
+        /* the body part of my website uses the font of Roboto */
+        font-family: var(--font-roboto);
     }
 }
 
 @layer components {
     .prose-custom {
         @apply prose prose-lg prose-slate dark:prose-invert prose-headings:font-bold prose-a:text-primary-500 prose-p:text-foreground prose-headings:text-foreground;
+    }
+
+    nav {
+        /* my navigation bar is in the font of Roboto Mono */
+        font-family: var(--font-roboto-mono);
     }
 }
