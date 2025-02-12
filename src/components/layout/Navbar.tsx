@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Navbar = () => {
     return (
-        <nav className="w-full border-t border-gray-700 py-4 px-6 bg-gray-900 text-gray-400">
+        <nav className="fixed top-0 left-0 w-full z-50 border-t border-gray-700 py-4 px-6 bg-gray-900 text-gray-400">
             <div className="container mx-auto flex justify-between items-center">
                 {/* Left side - Home icon */}
                 <div className="flex items-center">

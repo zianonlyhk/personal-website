@@ -22,7 +22,7 @@ export default function RootLayout({
         <html lang="en" className="h-full">
             <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased h-full flex flex-col`}>
                 <Navbar />
-                <main className="flex-1">
+                <main className="flex-1 p-20">
                     {children}
                 </main>
                 <Footer />
