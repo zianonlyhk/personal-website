@@ -1,39 +1,20 @@
 import BlogPostPreview from '../components/blog/BlogPostPreview';
+import { getListOfBlogPosts } from '@/lib/blog';
 
-export default function Blog() {
-    // Example blog posts data - you can replace this with real data later
-    const blogPosts = [
-        {
-            title: "Blog Post Title 1",
-            preview: "Preview of the blog post content...",
-            date: "March 14, 2024",
-            href: "/blog/post-1"
-        },
-        {
-            title: "Blog Post Title 2",
-            preview: "Preview of the blog post content...",
-            date: "March 14, 2024",
-            href: "/blog/post-2"
-        },
-        {
-            title: "Blog Post Title 3",
-            preview: "Preview of the blog post content...",
-            date: "March 14, 2024",
-            href: "/blog/post-3"
-        }
-    ];
+export default async function Blog() {
+    const blogPosts = await getListOfBlogPosts();
 
     return (
         <div className="h-full flex flex-col items-center justify-center p-8">
             <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
             <div className="max-w-3xl w-full space-y-6">
-                {blogPosts.map((post, index) => (
+                {blogPosts.map((post) => (
                     <BlogPostPreview
-                        key={index}
+                        key={post.slug}
                         title={post.title}
-                        preview={post.preview}
+                        preview={post.excerpt}
                         date={post.date}
-                        href={post.href}
+                        href={`/blog/${post.slug}`}
                     />
                 ))}
             </div>
