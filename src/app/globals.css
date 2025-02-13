@@ -39,35 +39,226 @@
 }
 
 @layer base {
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _text_ CSS section -------------------------------------------------------------- */
+
+    .title-boss {
+        @apply text-5xl font-bold mt-10 mb-5;
+    }
+
+    .title-large {
+        @apply text-4xl font-bold mt-8 mb-4;
+    }
+
+    .title-medium {
+        @apply text-3xl font-semibold mt-6 mb-3;
+    }
+
+    .title-small {
+        @apply text-2xl font-semibold mt-4 mb-2;
+    }
+
+    .body-large {
+        @apply text-lg mt-4 mb-2;
+    }
+
+    .body-medium {
+        @apply text-base mt-2 mb-1;
+    }
+
+    .body-small {
+        @apply text-sm mt-1 mb-0;
+    }
+
+    .unordered-list {
+        @apply list-disc ml-6 my-4;
+    }
+
+    .ordered-list {
+        @apply list-decimal ml-6 my-4;
+    }
+
+    /* End of the _text_ CSS section ---------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _media_ CSS section ------------------------------------------------------------- */
+
+    .image-container {
+        @apply relative w-full mb-8;
+    }
+
+    .image {
+        @apply rounded-lg object-cover;
+    }
+
+    /* End of the _media_ CSS section --------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* Start of the _default_ CSS section ------------------------------------------------------------- */
+
     body {
-        /* if light mode then black text, if dark mode then white text */
-        @apply bg-background text-black dark:text-white;
+        @apply bg-background text-foreground;
         /* the body part of my website uses the font of Roboto */
         font-family: var(--font-roboto);
     }
+
+    /* Force scrollbar to always show to prevent layout shift */
+    /* This is to prevent the layout shift when the scrollbar is hidden */
+    html {
+        overflow-y: scroll;
+    }
+
+    /* Style the scrollbar for better aesthetics, slimmer bar */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Style the scrollbar track */
+    ::-webkit-scrollbar-track {
+        background: var(--background);
+    }
+
+    /* Style the scrollbar thumb */
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--muted-foreground);
+        border-radius: 6px;
+        border: 3px solid var(--background);
+    }
+
+    /* End of the _default_ CSS section ------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
 }
 
 @layer components {
-    .individualBlogPost {
-        @apply max-w-prose mx-auto leading-relaxed
+    /* Start of the _project_ CSS section --------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    .project_preview {
+        @apply bg-card rounded-lg p-3 flex gap-4;
+    }
+
+    .project_preview_image_container {
+        @apply w-32 h-32 flex-shrink-0;
+    }
+
+    .project_preview_image {
+        @apply w-full h-full object-cover rounded-md;
+    }
+
+    .project_preview_content {
+        @apply flex-1 flex flex-col;
+    }
+
+    .project_preview_footer {
+        @apply flex justify-between items-center mt-auto;
+    }
+
+    .project_preview_links {
+        @apply flex gap-8 items-center;
+    }
+
+    .project_preview_link {
+        @apply text-primary-500 hover:text-primary-50;
+    }
+
+    /* End of the _project_ CSS section ----------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _blog_post_ CSS section --------------------------------------------------------- */
+
+    .blog_post_preview_container {
+        @apply max-w-3xl w-full space-y-6;
+    }
+
+    .blog_post_preview {
+        @apply bg-card rounded-lg p-3;
+    }
+
+    .blog_post_preview_link {
+        @apply text-primary-500 hover:text-primary-50;
+    }
+
+    .blog_post_container {
+        @apply h-full flex flex-col items-center justify-center p-8;
+    }
+
+    .blog_post_title {
+        @apply title-boss;
+    }
+
+    .blog_post_date {
+        @apply mb-8;
+    }
+
+    /* This is the styling for the content of the blog posts */
+    .blog_post_content {
+        @apply max-w-prose mx-auto leading-relaxed flex flex-col items-center sm:items-start
         /* Text styling */
-        text-foreground text-lg
+        text-foreground [&>p]:body-large
         /* Heading styles */
-        /* h1 */
-        [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mt-8 [&>h1]:mb-4
-        /* h2 */
-        [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-6 [&>h2]:mb-3
-        /* h3 */
-        [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mt-4 [&>h3]:mb-2
+        [&>h1]:title-large [&>h2]:title-medium [&>h3]:title-small
         /* List styling */
-        [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:my-4 [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:my-4
+        [&>ul]:unordered-list [&>ol]:ordered-list
         /* Math/LaTeX container spacing */
         [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-inline]:mx-1;
     }
 
-    nav,
-    footer {
+    /* End of the _blog_post_ CSS section ------------------------------------------------------------ */
+    /* ----------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _navbar_ CSS section ------------------------------------------------------------ */
+
+    nav {
         /* my navigation bar is in the font of Roboto Mono */
         font-family: var(--font-roboto-mono);
+        /* fixed to top, full width, above other elements, with border and background */
+        @apply fixed top-0 w-full z-50 py-4 px-6 border-b border-border bg-background;
     }
+
+    .nav-container {
+        @apply container mx-auto flex justify-between items-center;
+    }
+
+    .nav-link {
+        @apply hover:opacity-80 font-medium flex items-center gap-2 px-2 py-1 rounded;
+    }
+
+    .nav-link-active {
+        @apply bg-foreground text-background;
+    }
+
+    /* End of the _navbar_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _footer_ CSS section ------------------------------------------------------------ */
+
+    footer {
+        /* my footer is in the font of Roboto */
+        font-family: var(--font-roboto);
+        @apply w-full py-4 px-6 border-t border-border text-foreground bg-background;
+    }
+
+    .footer-container {
+        @apply container mx-auto flex justify-between items-center;
+    }
+
+    .footer-social-links {
+        @apply flex gap-6;
+    }
+
+    .footer-social-icon {
+        @apply hover:opacity-80;
+    }
+
+    .footer-icon {
+        @apply w-7 h-7;
+    }
+
+    /* End of the _footer_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
 }

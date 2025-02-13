@@ -1,15 +1,8 @@
-import { getBlogPost, getListOfBlogPosts } from '@/src/lib/blog';
+import { getBlogPost, getListOfBlogPosts } from '@/src/lib/blog_page_generator';
 import { notFound } from 'next/navigation';
 
 type PageProps = {
     params: Promise<{ slug: string }>
-}
-
-export async function generateStaticParams() {
-    const posts = await getListOfBlogPosts();
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
 }
 
 export default async function BlogPost({ params }: PageProps) {
@@ -24,10 +17,10 @@ export default async function BlogPost({ params }: PageProps) {
     }
 
     return (
-        <div className="h-full flex flex-col items-center justify-center p-8">
-            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-            <div className="mb-8">{post.date}</div>
-            <div className="flex flex-col items-center sm:items-start individualBlogPost" dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div className="blog_post_container">
+            <h1 className="blog_post_title">{post.title}</h1>
+            <div className="blog_post_date">{post.date}</div>
+            <div className="blog_post_content" dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
     );
 } 

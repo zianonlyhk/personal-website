@@ -4,24 +4,23 @@ import { faGithub, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-i
 
 const Footer = () => {
     return (
-        // border-t gives a line at the top of the footer
-        <footer className="w-full py-4 px-6 border-t border-border bg-background">
-            <div className="container mx-auto flex justify-between items-center">
+        <footer>
+            <div className="footer-container">
                 {/* Left side - Copyright text */}
-                <div className="text-sm text-foreground">
+                <div>
                     &copy; 2025 Zian Huang
                 </div>
 
                 {/* Right side - Social Media Icons */}
-                <div className="flex gap-6">
+                <div className="footer-social-links">
                     {/* GitHub */}
                     <Link
                         href="https://github.com/yourusername"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground hover:opacity-80 transition-colors"
+                        className="footer-social-icon"
                     >
-                        <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
+                        <FontAwesomeIcon icon={faGithub} className="footer-icon" />
                     </Link>
 
                     {/* LinkedIn */}
@@ -29,9 +28,9 @@ const Footer = () => {
                         href="https://linkedin.com/in/yourprofile"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground hover:opacity-80 transition-colors"
+                        className="footer-social-icon"
                     >
-                        <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
+                        <FontAwesomeIcon icon={faLinkedin} className="footer-icon" />
                     </Link>
 
                     {/* Twitter/X */}
@@ -39,9 +38,9 @@ const Footer = () => {
                         href="https://twitter.com/yourusername"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground hover:opacity-80 transition-colors"
+                        className="footer-social-icon"
                     >
-                        <FontAwesomeIcon icon={faXTwitter} className="w-6 h-6" />
+                        <FontAwesomeIcon icon={faXTwitter} className="footer-icon" />
                     </Link>
                 </div>
             </div>
