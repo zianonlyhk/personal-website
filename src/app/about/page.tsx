@@ -2,16 +2,17 @@ import Image from 'next/image';
 
 export default function About() {
     return (
-        <div className="blog_post_container items-center">
+        <div className="content_container items-center">
             <h1 className="title-boss">About Me</h1>
 
-            <div className="blog_post_content">
+            <div className="content_content">
 
                 <p className="body-large">
                     Hello! I&apos;m a passionate developer interested in building amazing web experiences.
                 </p>
 
-                <div className="image-container">
+                {/* put the image to the center of the page */}
+                <div className="image-container flex justify-center">
                     <Image
                         src="/about/test.png"
                         alt="About me image"
