@@ -24,7 +24,6 @@ export default {
             typography: {
                 DEFAULT: {
                     css: {
-                        maxWidth: '65ch',
                         color: 'var(--foreground)',
                         a: {
                             color: 'var(--foreground)',

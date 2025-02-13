@@ -48,11 +48,25 @@
 }
 
 @layer components {
-    .prose-custom {
-        @apply prose prose-lg prose-slate dark:prose-invert prose-headings:font-bold prose-a:text-primary-500 prose-p:text-foreground prose-headings:text-foreground;
+    .individualBlogPost {
+        @apply max-w-prose mx-auto leading-relaxed
+        /* Text styling */
+        text-foreground text-lg
+        /* Heading styles */
+        /* h1 */
+        [&>h1]:text-3xl [&>h1]:font-bold [&>h1]:mt-8 [&>h1]:mb-4
+        /* h2 */
+        [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:mt-6 [&>h2]:mb-3
+        /* h3 */
+        [&>h3]:text-xl [&>h3]:font-bold [&>h3]:mt-4 [&>h3]:mb-2
+        /* List styling */
+        [&>ul]:list-disc [&>ul]:ml-6 [&>ul]:my-4 [&>ol]:list-decimal [&>ol]:ml-6 [&>ol]:my-4
+        /* Math/LaTeX container spacing */
+        [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-inline]:mx-1;
     }
 
-    nav {
+    nav,
+    footer {
         /* my navigation bar is in the font of Roboto Mono */
         font-family: var(--font-roboto-mono);
     }

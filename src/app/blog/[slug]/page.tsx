@@ -24,10 +24,10 @@ export default async function BlogPost({ params }: PageProps) {
     }
 
     return (
-        <article className="max-w-3xl mx-auto p-8">
+        <div className="h-full flex flex-col items-center justify-center p-8">
             <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
             <div className="mb-8">{post.date}</div>
-            <div className="prose-custom" dangerouslySetInnerHTML={{ __html: post.content }} />
-        </article>
+            <div className="flex flex-col items-center sm:items-start individualBlogPost" dangerouslySetInnerHTML={{ __html: post.content }} />
+        </div>
     );
 } 

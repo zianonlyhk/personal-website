@@ -10,6 +10,8 @@ This is the content of my blog post. You can write in Markdown format here. Let'
 
 ## Mathematics Examples
 
+![My Cat](/about/test.png)
+
 Here's Einstein's famous mass-energy equivalence equation:
 
 $$
