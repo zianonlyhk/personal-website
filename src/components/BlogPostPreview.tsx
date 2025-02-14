@@ -12,7 +12,7 @@ export default function BlogPostPreview({ title, preview, date, href }: BlogPost
             <p className="body-small">{preview}</p>
             <div className="flex justify-between items-center">
                 <span className="body-small">{date}</span>
-                <a href={href} className="preview_link">Read more →</a>
+                <a href={href} className="preview_link">Read More</a>
             </div>
         </article>
     );

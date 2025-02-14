@@ -3,7 +3,7 @@ title: "My First Project"
 date: "2024-03-14"
 excerpt: "This is a brief excerpt of my first project..."
 githubUrl: "https://github.com/yourusername/personal-portfolio"
-thumbnailUrl: "/projects/test.png"
+thumbnailUrl: "/cat3.jpeg"
 ---
 
 # Welcome to my first blog post!
@@ -11,8 +11,6 @@ thumbnailUrl: "/projects/test.png"
 This is the content of my blog post. You can write in Markdown format here. Let's add some mathematics! For example, the quadratic formula states that if $ax^2 + bx + c = 0$, then $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
 
 ## Mathematics Examples
-
-![My Cat](/about/test.png)
 
 Here's Einstein's famous mass-energy equivalence equation:
 
@@ -40,3 +38,6 @@ $$
 - List item 2
 - List item 3 
 
+![My Cat](/cat3.jpeg)
+![My Cat](/cat4.jpg)
+![My Cat](/cat5.jpg)

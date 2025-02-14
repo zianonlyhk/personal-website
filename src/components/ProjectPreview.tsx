@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface ProjectPreviewProps {
     title: string;
     preview: string;
@@ -7,11 +9,11 @@ interface ProjectPreviewProps {
     href: string;
 }
 
-export default function ProjectPreview({ title, preview, href, date, githubUrl, thumbnailUrl }: ProjectPreviewProps) {
+export default function ProjectPreview({ title, preview, href, githubUrl, thumbnailUrl }: ProjectPreviewProps) {
     return (
         <div className="project_preview">
             <div className="project_preview_image_container">
-                <img src={thumbnailUrl} alt={title} className="project_preview_image" />
+                <Image src={thumbnailUrl} alt={title} width={128} height={128} className="project_preview_image" />
             </div>
             <div className="project_preview_content">
                 <h2 className="title-small">{title}</h2>
@@ -19,10 +21,10 @@ export default function ProjectPreview({ title, preview, href, date, githubUrl, 
                 <div>
                     <div className="project_preview_links">
                         <a href={githubUrl} className="preview_link" target="_blank" rel="noopener noreferrer">
-                            GitHub →
+                            GitHub
                         </a>
                         <a href={href} className="preview_link">
-                            Read more →
+                            Read More
                         </a>
                     </div>
                 </div>

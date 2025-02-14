@@ -6,8 +6,8 @@
 :root {
     --background: #ffffff;
     --foreground: #171717;
-    --card: #ffffff;
-    --card-foreground: #171717;
+    --card: #f0f0f0;
+    --card-foreground: #333333;
     --popover: #ffffff;
     --popover-foreground: #171717;
     --primary: #0ea5e9;
@@ -44,15 +44,15 @@
     /* Start of the _text_ CSS section -------------------------------------------------------------- */
 
     .title-boss {
-        @apply text-5xl font-bold mt-10 mb-5;
+        @apply text-5xl font-bold mt-10 mb-8;
     }
 
     .title-large {
-        @apply text-4xl font-bold mt-8 mb-4;
+        @apply text-4xl font-bold mt-4 mb-4;
     }
 
     .title-medium {
-        @apply text-3xl font-semibold mt-6 mb-3;
+        @apply text-3xl font-semibold mt-4 mb-3;
     }
 
     .title-small {
@@ -60,15 +60,15 @@
     }
 
     .body-large {
-        @apply text-lg mt-4 mb-2;
+        @apply text-lg mb-4;
     }
 
     .body-medium {
-        @apply text-base mt-2 mb-1;
+        @apply text-base mb-2;
     }
 
     .body-small {
-        @apply text-sm mt-1 mb-0;
+        @apply text-sm mb-0;
     }
 
     .unordered-list {
@@ -90,7 +90,7 @@
     }
 
     .image {
-        @apply rounded-lg object-cover;
+        @apply rounded-lg object-contain;
     }
 
     /* End of the _media_ CSS section --------------------------------------------------------------- */
@@ -253,5 +253,30 @@
     }
 
     /* End of the _footer_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* Start of the _masonry_ CSS section ------------------------------------------------------------ */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    .masonry-grid {
+        display: flex;
+        width: 100%;
+        max-width: 1800px;
+        /* Adjust based on your needs */
+        margin-left: -1rem;
+        /* Compensate for grid gap */
+    }
+
+    .masonry-grid-column {
+        padding-left: 1rem;
+        /* Grid gap */
+        background-clip: padding-box;
+    }
+
+    .masonry-item {
+        margin-bottom: 1rem;
+    }
+
+    /* End of the _masonry_ CSS section ------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 }

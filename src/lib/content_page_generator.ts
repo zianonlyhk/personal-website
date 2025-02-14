@@ -15,20 +15,16 @@ const projectDirectory = path.join(process.cwd(), 'content/projects');
 type ContentType = 'blog' | 'project';
 
 // Add these interfaces near the top of the file, after the ContentType definition
-interface BaseContentData {
+interface BlogData {
     slug: string;
     title: string;
     date: string;
     excerpt: string;
 }
 
-interface ProjectData extends BaseContentData {
+interface ProjectData extends BlogData {
     githubUrl: string;
     thumbnailUrl: string;
-}
-
-interface BlogData extends BaseContentData {
-    // Add any blog-specific fields here
 }
 
 // Helper function to get the appropriate directory
