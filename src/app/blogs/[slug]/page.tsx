@@ -12,10 +12,6 @@ export default async function BlogPost({ params }: PageProps) {
     const resolvedParams = await params;
     const post = await getContentPage(resolvedParams.slug, 'blogs');
 
-    if (!post) {
-        notFound();
-    }
-
     return (
         <div className="content_container">
             <h1 className="title-boss">{post.title}</h1>

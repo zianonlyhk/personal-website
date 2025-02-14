@@ -158,30 +158,36 @@
         [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-inline]:mx-1;
     }
 
-    /* Start of the _project_ CSS section ----------------------------------------------------------- */
+    /* Start of the _content_preview_ CSS section --------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
-    .project_preview {
+    .content_preview {
         @apply bg-card rounded-lg p-3 flex gap-4;
     }
 
-    .project_preview_image_container {
+    .content_preview_image_container {
         @apply w-32 h-32 flex-shrink-0;
     }
 
-    .project_preview_image {
+    .content_preview_image {
         @apply w-full h-full object-cover rounded-md;
     }
 
-    .project_preview_content {
+    .content_preview_content {
         @apply flex-1 flex flex-col;
     }
 
-    .project_preview_links {
+    .content_preview_links {
         @apply flex gap-8 items-center;
     }
 
-    .projects_grid {
+    /* End of the _content_preview_ CSS section --------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _project_ CSS section ----------------------------------------------------------- */
+
+    .project_preview_grid {
         @apply grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full;
     }
 

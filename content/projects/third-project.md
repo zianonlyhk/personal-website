@@ -1,8 +1,8 @@
 ---
 title: "My Third Project"
-date: "2024-03-14"
+# date: "2024-03-14"
 excerpt: "This is a brief excerpt of my third project..."
-githubUrl: "https://github.com/yourusername/personal-portfolio"
+githubUrl: "https://github.com/yourusername/personal-portfolio-third-project"
 thumbnailUrl: "/cat5.jpg"
 ---
 

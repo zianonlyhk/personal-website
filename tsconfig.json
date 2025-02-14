@@ -1,5 +1,4 @@
 {
-    // --- Auto-generated --- //
     "compilerOptions": {
         "target": "ES2017",
         "lib": [
@@ -18,16 +17,13 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
-        // --- End --- //
-        // --- Such that I can use @/ to refer to the root of the project --- //
         "baseUrl": ".",
         "paths": {
+            // --- Such that I can use @/ to refer to the root of the project --- //
             "@/*": [
                 "./*"
             ]
         },
-        // --- End --- //
-        // --- Auto-generated --- //
         "plugins": [
             {
                 "name": "next"
@@ -43,5 +39,4 @@
     "exclude": [
         "node_modules"
     ]
-    // --- End --- //
 }

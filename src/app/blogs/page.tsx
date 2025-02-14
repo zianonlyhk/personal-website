@@ -1,22 +1,34 @@
-import BlogPostPreview from '@/src/components/BlogPostPreview';
 import { getContentList } from '@/src/lib/content_page_generator';
+import ContentPreview from '@/src/components/ContentPreview';
 
 export default async function Blog() {
-    const allMarkdownPosts = await getContentList('blogs');
+    const allMarkdownBlogPosts = await getContentList('blogs');
 
     return (
         <div className="content_container items-center">
             <h1 className="title-boss">Blog Posts</h1>
             <div className="blog_post_preview_container">
-                {allMarkdownPosts.map((eachPost) => (
-                    <BlogPostPreview
-                        key={eachPost.slug}
-                        title={eachPost.title}
-                        preview={eachPost.excerpt}
-                        date={eachPost.date}
-                        href={`/blogs/${eachPost.slug}`}
-                    />
-                ))}
+                {allMarkdownBlogPosts.map((eachPost) => {
+
+                    const links = [];
+                    // Immediately add the Read More link
+                    links.push({
+                        type: 'internal',
+                        url: `/blogs/${eachPost.slug}`,
+                        label: 'Read More'
+                    });
+
+                    return (
+                        <ContentPreview
+                            key={eachPost.slug}
+                            title={eachPost.title}
+                            preview={eachPost.excerpt}
+                            date={eachPost.date}
+                            thumbnailUrl={eachPost.thumbnailUrl}
+                            links={links}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

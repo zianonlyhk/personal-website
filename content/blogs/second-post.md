@@ -2,6 +2,7 @@
 title: "My Second Blog Post"
 date: "2024-03-14"
 excerpt: "This is a brief excerpt of my second blog post..."
+thumbnailUrl: "/cat4.jpg"
 ---
 
 # Welcome to my second blog post!
