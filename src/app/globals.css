@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* This section defines CSS custom properties (variables) for the light theme */
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --card: #f0f0f0;
+    --card-foreground: #333333;
+    --popover: #ffffff;
+    --popover-foreground: #171717;
+    --primary: #0ea5e9;
+    --primary-foreground: #ffffff;
+    --accent: #d946ef;
+    --accent-foreground: #ffffff;
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
+    --border: #e5e7eb;
+}
+
+/* This section defines CSS custom properties (variables) for the dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+        --card: #1a1a1a;
+        --card-foreground: #ededed;
+        --popover: #1a1a1a;
+        --popover-foreground: #ededed;
+        --primary: #0ea5e9;
+        --primary-foreground: #ffffff;
+        --accent: #d946ef;
+        --accent-foreground: #ffffff;
+        --muted: #27272a;
+        --muted-foreground: #a1a1aa;
+        --border: #27272a;
+    }
+}
+
+@layer base {
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _text_ CSS section -------------------------------------------------------------- */
+
+    .title-boss {
+        @apply text-5xl font-bold mt-10 mb-10;
+    }
+
+    .title-large {
+        @apply text-4xl font-bold mt-4 mb-4;
+    }
+
+    .title-medium {
+        @apply text-3xl font-semibold mt-3 mb-3;
+    }
+
+    .title-small {
+        @apply text-2xl font-semibold mt-2 mb-2;
+    }
+
+    .body-large {
+        @apply text-lg mb-4;
+    }
+
+    .body-medium {
+        @apply text-base mb-2;
+    }
+
+    .body-small {
+        @apply text-sm mb-0;
+    }
+
+    .unordered-list {
+        @apply list-disc ml-6 my-4;
+    }
+
+    .ordered-list {
+        @apply list-decimal ml-6 my-4;
+    }
+
+    /* End of the _text_ CSS section ---------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _media_ CSS section ------------------------------------------------------------- */
+
+    .image-container {
+        @apply relative w-full;
+    }
+
+    .image {
+        @apply rounded-lg object-contain;
+    }
+
+    /* End of the _media_ CSS section --------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* Start of the _default_ CSS section ------------------------------------------------------------- */
+
+    body {
+        @apply bg-background text-foreground;
+        /* the body part of my website uses the font of Roboto */
+        font-family: var(--font-roboto);
+    }
+
+    /* Force scrollbar to always show to prevent layout shift */
+    /* This is to prevent the layout shift when the scrollbar is hidden */
+    html {
+        overflow-y: scroll;
+    }
+
+    /* Style the scrollbar for better aesthetics, slimmer bar */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    /* Style the scrollbar track */
+    ::-webkit-scrollbar-track {
+        background: var(--background);
+    }
+
+    /* Style the scrollbar thumb */
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--muted-foreground);
+        border-radius: 6px;
+        border: 3px solid var(--background);
+    }
+
+    /* End of the _default_ CSS section ------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+}
+
+@layer components {
+
+    .preview_link {
+        @apply text-primary-500 hover:text-primary-50;
+    }
+
+    .content_date {
+        @apply mb-8;
+    }
+
+    .content_container {
+        @apply w-full flex flex-col items-center justify-center p-8;
+    }
+
+    /* This is the styling for the content of the blog posts */
+    .content_content {
+        @apply max-w-prose mx-auto leading-relaxed flex flex-col items-center sm:items-start
+        /* Text styling */
+        text-foreground [&>p]:body-large
+        /* Heading styles */
+        [&>h1]:title-large [&>h2]:title-medium [&>h3]:title-small
+        /* List styling */
+        [&>ul]:unordered-list [&>ol]:ordered-list
+        /* Math/LaTeX container spacing */
+        [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-inline]:mx-1;
+    }
+
+    /* Start of the _content_preview_ CSS section --------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    .content_preview {
+        @apply bg-card rounded-lg p-3 flex gap-4;
+    }
+
+    .content_preview_image_container {
+        @apply w-32 h-32 flex-shrink-0;
+    }
+
+    .content_preview_image {
+        @apply w-full h-full object-cover rounded-md;
+    }
+
+    .content_preview_content {
+        @apply flex-1 flex flex-col;
+    }
+
+    .content_preview_links {
+        @apply flex gap-8 items-center;
+    }
+
+    /* End of the _content_preview_ CSS section --------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _project_ CSS section ----------------------------------------------------------- */
+
+    .project_preview_grid {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full;
+    }
+
+    /* End of the _project_ CSS section ------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _blog_post_ CSS section --------------------------------------------------------- */
+
+    .blog_post_preview_container {
+        @apply max-w-2xl w-full space-y-6;
+    }
+
+    .blog_post_preview {
+        @apply bg-card rounded-lg p-3;
+    }
+
+    /* End of the _blog_post_ CSS section ------------------------------------------------------------ */
+    /* ----------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _navbar_ CSS section ------------------------------------------------------------ */
+
+    nav {
+        /* my navigation bar is in the font of Roboto Mono */
+        font-family: var(--font-roboto-mono);
+        /* fixed to top, full width, above other elements, with border and background */
+        @apply fixed top-0 w-full z-50 py-4 px-6 border-b border-border bg-background;
+    }
+
+    .nav-container {
+        @apply container mx-auto flex justify-between items-center;
+    }
+
+    .nav-link {
+        @apply hover:opacity-80 font-medium flex items-center gap-2 px-2 py-1 rounded;
+    }
+
+    .nav-link-active {
+        @apply bg-foreground text-background;
+    }
+
+    /* End of the _navbar_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _footer_ CSS section ------------------------------------------------------------ */
+
+    footer {
+        /* my footer is in the font of Roboto */
+        font-family: var(--font-roboto);
+        @apply w-full py-4 px-6 border-t border-border text-foreground bg-background;
+    }
+
+    .footer-container {
+        @apply container mx-auto flex justify-between items-center;
+    }
+
+    .footer-social-links {
+        @apply flex gap-6;
+    }
+
+    .footer-social-icon {
+        @apply hover:opacity-80;
+    }
+
+    .footer-icon {
+        @apply w-7 h-7;
+    }
+
+    /* End of the _footer_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* Start of the _masonry_ CSS section ------------------------------------------------------------ */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    .masonry-grid {
+        display: flex;
+        width: 100%;
+        max-width: 1800px;
+        /* Adjust based on your needs */
+        margin-left: -1rem;
+        /* Compensate for grid gap */
+    }
+
+    .masonry-grid-column {
+        padding-left: 1rem;
+        /* Grid gap */
+        background-clip: padding-box;
+    }
+
+    .masonry-item {
+        margin-bottom: 1rem;
+    }
+
+    /* End of the _masonry_ CSS section ------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+}
