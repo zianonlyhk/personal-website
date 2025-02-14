@@ -29,10 +29,10 @@ const Navbar = () => {
                         projects
                     </Link>
                     <Link
-                        href="/blog"
-                        className={`nav-link ${pathname?.startsWith('/blog') ? 'nav-link-active' : ''}`}
+                        href="/blogs"
+                        className={`nav-link ${pathname?.startsWith('/blogs') ? 'nav-link-active' : ''}`}
                     >
-                        blog
+                        blogs
                     </Link>
                     <Link
                         href="/gallery"

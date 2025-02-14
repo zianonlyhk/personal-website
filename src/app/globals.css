@@ -44,7 +44,7 @@
     /* Start of the _text_ CSS section -------------------------------------------------------------- */
 
     .title-boss {
-        @apply text-5xl font-bold mt-10 mb-8;
+        @apply text-5xl font-bold mt-10 mb-10;
     }
 
     .title-large {
@@ -52,11 +52,11 @@
     }
 
     .title-medium {
-        @apply text-3xl font-semibold mt-4 mb-3;
+        @apply text-3xl font-semibold mt-3 mb-3;
     }
 
     .title-small {
-        @apply text-2xl font-semibold mt-4 mb-2;
+        @apply text-2xl font-semibold mt-2 mb-2;
     }
 
     .body-large {

@@ -8,11 +8,11 @@ import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
 import { visit } from 'unist-util-visit';
 
-const blogPostDirectory = path.join(process.cwd(), 'content/blog');
+const blogPostDirectory = path.join(process.cwd(), 'content/blogs');
 const projectDirectory = path.join(process.cwd(), 'content/projects');
 
 // First, let's define a type for the content type
-type ContentType = 'blog' | 'project';
+type ContentType = 'blogs' | 'project';
 
 // Add these interfaces near the top of the file, after the ContentType definition
 interface BlogData {
@@ -29,7 +29,7 @@ interface ProjectData extends BlogData {
 
 // Helper function to get the appropriate directory
 function getContentDirectory(contentType: ContentType) {
-    return contentType === 'blog' ? blogPostDirectory : projectDirectory;
+    return contentType === 'blogs' ? blogPostDirectory : projectDirectory;
 }
 
 // Unified function to get content list

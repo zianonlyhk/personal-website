@@ -2,7 +2,7 @@ import BlogPostPreview from '@/src/components/BlogPostPreview';
 import { getContentList } from '@/src/lib/content_page_generator';
 
 export default async function Blog() {
-    const allMarkdownPosts = await getContentList('blog');
+    const allMarkdownPosts = await getContentList('blogs');
 
     return (
         <div className="content_container items-center">
@@ -14,7 +14,7 @@ export default async function Blog() {
                         title={eachPost.title}
                         preview={eachPost.excerpt}
                         date={eachPost.date}
-                        href={`/blog/${eachPost.slug}`}
+                        href={`/blogs/${eachPost.slug}`}
                     />
                 ))}
             </div>

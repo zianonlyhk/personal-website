@@ -10,7 +10,7 @@ export default async function BlogPost({ params }: PageProps) {
     // Error: Route "/blog/[slug]" used `params.slug`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
     // So I had to await the params
     const resolvedParams = await params;
-    const post = await getContentPage(resolvedParams.slug, 'blog');
+    const post = await getContentPage(resolvedParams.slug, 'blogs');
 
     if (!post) {
         notFound();
