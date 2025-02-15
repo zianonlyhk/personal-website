@@ -47,6 +47,7 @@ export async function getContentList(contentType: ContentType) {
             excerpt: data.excerpt,
             thumbnailUrl: data.thumbnailUrl,
             githubUrl: data.githubUrl,
+            isVip: data.isVip || false,
         };
     });
 

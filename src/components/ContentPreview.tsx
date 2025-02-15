@@ -13,6 +13,7 @@ export interface ContentPreviewProps {
         type: 'github' | 'external' | 'internal';
         url: string;
         label: string;
+        className?: string;
     }[];
 }
 
@@ -42,7 +43,7 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                                     <Link
                                         key={index}
                                         href={link.url}
-                                        className="preview_link"
+                                        className={link.className}
                                     >
                                         {link.label}
                                     </Link>
@@ -52,7 +53,7 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                                     <Link
                                         key={index}
                                         href={link.url}
-                                        className="preview_link"
+                                        className={link.className}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -64,7 +65,7 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                                     <Link
                                         key={index}
                                         href={link.url}
-                                        className="preview_link"
+                                        className={link.className}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

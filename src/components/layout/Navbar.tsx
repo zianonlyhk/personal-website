@@ -16,7 +16,7 @@ const Navbar = () => {
                         href="/"
                         className={`nav-link ${pathname === '/' ? 'nav-link-active' : ''}`}
                     >
-                        zianhuang
+                        __init__
                     </Link>
                 </div>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                         href="/about"
                         className={`nav-link ${pathname?.startsWith('/about') ? 'nav-link-active' : ''}`}
                     >
-                        about_me
+                        about_zian
                     </Link>
                 </div>
             </div>

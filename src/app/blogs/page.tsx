@@ -9,13 +9,13 @@ export default async function Blog() {
             <h1 className="title-boss">_blogPosts</h1>
             <div className="blog_post_preview_container">
                 {allMarkdownBlogPosts.map((eachPost) => {
-
                     const links = [];
                     // Immediately add the Read More link
                     links.push({
                         type: 'internal',
                         url: `/blogs/${eachPost.slug}`,
-                        label: 'Read More'
+                        label: 'Read More',
+                        className: eachPost.isVip ? 'preview_link_accent' : 'preview_link'
                     });
 
                     return (

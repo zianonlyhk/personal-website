@@ -9,13 +9,13 @@ export default async function Blog() {
             <h1 className="title-boss">_projects</h1>
             <div className="project_preview_grid">
                 {allMarkdownProjects.map((eachProj) => {
-
                     const links = [];
                     // Immediately add the Read More link
                     links.push({
                         type: 'internal',
                         url: `/projects/${eachProj.slug}`,
-                        label: 'Read More'
+                        label: 'Read More',
+                        className: eachProj.isVip ? 'preview_link_accent' : 'preview_link'
                     });
 
                     // Only add GitHub link if a GitHub url is provided
@@ -23,7 +23,8 @@ export default async function Blog() {
                         links.push({
                             type: 'github',
                             url: eachProj.githubUrl,
-                            label: 'GitHub'
+                            label: 'GitHub',
+                            className: eachProj.isVip ? 'preview_link_accent' : 'preview_link'
                         });
                     }
 
@@ -32,7 +33,6 @@ export default async function Blog() {
                             key={eachProj.slug}
                             title={eachProj.title}
                             preview={eachProj.excerpt}
-                            // date={eachProj.date}
                             thumbnailUrl={eachProj.thumbnailUrl}
                             links={links}
                         />

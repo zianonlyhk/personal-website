@@ -1,41 +1,34 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
     return (
-        <div className="h-full flex flex-col items-center justify-center p-8]">
-            <main className="flex flex-col gap-8 items-center sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
-                    priority
-                />
-                <div className="flex gap-4 items-center flex-col sm:flex-row">
-                    <a
-                        className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-                        href="https://vercel.com/new"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            className="dark:invert"
-                            src="/vercel.svg"
-                            alt="Vercel logomark"
-                            width={20}
-                            height={20}
-                        />
-                        Deploy now
-                    </a>
-                    <a
-                        className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-                        href="https://nextjs.org/docs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Read our docs
-                    </a>
+        <div className="h-full flex flex-col items-center justify-center">
+            <main className="flex flex-col items-start">
+
+                <div className="flex gap-2 items-center">
+                    <Image
+                        className="dark:invert"
+                        src="/homeicon.svg"
+                        alt="Zian Logo"
+                        width={50}
+                        height={50}
+                    />
+                    <p className="home-text">:</p>
+                    <p className="home-text">this is zian huang's personal website</p>
+                </div>
+
+                <div className="home-text-container">
+                    <p className="home-text">:</p>
+                    <p className="home-text">
+                        learn about his coding <Link href="/projects" className="preview_link">projects</Link>,<br />
+                        read his <Link href="/blogs" className="preview_link">blogs</Link>
+                    </p>
+                </div>
+
+                <div className="home-text-container">
+                    <p className="home-text">:</p>
+                    <p className="home-text">look at his <Link href="/gallery" className="preview_link_accent">art&design</Link> works</p>
                 </div>
             </main>
         </div>

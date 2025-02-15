@@ -1,9 +1,10 @@
 ---
-title: "My Second Project"
+title: "My Second Project (VIP)"
 # date: "2024-03-14"
 excerpt: "This is a brief excerpt of my second project..."
 githubUrl: "https://github.com/yourusername/personal-portfolio-second-project"
 thumbnailUrl: "/cat4.jpg"
+isVip: true
 ---
 
 # Welcome to my second blog post!
