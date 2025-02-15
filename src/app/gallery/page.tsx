@@ -43,13 +43,11 @@ export default function Gallery() {
 
     // Notes to my future self: If I want to add more images, I can add them here
     const galleryItems: GalleryItem[] = [
-        { id: 1, title: "My first cat", image_url: "/gallery/cat1.png", width: 775, height: 607 },
-        { id: 2, title: "My second cat", image_url: "/gallery/cat2.png", width: 360, height: 500 },
-        { id: 3, title: "My third cat", image_url: "/gallery/cat3.jpeg", width: 3000, height: 4500 },
-        { id: 4, title: "My fourth cat", image_url: "/gallery/cat4.jpg", width: 5403, height: 3602 },
-        { id: 5, title: "My fifth cat", image_url: "/gallery/cat5.jpg", width: 2303, height: 3012 },
-        { id: 6, title: "My sixth cat", image_url: "/gallery/cat4.jpg", width: 5403, height: 3602 },
-        { id: 7, title: "My seventh cat", image_url: "/gallery/cat4.jpg", width: 5403, height: 3602 },
+        { id: 1, title: "Pepper (colour pencil)", image_url: "/gallery/drpepper.jpg", width: 5184, height: 3456 },
+        { id: 2, title: "Woman Sitting (dharcoal)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259 },
+        { id: 3, title: "三目 (Python & Cairo)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
+        { id: 4, title: "Spaghetti (digital)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
+        { id: 5, title: "KC Printing (printing)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
     ];
 
     const breakpointColumns = {
@@ -61,7 +59,7 @@ export default function Gallery() {
 
     return (
         <div className="content_container">
-            <h1 className="title-boss">Gallery</h1>
+            <h1 className="title-boss">_gallery</h1>
             <Masonry
                 breakpointCols={breakpointColumns}
                 className="masonry-grid"
@@ -70,7 +68,7 @@ export default function Gallery() {
                 {galleryItems.map((item) => (
                     <div
                         key={item.id}
-                        className="masonry-item bg-card rounded-lg overflow-hidden mb-4"
+                        className="bg-card rounded-lg overflow-hidden mb-4"
                     >
                         <div
                             className="cursor-pointer hover:opacity-90 transition-opacity"
@@ -86,7 +84,7 @@ export default function Gallery() {
                                 />
                             </div>
                         </div>
-                        <p className="body-medium p-3">{item.title}</p>
+                        <p className="body-medium p-2">{item.title}</p>
                     </div>
                 ))}
             </Masonry>

@@ -15,7 +15,7 @@ const Footer = () => {
                 <div className="footer-social-links">
                     {/* GitHub */}
                     <Link
-                        href="https://github.com/yourusername"
+                        href="https://github.com/zianonlyhk"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="footer-social-icon"
@@ -25,7 +25,7 @@ const Footer = () => {
 
                     {/* LinkedIn */}
                     <Link
-                        href="https://linkedin.com/in/yourprofile"
+                        href="https://linkedin.com/in/zian-huang/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="footer-social-icon"
@@ -33,7 +33,7 @@ const Footer = () => {
                         <FontAwesomeIcon icon={faLinkedin} className="footer-icon" />
                     </Link>
 
-                    {/* Twitter/X */}
+                    {/* Twitter/X
                     <Link
                         href="https://twitter.com/yourusername"
                         target="_blank"
@@ -41,7 +41,7 @@ const Footer = () => {
                         className="footer-social-icon"
                     >
                         <FontAwesomeIcon icon={faXTwitter} className="footer-icon" />
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         </footer>

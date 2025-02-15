@@ -45,6 +45,7 @@
 
     .title-boss {
         @apply text-5xl font-bold mt-10 mb-10;
+        font-family: var(--font-roboto-mono);
     }
 
     .title-large {
@@ -277,10 +278,6 @@
         padding-left: 1rem;
         /* Grid gap */
         background-clip: padding-box;
-    }
-
-    .masonry-item {
-        margin-bottom: 1rem;
     }
 
     /* End of the _masonry_ CSS section ------------------------------------------------------------- */

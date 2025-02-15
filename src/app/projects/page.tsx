@@ -6,7 +6,7 @@ export default async function Blog() {
 
     return (
         <div className="content_container items-center">
-            <h1 className="title-boss">Projects</h1>
+            <h1 className="title-boss">_projects</h1>
             <div className="project_preview_grid">
                 {allMarkdownProjects.map((eachProj) => {
 

@@ -1,5 +1,4 @@
 import { getContentPage } from '@/src/lib/content_page_generator';
-import { notFound } from 'next/navigation';
 
 type PageProps = {
     params: Promise<{ slug: string }>
