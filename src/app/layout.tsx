@@ -26,7 +26,7 @@ export default function RootLayout({
         <html lang="en" className="h-full">
             <body className={`${roboto.variable} ${roboto_mono.variable} antialiased h-full flex flex-col`}>
                 <Navbar />
-                <main className="flex-1 p-20">
+                <main className="flex-1 sm:p-4 md:p-10">
                     {children}
                 </main>
                 <Footer />

@@ -20,65 +20,68 @@ export interface ContentPreviewProps {
 export default function ContentPreview({ title, preview, date, thumbnailUrl, links }: ContentPreviewProps) {
     return (
         <div className="content_preview">
-            {thumbnailUrl && (
-                <div className="content_preview_image_container">
-                    <Image
-                        src={thumbnailUrl}
-                        alt={title}
-                        width={128}
-                        height={128}
-                        className="content_preview_image"
-                    />
-                </div>
-            )}
-            <div className="content_preview_content">
-                <h2 className="title-small">{title}</h2>
-                {date && <p className="body-small text-foreground">{date}</p>}
-                <p className="body-small">{preview}</p>
-                {links && links.length > 0 && (
-                    <div className="content_preview_links">
-                        {links.map((link, index) => {
-                            if (link.type === 'internal') {
-                                return (
-                                    <Link
-                                        key={index}
-                                        href={link.url}
-                                        className={link.className}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            } else if (link.type === 'external') {
-                                return (
-                                    <Link
-                                        key={index}
-                                        href={link.url}
-                                        className={link.className}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            } else if (link.type === 'github') {
-                                return (
-                                    <Link
-                                        key={index}
-                                        href={link.url}
-                                        className={link.className}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            } else {
-                                return null;
-                            }
-                        })}
+            <div className="content_preview_header">
+                {thumbnailUrl && (
+                    <div className="content_preview_image_container">
+                        <Image
+                            src={thumbnailUrl}
+                            alt={title}
+                            width={128}
+                            height={128}
+                            className="content_preview_image"
+                        />
                     </div>
                 )}
+                <div className="content_preview_title">
+                    <h2 className="title-small">{title}</h2>
+                    {links && links.length > 0 && (
+                        <div className="content_preview_links">
+                            {links.map((link, index) => {
+                                if (link.type === 'internal') {
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={link.url}
+                                            className={link.className}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    );
+                                } else if (link.type === 'external') {
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={link.url}
+                                            className={link.className}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    );
+                                } else if (link.type === 'github') {
+                                    return (
+                                        <Link
+                                            key={index}
+                                            href={link.url}
+                                            className={link.className}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    );
+                                } else {
+                                    return null;
+                                }
+                            })}
+                        </div>
+                    )}
+                </div>
             </div>
+            <p className="body-small mb-2">{preview}</p>
+            {date && <p className="body-small text-foreground text-right">{date}</p>}
+
         </div>
     );
 }

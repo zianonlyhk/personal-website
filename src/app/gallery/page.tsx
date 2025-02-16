@@ -44,17 +44,18 @@ export default function Gallery() {
 
     // Notes to my future self: If I want to add more images, I can add them here
     const galleryItems: GalleryItem[] = [
-        { id: 1, title: "Pepper (colour pencil)", image_url: "/gallery/drpepper.jpg", width: 5184, height: 3456 },
+        { id: 1, title: "Pepper (colour pencil)", image_url: "/gallery/drpepper.jpg", width: 5184, height: 3081 },
         { id: 2, title: "Woman Sitting (charcoal)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259, isVip: true },
-        { id: 3, title: "三目 (Python & Cairo)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
-        { id: 4, title: "Spaghetti (digital)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
         { id: 5, title: "KC Printing (printing)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
+        { id: 4, title: "Spaghetti (digital)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
+        { id: 3, title: "三目 (Python & Cairo)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
     ];
 
     const breakpointColumns = {
         default: 4,
         1536: 3,
         1024: 2,
+        768: 2,
         640: 1
     };
 
@@ -85,7 +86,7 @@ export default function Gallery() {
                                 />
                             </div>
                         </div>
-                        <p className={`body-medium p-2 ${item.isVip ? 'text-accent-500' : 'text-foreground'}`}>
+                        <p className={`text-base p-2 ${item.isVip ? 'text-accent-500' : 'text-foreground'}`}>
                             {item.title}
                         </p>
                     </div>

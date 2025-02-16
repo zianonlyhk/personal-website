@@ -4,18 +4,18 @@ import Link from "next/link";
 export default function Home() {
     return (
         <div className="h-full flex flex-col items-center justify-center">
-            <main className="flex flex-col items-start">
+            <main className="max-w-xs md:max-w-4xl flex flex-col items-start">
 
                 <div className="flex gap-2 items-center">
                     <Image
-                        className="dark:invert"
+                        className="dark:invert mt-2"
                         src="/homeicon.svg"
                         alt="Zian Logo"
-                        width={50}
-                        height={50}
+                        width={40}
+                        height={40}
                     />
                     <p className="home-text">:</p>
-                    <p className="home-text">this is zian huang's personal website</p>
+                    <p className="home-text">this is zian huang&apos;s personal website</p>
                 </div>
 
                 <div className="home-text-container">

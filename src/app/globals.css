@@ -81,40 +81,40 @@
     }
 
     .title-boss {
-        @apply text-5xl font-bold mt-10 mb-10;
+        @apply font-bold text-3xl md:text-5xl mt-10 mb-5 md:mb-10 max-w-3xl md:max-w-5xl;
         font-family: var(--font-roboto-mono);
     }
 
     .title-large {
-        @apply text-4xl font-bold mt-4 mb-4;
+        @apply text-4xl font-bold mt-3 md:mt-4 mb-3 md:mb-4;
     }
 
     .title-medium {
-        @apply text-3xl font-semibold mt-3 mb-3;
+        @apply text-3xl font-semibold mt-2 md:mt-3 mb-2 md:mb-3;
     }
 
     .title-small {
-        @apply text-2xl font-semibold mt-2 mb-2;
+        @apply text-lg md:text-2xl font-semibold mt-1 md:mt-2 mb-1 md:mb-2;
     }
 
     .body-large {
-        @apply text-lg mb-4;
+        @apply text-lg mb-2 md:mb-4;
     }
 
     .body-medium {
-        @apply text-base mb-2;
+        @apply text-base mb-1 md:mb-2;
     }
 
     .body-small {
-        @apply text-sm mb-0;
+        @apply text-sm mb-0 md:mb-1;
     }
 
     .unordered-list {
-        @apply list-disc ml-6 my-4;
+        @apply list-disc ml-6 my-2 md:my-4;
     }
 
     .ordered-list {
-        @apply list-decimal ml-6 my-4;
+        @apply list-decimal ml-6 my-2 md:my-4;
     }
 
     /* End of the _text_ CSS section ---------------------------------------------------------------- */
@@ -138,7 +138,7 @@
     /* Start of the _home_ CSS section ------------------------------------------------------------- */
 
     .home-text {
-        @apply text-5xl font-bold mt-5 mb-5 text-roboto-mono;
+        @apply text-roboto-mono font-bold text-xl md:text-5xl mt-2 mb-2 md:mt-5 md:mb-5;
     }
 
     .home-text-container {
@@ -160,16 +160,16 @@
     }
 
     .content_date {
-        @apply mb-8;
+        @apply mb-2 md:mb-4;
     }
 
     .content_container {
-        @apply w-full flex flex-col items-center justify-center p-8;
+        @apply w-full flex flex-col items-center justify-center p-6 md:p-8;
     }
 
     /* This is the styling for the content of the blog posts */
     .content_content {
-        @apply max-w-prose mx-auto leading-relaxed flex flex-col items-center sm:items-start
+        @apply max-w-2xl md:max-w-4xl mx-auto leading-relaxed flex flex-col items-center sm:items-start
         /* Text styling */
         text-foreground [&>p]:body-large
         /* Heading styles */
@@ -187,15 +187,23 @@
     /* Start of the _content_preview_ CSS section --------------------------------------------------- */
 
     .content_preview {
-        @apply bg-card rounded-lg p-3 flex gap-4;
+        @apply bg-card rounded-lg p-3;
+    }
+
+    .content_preview_header {
+        @apply flex flex-row gap-3 mb-2 items-start;
     }
 
     .content_preview_image_container {
-        @apply w-32 h-32 flex-shrink-0;
+        @apply w-24 h-24 flex-shrink-0;
+    }
+
+    .content_preview_title {
+        @apply flex-1;
     }
 
     .content_preview_image {
-        @apply w-full h-full object-cover rounded-md;
+        @apply rounded-lg object-cover w-full h-full;
     }
 
     .content_preview_content {
@@ -240,11 +248,11 @@
         /* my navigation bar is in the font of Roboto Mono */
         font-family: var(--font-roboto-mono);
         /* fixed to top, full width, above other elements, with border and background */
-        @apply fixed top-0 w-full z-50 py-4 px-6 border-b border-border bg-background;
+        @apply fixed top-0 w-full z-50 py-2 md:py-4 px-6 border-b border-border bg-background;
     }
 
     .nav-container {
-        @apply container mx-auto flex justify-between items-center;
+        @apply container mx-auto flex justify-between items-center flex-col md:flex-row;
     }
 
     .nav-link {
@@ -264,7 +272,7 @@
     footer {
         /* my footer is in the font of Roboto */
         font-family: var(--font-roboto);
-        @apply w-full py-4 px-6 border-t border-border text-foreground bg-background;
+        @apply w-full py-2 md:py-4 px-6 border-t border-border text-foreground bg-background;
     }
 
     .footer-container {
@@ -272,7 +280,7 @@
     }
 
     .footer-social-links {
-        @apply flex gap-6;
+        @apply flex gap-3 md:gap-6;
     }
 
     .footer-social-icon {
