@@ -21,14 +21,17 @@ export default function Home() {
                 <div className="home-text-container">
                     <p className="home-text">:</p>
                     <p className="home-text">
-                        learn about his coding <Link href="/projects" className="preview_link">projects</Link>,<br />
+                        learn about his <Link href="/projects" className="preview_link">projects</Link>,<br />
                         read his <Link href="/blogs" className="preview_link">blogs</Link>
                     </p>
                 </div>
 
                 <div className="home-text-container">
                     <p className="home-text">:</p>
-                    <p className="home-text">look at his <Link href="/gallery" className="preview_link_accent">art&design</Link> works</p>
+                    <p className="home-text">
+                        look at his <Link href="/gallery" className="preview_link_accent">arts&designs</Link>
+                        <span className="blink-cursor">▊</span>
+                    </p>
                 </div>
             </main>
         </div>

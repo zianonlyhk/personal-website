@@ -86,11 +86,11 @@
     }
 
     .title-large {
-        @apply text-4xl font-bold mt-3 md:mt-4 mb-3 md:mb-4;
+        @apply text-2xl md:text-4xl font-bold mt-3 md:mt-4 mb-3 md:mb-4;
     }
 
     .title-medium {
-        @apply text-3xl font-semibold mt-2 md:mt-3 mb-2 md:mb-3;
+        @apply text-xl md:text-3xl font-semibold mt-2 md:mt-3 mb-2 md:mb-3;
     }
 
     .title-small {
@@ -98,15 +98,15 @@
     }
 
     .body-large {
-        @apply text-lg mb-2 md:mb-4;
+        @apply text-lg md:text-xl mb-2 md:mb-4;
     }
 
     .body-medium {
-        @apply text-base mb-1 md:mb-2;
+        @apply text-base md:text-lg mb-1 md:mb-2;
     }
 
     .body-small {
-        @apply text-sm mb-0 md:mb-1;
+        @apply text-sm md:text-base mb-0 md:mb-1;
     }
 
     .unordered-list {
@@ -138,11 +138,11 @@
     /* Start of the _home_ CSS section ------------------------------------------------------------- */
 
     .home-text {
-        @apply text-roboto-mono font-bold text-xl md:text-5xl mt-2 mb-2 md:mt-5 md:mb-5;
+        @apply text-roboto-mono font-bold text-2xl md:text-5xl mt-2 mb-2 md:mt-5 md:mb-5;
     }
 
     .home-text-container {
-        @apply flex gap-2 items-center pl-8 ml-7;
+        @apply flex gap-2 items-center pl-6 ml-6;
     }
 
     /* End of the _home_ CSS section ------------------------------------------------------------- */
@@ -314,4 +314,25 @@
 
     /* End of the _masonry_ CSS section ------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
+
+    /* Add this with your other component styles */
+    .blink-cursor {
+        animation: blink 1.5s step-end infinite;
+        font-family: var(--font-roboto-mono);
+        font-weight: bold;
+        font-size: inherit;
+        color: var(--muted-foreground);
+    }
+
+    @keyframes blink {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+    }
 }
