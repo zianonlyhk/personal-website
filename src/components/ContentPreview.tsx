@@ -79,7 +79,7 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                     )}
                 </div>
             </div>
-            <p className="body-small mb-2">{preview}</p>
+            <p className="body-small mb-1 md:mb-2">{preview}</p>
             {date && <p className="body-small text-foreground text-right">{date}</p>}
 
         </div>

@@ -10,10 +10,12 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleClick = (event: MouseEvent) => {
-            // Check if the click is outside the navigation menu
-            const nav = document.querySelector('nav');
-            if (nav && !nav.contains(event.target as Node)) {
-                setIsMenuOpen(false);
+            // Only close menu on outside clicks for mobile view
+            if (window.innerWidth < 768) { // 768px is the md breakpoint in Tailwind
+                const nav = document.querySelector('nav');
+                if (nav && !nav.contains(event.target as Node)) {
+                    setIsMenuOpen(false);
+                }
             }
         };
 
@@ -52,7 +54,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation links */}
-                <div className={`${isMenuOpen ? 'flex' : 'hidden'} nav-link-container`}>
+                <div className={`nav-link-container ${isMenuOpen ? 'flex' : 'hidden'} md:flex`}>
                     <Link
                         href="/projects"
                         className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''}`}

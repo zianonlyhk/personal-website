@@ -10,7 +10,7 @@ export default function ReturnButton() {
     return (
         <button
             onClick={() => router.back()}
-            className="button fixed top-16 left-4 md:top-24 md:left-8 "
+            className="button fixed top-16 left-3 md:top-24 md:left-8 "
             aria-label="Return to previous page"
         >
             <FontAwesomeIcon icon={faArrowLeft} className="button-icon" />
