@@ -33,7 +33,7 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className="nav-container flex-col md:flex-row">
+            <div className="nav-container">
                 {/* Mobile menu button */}
                 <div className="flex justify-between items-center w-full md:w-auto">
                     <Link
@@ -43,7 +43,7 @@ const Navbar = () => {
                     >
                         __init__
                     </Link>
-                    <button className="md:hidden" onClick={(e) => {
+                    <button className="md:hidden text-2xl" onClick={(e) => {
                         e.stopPropagation(); // Prevent event from bubbling up
                         setIsMenuOpen(!isMenuOpen);
                     }}>
@@ -52,7 +52,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Navigation links */}
-                <div className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-1`}>
+                <div className={`${isMenuOpen ? 'flex' : 'hidden'} nav-link-container`}>
                     <Link
                         href="/projects"
                         className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''}`}

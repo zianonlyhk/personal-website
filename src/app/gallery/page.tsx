@@ -1,7 +1,10 @@
 'use client';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Masonry from 'react-masonry-css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface GalleryItem {
     id: number;
@@ -12,12 +15,39 @@ interface GalleryItem {
     isVip?: boolean;
 }
 
-function calculateDimensions(imageWidth: number, imageHeight: number) {
-    if (typeof window === 'undefined') return { width: 0, height: 0 };
+function getModalDimensions(imageWidth: number, imageHeight: number, isSmallScreen: boolean) {
+    if (typeof window === 'undefined') return { width: 0, height: 0, shouldRotate: false };
 
-    const maxWidth = window.innerWidth * 0.95 - 32; // 95% of viewport width minus padding
-    const maxHeight = window.innerHeight * 0.95 - 32; // 95% of viewport height minus padding
+    const maxWidth = window.innerWidth * 0.9 - 32; // 90% of viewport width minus padding
+    const maxHeight = window.innerHeight * 0.9 - 32; // 90% of viewport height minus padding
 
+    // For landscape images on small screens, rotate the image
+    if (isSmallScreen && imageWidth > imageHeight) {
+        // Swap image dimensions to account for rotation
+        const rotatedWidth = imageHeight;
+        const rotatedHeight = imageWidth;
+        const rotatedAspectRatio = rotatedWidth / rotatedHeight;
+
+        let width = rotatedWidth;
+        let height = rotatedHeight;
+
+        // Scale down if rotated image is larger than viewport
+        if (width > maxWidth || height > maxHeight) {
+            if (maxWidth / maxHeight > rotatedAspectRatio) {
+                // Height is the limiting factor
+                height = maxHeight;
+                width = height * rotatedAspectRatio;
+            } else {
+                // Width is the limiting factor
+                width = maxWidth;
+                height = width / rotatedAspectRatio;
+            }
+        }
+
+        return { width, height, shouldRotate: true };
+    }
+
+    // For portrait images or non-small screens, handle normally
     const aspectRatio = imageWidth / imageHeight;
 
     let width = imageWidth;
@@ -36,11 +66,40 @@ function calculateDimensions(imageWidth: number, imageHeight: number) {
         }
     }
 
-    return { width, height };
+    // default to not rotate
+    return { width, height, shouldRotate: false };
 }
 
 export default function Gallery() {
     const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+    // Add ESC key handler
+    useEffect(() => {
+        const handleEscKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setSelectedItem(null);
+            }
+        };
+
+        // Add screen size check
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 768); // 768px is typical mobile breakpoint
+        };
+
+        // Initial check
+        handleResize();
+
+        // Add event listeners
+        window.addEventListener('keydown', handleEscKey);
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup
+        return () => {
+            window.removeEventListener('keydown', handleEscKey);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // Notes to my future self: If I want to add more images, I can add them here
     const galleryItems: GalleryItem[] = [
@@ -93,33 +152,53 @@ export default function Gallery() {
                 ))}
             </Masonry>
 
-            {/* Modal */}
             {selectedItem && (
                 <div
-                    className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50"
+                    className="modal"
                     onClick={() => setSelectedItem(null)}
                 >
                     <div
-                        className="bg-card rounded-lg p-4 relative"
+                        className="modal-content"
                         onClick={(e) => e.stopPropagation()}
                         style={{
-                            maxWidth: '95vw',
-                            maxHeight: '95vh',
+                            maxWidth: '90vw',
+                            maxHeight: '90vh',
                             width: 'auto',
-                            height: 'auto'
+                            height: 'auto',
                         }}
                     >
-                        <div className="relative" style={{
-                            width: calculateDimensions(selectedItem.width, selectedItem.height).width,
-                            height: calculateDimensions(selectedItem.width, selectedItem.height).height,
-                        }}>
+                        {/* Close button */}
+                        <button
+                            onClick={() => setSelectedItem(null)}
+                            className="button absolute -top-4 -left-4"
+                            aria-label="Close modal"
+                        >
+                            <FontAwesomeIcon icon={faXmark} className="button-icon" />
+                        </button>
+
+                        <div
+                            // if not relative then size of image is not correct
+                            className="relative"
+                            style={{
+                                width: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).width,
+                                height: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).height,
+                            }}
+                        >
                             <Image
                                 src={selectedItem.image_url}
                                 alt={selectedItem.title}
                                 fill
                                 className="image object-contain"
-                                sizes="95vw"
                                 priority
+                                style={{
+                                    // shouldRotate the image if it is landscape on a small screen
+                                    transform: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).shouldRotate
+                                        // rotate then zoom in if landscape
+                                        ? `rotate(-90deg) scale(${selectedItem.width / selectedItem.height})`
+                                        // do nothing if portrait
+                                        : 'none',
+                                    transformOrigin: 'center center',
+                                }}
                             />
                         </div>
                     </div>

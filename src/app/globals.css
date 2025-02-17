@@ -83,6 +83,7 @@
     .title-boss {
         @apply font-bold text-3xl md:text-5xl mt-10 mb-5 md:mb-10 max-w-3xl md:max-w-5xl;
         font-family: var(--font-roboto-mono);
+        text-align: right;
     }
 
     .title-large {
@@ -131,6 +132,14 @@
         @apply rounded-lg object-contain;
     }
 
+    .modal {
+        @apply fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50;
+    }
+
+    .modal-content {
+        @apply bg-card rounded-lg p-4 relative;
+    }
+
     /* End of the _media_ CSS section --------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
@@ -160,7 +169,8 @@
     }
 
     .content_date {
-        @apply mb-2 md:mb-4;
+        @apply mb-2 md:mb-4 w-full max-w-3xl md:max-w-5xl text-right;
+        font-family: var(--font-roboto-mono);
     }
 
     .content_container {
@@ -178,6 +188,14 @@
         [&>ul]:unordered-list [&>ol]:ordered-list
         /* Math/LaTeX container spacing */
         [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-inline]:mx-1;
+    }
+
+    .button {
+        @apply bg-card hover:bg-border pl-2 pr-2 p-1 md:pl-4 md:pr-4 md:p-3 rounded-full shadow-lg transition-all duration-300 z-50;
+    }
+
+    .button-icon {
+        @apply w-4 h-4;
     }
 
     /* End of the _content_ CSS section ------------------------------------------------------------- */
@@ -252,7 +270,11 @@
     }
 
     .nav-container {
-        @apply container mx-auto flex justify-between items-center flex-col md:flex-row;
+        @apply container mx-auto flex justify-between items-center flex-col md:flex-row mb-1;
+    }
+
+    .nav-link-container {
+        @apply md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-1
     }
 
     .nav-link {
@@ -288,13 +310,13 @@
     }
 
     .footer-icon {
-        @apply w-7 h-7;
+        @apply w-8 h-8;
     }
 
     /* End of the _footer_ CSS section -------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
-    /* Start of the _masonry_ CSS section ------------------------------------------------------------ */
+    /* Start of the _masonry_ CSS section ----------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
     .masonry-grid {
@@ -315,9 +337,11 @@
     /* End of the _masonry_ CSS section ------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
-    /* Add this with your other component styles */
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _cursor_ CSS section ------------------------------------------------------------ */
+
     .blink-cursor {
-        animation: blink 1.5s step-end infinite;
+        animation: blink 1s step-end infinite;
         font-family: var(--font-roboto-mono);
         font-weight: bold;
         font-size: inherit;
@@ -335,4 +359,8 @@
             opacity: 0;
         }
     }
+
+    /* End of the _cursor_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
 }

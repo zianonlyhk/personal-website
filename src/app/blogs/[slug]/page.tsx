@@ -1,4 +1,5 @@
 import { getContentPage } from '@/src/lib/content_page_generator';
+import ReturnButton from '@/src/components/ReturnButton';
 
 type PageProps = {
     params: Promise<{ slug: string }>
@@ -13,7 +14,8 @@ export default async function BlogPost({ params }: PageProps) {
 
     return (
         <div className="content_container">
-            <h1 className="title-boss">{post.title}</h1>
+            <ReturnButton />
+            <h1 className="title-boss mb-2 md:mb-4">{post.title}</h1>
             <div className="content_date">{post.date}</div>
             <div className="content_content" dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>

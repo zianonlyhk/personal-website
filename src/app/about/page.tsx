@@ -31,8 +31,9 @@ export default function About() {
                 <h2>Skills</h2>
                 <p>
                     So, he does...<br />
-                    software development & scientific computing (C++, Python)...<br />
-                    You will hear him speaking English, Mandarin, and Cantonese <br />
+                    - software development & scientific computing (C++, Python)<br />
+                    You will hear him speaking... <br />
+                    - English, Mandarin, and Cantonese <br />
                 </p>
 
                 <h2>Experience</h2>
