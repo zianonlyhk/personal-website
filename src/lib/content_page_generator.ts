@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   content_page_generator.ts                                                */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:45:32 by Zian Huang                               */
+/*   Updated: 2025/02/19 16:40:58 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -63,28 +75,40 @@ function remarkWrapImages() {
     return (tree) => {
         visit(tree, 'image', (node, index, parent) => {
             if (parent && index !== null) {
+                // Parse potential width and height from title field
+                // Format: ![alt](src "width=500 height=300")
+                let width, height;
+                if (node.title) {
+                    const params = node.title.split(' ');
+                    params.forEach(param => {
+                        const [key, value] = param.split('=');
+                        if (key === 'width') width = value;
+                        if (key === 'height') height = value;
+                    });
+                }
+
                 const wrapper = {
                     type: 'div',
                     data: {
                         hName: 'div',
                         hProperties: {
-                            // HTML image container class
-                            className: ['relative', 'w-full', 'aspect-[2/1]', 'mb-8']
+                            className: ['relative', 'w-full', width && height ? '' : 'aspect-[2/1]', 'mb-8']
                         }
                     },
                     children: [{
                         type: 'element',
                         data: {
                             hName: 'img',
-                            // HTML image properties
                             hProperties: {
                                 alt: node.alt || 'This is an image giving insight into the content above and below',
                                 decoding: 'async',
                                 className: ['rounded-lg', 'object-cover'],
-                                style: ['position:absolute', 'height:100%', 'width:100%', 'left:0', 'top:0', 'right:0', 'bottom:0', 'color:transparent'],
+                                style: width && height ?
+                                    [`width:${width}px`, `height:${height}px`] :
+                                    ['position:absolute', 'height:100%', 'width:100%', 'left:0', 'top:0', 'right:0', 'bottom:0', 'color:transparent'],
                                 sizes: "100vw",
-                                fill: true,
                                 src: node.url,
+                                ...(width && height ? { width, height } : { fill: true }),
                             }
                         }
                     }]

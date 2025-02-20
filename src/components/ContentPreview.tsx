@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   ContentPreview.tsx                                                       */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:45:52 by Zian Huang                               */
+/*   Updated: 2025/02/17 21:46:11 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 import Image from 'next/image';
 import Link from 'next/link';
 

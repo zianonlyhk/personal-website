@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   Navbar.tsx                                                               */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:46:02 by Zian Huang                               */
+/*   Updated: 2025/02/17 21:46:02 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 'use client';
 
 import React, { useState, useEffect } from 'react';

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   page.tsx                                                                 */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:46:36 by Zian Huang                               */
+/*   Updated: 2025/02/17 21:46:37 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 import { getContentList } from '@/src/lib/content_page_generator';
 import ContentPreview from '@/src/components/ContentPreview';
 

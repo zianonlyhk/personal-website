@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   page.tsx                                                                 */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:46:24 by Zian Huang                               */
+/*   Updated: 2025/02/17 21:46:24 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 import Image from 'next/image';
 
 export default function About() {
@@ -31,9 +43,9 @@ export default function About() {
                 <h2>Skills</h2>
                 <p>
                     So, he does...<br />
-                    - software development & scientific computing (C++, Python)<br />
+                    software development & scientific computing<br />
                     You will hear him speaking... <br />
-                    - English, Mandarin, and Cantonese <br />
+                    English, Mandarin, and Cantonese <br />
                 </p>
 
                 <h2>Experience</h2>

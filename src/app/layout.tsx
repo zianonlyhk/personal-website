@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   layout.tsx                                                               */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:47:02 by Zian Huang                               */
+/*   Updated: 2025/02/17 21:47:02 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 import "@/src/app/globals.css"
 import 'katex/dist/katex.min.css'
 import Footer from "@/src/components/layout/Footer"

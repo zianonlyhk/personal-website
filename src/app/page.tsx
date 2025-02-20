@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   page.tsx                                                                 */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:47:06 by Zian Huang                               */
+/*   Updated: 2025/02/17 21:47:07 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +27,7 @@ export default function Home() {
                         height={40}
                     />
                     <p className="home-text">:</p>
-                    <p className="home-text">this is zian huang&apos;s personal website</p>
+                    <p className="home-text">welcome to zian huang&apos;s personal website</p>
                 </div>
 
                 <div className="home-text-container">

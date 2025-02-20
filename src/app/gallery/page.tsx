@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*   page.tsx                                                                 */
+/*                                                                            */
+/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
+/*                                                                            */
+/*   Created: 2025/02/17 21:46:41 by Zian Huang                               */
+/*   Updated: 2025/02/19 21:23:55 by Zian Huang                               */
+/*                                                                            */
+/* ************************************************************************** */
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -103,7 +115,7 @@ export default function Gallery() {
 
     // Notes to my future self: If I want to add more images, I can add them here
     const galleryItems: GalleryItem[] = [
-        { id: 1, title: "Pepper (colour pencil)", image_url: "/gallery/drpepper.jpg", width: 5184, height: 3081 },
+        { id: 1, title: "Pepper (colour pencil)", image_url: "/gallery/drpepper.jpg", width: 4108, height: 3081 },
         { id: 2, title: "Woman Sitting (charcoal)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259, isVip: true },
         { id: 5, title: "KC Printing (printing)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
         { id: 4, title: "Spaghetti (digital)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
