@@ -6,14 +6,14 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:41 by Zian Huang                               */
-/*   Updated: 2025/02/19 21:23:55 by Zian Huang                               */
+/*   Updated: 2025/03/06 12:48:06 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import Masonry from 'react-masonry-css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -130,7 +130,7 @@ export default function Gallery() {
             try {
                 const promises = galleryItems.map(item => {
                     return new Promise((resolve, reject) => {
-                        const img = new Image();
+                        const img = new window.Image();
                         img.src = item.image_url;
                         img.onload = resolve;
                         img.onerror = reject;
@@ -180,7 +180,7 @@ export default function Gallery() {
                                 onClick={() => setSelectedItem(item)}
                             >
                                 <div className="relative">
-                                    <Image
+                                    <NextImage
                                         src={item.image_url}
                                         alt={item.title}
                                         width={item.width}
@@ -230,7 +230,7 @@ export default function Gallery() {
                                 height: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).height,
                             }}
                         >
-                            <Image
+                            <NextImage
                                 src={selectedItem.image_url}
                                 alt={selectedItem.title}
                                 fill
