@@ -35,6 +35,7 @@ export default function About() {
                             height={200}
                             priority
                             className="image"
+                            unoptimized={true}
                         />
                     </div>
                 </div>
@@ -69,6 +70,7 @@ export default function About() {
                         height={400}
                         priority
                         className="image"
+                        unoptimized={true}
                     />
                 </div> */}
 

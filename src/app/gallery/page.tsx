@@ -85,6 +85,7 @@ function getModalDimensions(imageWidth: number, imageHeight: number, isSmallScre
 export default function Gallery() {
     const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
 
     // Add ESC key handler
     useEffect(() => {
@@ -122,6 +123,32 @@ export default function Gallery() {
         { id: 3, title: "三目 (Python & Cairo)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
     ];
 
+    // Add this useEffect to handle image loading
+    useEffect(() => {
+        // Preload images to ensure they're available
+        const preloadImages = async () => {
+            try {
+                const promises = galleryItems.map(item => {
+                    return new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.src = item.image_url;
+                        img.onload = resolve;
+                        img.onerror = reject;
+                    });
+                });
+
+                await Promise.all(promises);
+                setImagesLoaded(true);
+            } catch (error) {
+                console.error("Failed to load images:", error);
+                // Still set to true to allow rendering even if some images fail
+                setImagesLoaded(true);
+            }
+        };
+
+        preloadImages();
+    }, []);
+
     const breakpointColumns = {
         default: 4,
         1536: 3,
@@ -133,36 +160,43 @@ export default function Gallery() {
     return (
         <div className="content_container">
             <h1 className="title-boss">_gallery</h1>
-            <Masonry
-                breakpointCols={breakpointColumns}
-                className="masonry-grid"
-                columnClassName="masonry-grid-column"
-            >
-                {galleryItems.map((item) => (
-                    <div
-                        key={item.id}
-                        className="bg-card rounded-lg overflow-hidden mb-4"
-                    >
+            {!imagesLoaded ? (
+                <div className="flex justify-center items-center h-64">
+                    <p>Loading images...</p>
+                </div>
+            ) : (
+                <Masonry
+                    breakpointCols={breakpointColumns}
+                    className="masonry-grid"
+                    columnClassName="masonry-grid-column"
+                >
+                    {galleryItems.map((item) => (
                         <div
-                            className="cursor-pointer hover:opacity-90 transition-opacity"
-                            onClick={() => setSelectedItem(item)}
+                            key={item.id}
+                            className="bg-card rounded-lg overflow-hidden mb-4"
                         >
-                            <div className="relative">
-                                <Image
-                                    src={item.image_url}
-                                    alt={item.title}
-                                    width={item.width}
-                                    height={item.height}
-                                    className="image w-full h-auto"
-                                />
+                            <div
+                                className="cursor-pointer hover:opacity-90 transition-opacity"
+                                onClick={() => setSelectedItem(item)}
+                            >
+                                <div className="relative">
+                                    <Image
+                                        src={item.image_url}
+                                        alt={item.title}
+                                        width={item.width}
+                                        height={item.height}
+                                        className="image w-full h-auto"
+                                        unoptimized={true}
+                                    />
+                                </div>
                             </div>
+                            <p className={`text-base p-2 ${item.isVip ? 'text-accent-500' : 'text-foreground'}`}>
+                                {item.title}
+                            </p>
                         </div>
-                        <p className={`text-base p-2 ${item.isVip ? 'text-accent-500' : 'text-foreground'}`}>
-                            {item.title}
-                        </p>
-                    </div>
-                ))}
-            </Masonry>
+                    ))}
+                </Masonry>
+            )}
 
             {selectedItem && (
                 <div
@@ -202,6 +236,7 @@ export default function Gallery() {
                                 fill
                                 className="image object-contain"
                                 priority
+                                unoptimized={true}
                                 style={{
                                     // shouldRotate the image if it is landscape on a small screen
                                     transform: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).shouldRotate

@@ -40,6 +40,7 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                             alt={title}
                             width={128}
                             height={128}
+                            unoptimized={true}
                             className="content_preview_image"
                         />
                     </div>

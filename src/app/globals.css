@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:56 by Zian Huang                               */
-/*   Updated: 2025/02/18 18:33:31 by Zian Huang                               */
+/*   Updated: 2025/03/06 11:37:02 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@
 
     /* This is the styling for the content of the blog posts */
     .content_content {
-        @apply max-w-2xl md:max-w-4xl mx-auto leading-relaxed flex flex-col items-center sm:items-start
+        @apply max-w-2xl md:max-w-4xl mx-auto leading-relaxed flex flex-col items-start
         /* Text styling */
         text-foreground [&>p]:body-large
         /* Heading styles */
@@ -201,7 +201,7 @@
         /* List styling */
         [&>ul]:unordered-list [&>ol]:ordered-list
         /* Math/LaTeX container spacing */
-        [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-inline]:mx-1;
+        [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-display]:max-w-full [&_.math-display]:break-words [&_.math-inline]:mx-1;
     }
 
     .button {
@@ -372,5 +372,34 @@
 
     /* End of the _cursor_ CSS section -------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
+
+    /* Add this after your existing components */
+    .katex-display {
+        overflow-x: auto;
+        overflow-y: hidden;
+        max-width: 100%;
+        padding: 0.5rem 0;
+    }
+
+    /* Add support for line breaks in math equations */
+    .katex-display>.katex {
+        white-space: normal !important;
+        display: inline-block;
+    }
+
+    /* Ensure equations can break at operators */
+    .katex-display>.katex>.katex-html {
+        white-space: normal !important;
+        max-width: 100%;
+        display: inline-block;
+    }
+
+    /* Allow line breaks at specific characters */
+    .katex-display>.katex>.katex-html>.base {
+        margin: 0.25em 0;
+        word-break: break-word;
+        word-wrap: break-word;
+        white-space: normal !important;
+    }
 
 }
