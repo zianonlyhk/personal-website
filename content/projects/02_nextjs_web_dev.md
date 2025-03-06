@@ -1,13 +1,11 @@
 ---
-title: "My Second Project (VIP)"
-# date: "2024-03-14"
+title: "How this website was built with Next.js"
 excerpt: "This is a brief excerpt of my second project..."
 githubUrl: "https://github.com/yourusername/personal-portfolio-second-project"
-thumbnailUrl: "/cat4.jpg"
-isVip: true
+thumbnailUrl: "/blogs/02_incompressible_flows_projection/sushi.jpg"
 ---
 
-# Welcome to my second blog post!
+# How this website was built with Next.js
 
 This is the content of my blog post. You can write in Markdown format here.
 
@@ -16,7 +14,3 @@ This is the content of my blog post. You can write in Markdown format here.
 - List item 1
 - List item 2
 - List item 3
-
-![My Cat](/cat3.jpeg)
-![My Cat](/cat4.jpg)
-![My Cat](/cat5.jpg)

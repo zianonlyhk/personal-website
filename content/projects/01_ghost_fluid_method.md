@@ -1,8 +1,8 @@
 ---
-title: "My First Blog Post (VIP)"
-date: "2024-03-14"
-excerpt: "This is a brief excerpt of my first blog post..."
-thumbnailUrl: "/cat3.jpeg"
+title: "Fluid-structure interactions: the ghost fluid method"
+excerpt: "This is a brief excerpt of my first project..."
+githubUrl: "https://github.com/yourusername/personal-portfolio"
+thumbnailUrl: "/blogs/02_incompressible_flows_projection/sushi.jpg"
 isVip: true
 ---
 
@@ -28,16 +28,12 @@ $$
 
 The derivative of a function can be expressed as:
 
-$$
+$
 \frac{d}{dx}f(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
-$$
+$
 
 ## Subheading
 
 - List item 1
 - List item 2
-- List item 3 
-
-![My Cat](/cat3.jpeg)
-![My Cat](/cat4.jpg)
-![My Cat](/cat5.jpg)
+- List item 3
