@@ -161,7 +161,7 @@ export default function Gallery() {
         <div className="content_container">
             <h1 className="title-boss">_gallery</h1>
             {!imagesLoaded ? (
-                <div className="flex justify-center items-center h-64">
+                <div className="flex justify-center items-center home-text">
                     <p>Loading images...</p>
                 </div>
             ) : (

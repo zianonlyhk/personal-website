@@ -14,6 +14,7 @@ She looks very much like Newton's dog, but with tentacles sprouting from her bac
 
 <!-- a generated image of the beast of Navier-Stokes -->
 ![The beast of Navier-Stokes](/blogs/02_incompressible_flows_projection/beastofnavierstokes.jpg "width=300 height=200")
+![The beast of Navier-Stokes](/blogs/02_incompressible_flows_projection/sushi.jpg "width=300 height=200")
 
 I decided to chop off her tentacles and ask my Japanese cohort classmate for some sushi tips.
 Here's what I cooked up:
