@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:36 by Zian Huang                               */
-/*   Updated: 2025/03/11 13:39:53 by Zian Huang                               */
+/*   Updated: 2025/03/11 16:12:54 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ export default function Blog() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">Blogs</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    Thoughts, ideas, and explorations at the intersection of technology and mathematics.
+                    Thoughts, ideas, at the crossroad of math and computer
                 </p>
             </div>
 

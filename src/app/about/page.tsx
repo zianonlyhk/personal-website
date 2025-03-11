@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:24 by Zian Huang                               */
-/*   Updated: 2025/03/11 13:38:56 by Zian Huang                               */
+/*   Updated: 2025/03/11 16:38:27 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ export default function About() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">About Zian</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    Software developer and computational physicist
+                    I wish to visualize my thoughts and words, that people can talk without speaking
                 </p>
             </div>
 
@@ -31,11 +31,11 @@ export default function About() {
                 <div className="flex flex-row gap-4 md:gap-8 items-start">
                     <div className="flex-1 space-y-4">
                         <p className="text-foreground text-sm md:text-base leading-relaxed">
-                            Hi, I&apos;m a <span className="text-primary font-medium">software developer</span> with a background in <span className="text-accent font-medium">computational physics</span>.
-                            I grew up in Hong Kong and was born in Shenzhen.
+                            Hi, I&apos;m a <span className="text-primary font-medium">software engineer</span> with a background in <span className="text-accent font-medium">computational physics</span>.
+                            I grew up in Hong Kong, was born in Shenzhen and once lived in the UK.
                         </p>
                         <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
-                            My work sits at the intersection of technology and mathematics, where I enjoy building elegant solutions to complex problems.
+                            My work sits at the intersection of mathematics and computer. I enjoy implementing and visualizing mathematical models for physical intuition.
                         </p>
                     </div>
                     <div className="flex-shrink-0">
@@ -63,10 +63,6 @@ export default function About() {
                             <ul className="space-y-2 text-muted-foreground text-sm md:text-base">
                                 <li className="flex items-center">
                                     <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
-                                    Software Development
-                                </li>
-                                <li className="flex items-center">
-                                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
                                     Scientific Computing
                                 </li>
                                 <li className="flex items-center">
@@ -75,7 +71,7 @@ export default function About() {
                                 </li>
                                 <li className="flex items-center">
                                     <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
-                                    Algorithm Design
+                                    Software Design
                                 </li>
                             </ul>
                         </div>
@@ -84,15 +80,15 @@ export default function About() {
                             <ul className="space-y-2 text-muted-foreground text-sm md:text-base">
                                 <li className="flex items-center">
                                     <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-2"></span>
-                                    English (Fluent)
+                                    English
                                 </li>
                                 <li className="flex items-center">
                                     <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-2"></span>
-                                    Mandarin (Native)
+                                    Mandarin
                                 </li>
                                 <li className="flex items-center">
                                     <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-2"></span>
-                                    Cantonese (Native)
+                                    Cantonese
                                 </li>
                             </ul>
                         </div>
@@ -109,7 +105,7 @@ export default function About() {
                             <div className="absolute w-4 h-4 bg-primary rounded-full left-0 top-1"></div>
                             <h3 className="text-base md:text-lg font-medium">System Engineer - Network Security</h3>
                             <p className="text-xs md:text-sm text-muted-foreground mt-1.5">Amidas Hong Kong Limited | 2024-2025</p>
-                            <p className="mt-3 text-foreground text-sm md:text-base">Working on network security solutions and implementations.</p>
+                            <p className="mt-3 text-foreground text-sm md:text-base">Implementation of the zero-trust security architecture in corporate network environment</p>
                         </div>
                     </div>
                 </div>

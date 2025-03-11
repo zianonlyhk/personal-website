@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:56 by Zian Huang                               */
-/*   Updated: 2025/03/11 15:31:24 by Zian Huang                               */
+/*   Updated: 2025/03/11 16:52:48 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,6 @@
     /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _text_ CSS section -------------------------------------------------------------- */
 
-    .text-roboto-mono {
-        font-family: var(--font-roboto-mono);
-    }
-
     /* Elegant home icon animation */
     .home-icon {
         transition: transform 0.5s ease-in-out;
@@ -171,20 +167,6 @@
     /* ---------------------------------------------------------------------------------------------- */
 
     /* ---------------------------------------------------------------------------------------------- */
-    /* Start of the _home_ CSS section ------------------------------------------------------------- */
-
-    .home-text {
-        @apply text-foreground font-mono text-sm sm:text-base md:text-lg tracking-wide;
-    }
-
-    .home-text-container {
-        @apply flex gap-2 items-start mt-4;
-    }
-
-    /* End of the _home_ CSS section ------------------------------------------------------------- */
-    /* ---------------------------------------------------------------------------------------------- */
-
-    /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _content_ CSS section ----------------------------------------------------------- */
 
     .preview_link {
@@ -229,7 +211,7 @@
         display: inline-block;
         margin-left: 0.5rem;
         font-size: 0.75em;
-        vertical-align: super;
+        vertical-align: middle;
         color: var(--accent);
     }
 
@@ -294,10 +276,6 @@
 
     .button {
         @apply px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-opacity-90 transition-all duration-200 inline-flex items-center justify-center text-sm font-medium;
-    }
-
-    .button-icon {
-        @apply mr-2 h-4 w-4;
     }
 
     .return-button {
@@ -433,47 +411,21 @@
     /* ---------------------------------------------------------------------------------------------- */
 
     /* ---------------------------------------------------------------------------------------------- */
-    /* Start of the _project_ CSS section ----------------------------------------------------------- */
-
-    .project_preview_grid {
-        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full mt-6 md:mt-8;
-        display: grid;
-        grid-auto-rows: auto;
-    }
-
-    /* End of the _project_ CSS section ------------------------------------------------------------- */
-    /* ---------------------------------------------------------------------------------------------- */
-
-    /* ---------------------------------------------------------------------------------------------- */
-    /* Start of the _blog_post_ CSS section --------------------------------------------------------- */
-
-    .blog_post_preview_container {
-        @apply w-full space-y-0 mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4;
-        display: grid;
-        grid-auto-rows: auto;
-    }
-
-    /* End of the _blog_post_ CSS section ------------------------------------------------------------ */
-    /* ----------------------------------------------------------------------------------------------- */
-
-    /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _navbar_ CSS section ------------------------------------------------------------ */
 
     /* Base navbar styles */
     nav {
-        @apply py-3 md:py-4 border-b border-border bg-background sticky top-0 z-10 backdrop-blur-sm bg-opacity-80;
+        @apply py-2 md:py-4 border-b border-border bg-background fixed top-0 left-0 right-0 w-full z-10 backdrop-blur-sm bg-opacity-80;
         transition: all 0.3s ease;
     }
 
-    /* Mobile-specific navbar styles */
-    @media (max-width: 767px) {
-        nav {
-            @apply fixed top-0 left-0 right-0 w-full;
-        }
+    /* Add padding to the body to prevent content from being hidden under fixed navbar for all screen sizes */
+    body {
+        @apply pt-12 md:pt-16;
     }
 
     .nav-container {
-        @apply container mx-auto px-4;
+        @apply container mx-auto px-3 md:px-4;
     }
 
     /* Navbar links */
@@ -524,8 +476,11 @@
     @media (max-width: 767px) {
         .mobile-dropdown {
             @apply fixed left-0 right-0 bg-background bg-opacity-95 backdrop-blur-sm z-10;
-            top: 60px;
+            top: 48px;
+            /* Adjusted to match navbar height */
             /* Fixed position below navbar */
+            border-top: 1px solid var(--border);
+            /* Add border to connect with navbar */
         }
 
         /* Closed state */
@@ -542,7 +497,8 @@
 
         /* Open state */
         .mobile-dropdown.max-h-60 {
-            max-height: calc(100vh - 60px);
+            max-height: calc(100vh - 48px);
+            /* Adjusted to match navbar height */
             opacity: 1;
             visibility: visible;
             overflow-y: auto;
@@ -554,7 +510,9 @@
         }
 
         .mobile-dropdown-content {
-            @apply flex flex-col space-y-3 py-3 mt-2 border-t border-border;
+            @apply flex flex-col space-y-3 py-3 px-3;
+            /* Added px-3 to match navbar padding */
+            /* Remove the border-t and mt-2 since we're adding border to the container */
             /* Prevent layout shifts during animation */
             transform: translateZ(0);
             will-change: opacity, transform;
@@ -573,7 +531,7 @@
         }
 
         .nav-link {
-            @apply px-3 py-2 mx-0;
+            @apply px-2 py-1.5 mx-0;
             display: inline-block;
         }
 
@@ -611,12 +569,23 @@
 
         /* Add padding to the body to prevent content from being hidden under fixed navbar */
         body {
-            @apply pt-14;
+            @apply pt-12;
         }
     }
 
     /* Desktop-specific styles */
     @media (min-width: 768px) {
+        nav {
+            /* Ensure the navbar has proper styling on desktop */
+            @apply py-4;
+        }
+
+        /* Adjust the return button position for fixed navbar */
+        .return-button {
+            top: 6rem;
+            left: 2rem;
+        }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -676,17 +645,17 @@
     }
 
     .footer-icon {
-        @apply h-5 w-5;
+        @apply h-6 w-6 md:h-7 md:w-7;
     }
 
     /* Mobile-specific footer styles */
     @media (max-width: 768px) {
         .footer-container {
-            @apply flex-row justify-between items-center text-center space-y-0;
+            @apply flex-row justify-center items-center text-center space-y-0;
         }
 
         .footer-social-links {
-            @apply justify-end mt-0;
+            @apply justify-center mt-0 ml-4;
         }
     }
 

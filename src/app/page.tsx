@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:47:06 by Zian Huang                               */
-/*   Updated: 2025/03/11 11:00:08 by Zian Huang                               */
+/*   Updated: 2025/03/11 16:14:42 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ export default function Home() {
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
                             <span className="text-primary">&gt;</span> Projects
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Explore my technical work and open-source contributions.</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A set of my selected academic and technical work</p>
                         <Link href="/projects" className="text-primary hover:underline text-sm md:text-base">View all →</Link>
                     </div>
 
@@ -99,7 +99,7 @@ export default function Home() {
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
                             <span className="text-primary">&gt;</span> Blog
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts on technology, mathematics, and programming.</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts, ideas, at the crossroad of math and computer</p>
                         <Link href="/blogs" className="text-primary hover:underline text-sm md:text-base">Read posts →</Link>
                     </div>
 
@@ -107,7 +107,7 @@ export default function Home() {
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
                             <span className="text-primary">&gt;</span> Gallery
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Visual explorations and creative coding experiments.</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A collection of visual explorations and digital creations</p>
                         <Link href="/gallery" className="text-primary hover:underline text-sm md:text-base">Browse gallery →</Link>
                     </div>
                 </div>

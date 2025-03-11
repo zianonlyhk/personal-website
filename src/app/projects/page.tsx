@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:51 by Zian Huang                               */
-/*   Updated: 2025/03/11 13:39:59 by Zian Huang                               */
+/*   Updated: 2025/03/11 16:14:09 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ export default function Projects() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">Projects</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    A collection of my technical work, open-source contributions, and creative coding experiments.
+                    A collection of my academic and technical work
                 </p>
             </div>
 
