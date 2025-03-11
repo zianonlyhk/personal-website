@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:56 by Zian Huang                               */
-/*   Updated: 2025/03/06 11:37:02 by Zian Huang                               */
+/*   Updated: 2025/03/11 13:33:15 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* This section defines CSS custom properties (variables) for the light theme */
+/* ---------------------------------------------------------------------------------------------- */
+/* Start of the _theme_variables_ CSS section ---------------------------------------------------- */
+
+/* Light theme variables */
 :root {
+    /* Base colors */
     --background: #ffffff;
-    --foreground: #171717;
-    --card: #f0f0f0;
-    --card-foreground: #333333;
+    --foreground: #0f172a;
+
+    /* Component colors */
+    --card: #f8fafc;
+    --card-foreground: #0f172a;
     --popover: #ffffff;
-    --popover-foreground: #171717;
-    --primary: #0ea5e9;
+    --popover-foreground: #1a1a2e;
+
+    /* Accent colors */
+    --primary: #60a5fa;
     --primary-foreground: #ffffff;
-    --accent: #d946ef;
+    --accent: #a78bfa;
     --accent-foreground: #ffffff;
-    --muted: #f3f4f6;
-    --muted-foreground: #6b7280;
-    --border: #e5e7eb;
+
+    /* UI colors */
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --border: #e2e8f0;
+
+    /* SVG filter for homeicon.svg */
+    --svg-filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
 
-/* This section defines CSS custom properties (variables) for the dark theme */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-        --card: #1a1a1a;
-        --card-foreground: #ededed;
-        --popover: #1a1a1a;
-        --popover-foreground: #ededed;
-        --primary: #0ea5e9;
-        --primary-foreground: #ffffff;
-        --accent: #d946ef;
-        --accent-foreground: #ffffff;
-        --muted: #27272a;
-        --muted-foreground: #a1a1aa;
-        --border: #27272a;
-    }
+/* Dark theme variables */
+.dark {
+    /* Base colors */
+    --background: #0f172a;
+    --foreground: #f8fafc;
+
+    /* Component colors */
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    --popover: #1e293b;
+    --popover-foreground: #e2e8f0;
+
+    /* Accent colors */
+    --primary: #60a5fa;
+    --primary-foreground: #ffffff;
+    --accent: #a78bfa;
+    --accent-foreground: #ffffff;
+
+    /* UI colors */
+    --muted: #2d3748;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+
+    /* SVG filter for homeicon.svg */
+    --svg-filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }
+
+/* End of the _theme_variables_ CSS section ------------------------------------------------------ */
+/* ---------------------------------------------------------------------------------------------- */
 
 @layer base {
-
     body {
         @apply bg-background text-foreground;
         /* the body part of my website uses the font of Roboto */
@@ -63,28 +86,9 @@
     html {
         overflow-y: scroll;
     }
-
-    /* Style the scrollbar for better aesthetics, slimmer bar */
-    ::-webkit-scrollbar {
-        width: 12px;
-    }
-
-    /* Style the scrollbar track */
-    ::-webkit-scrollbar-track {
-        background: var(--background);
-    }
-
-    /* Style the scrollbar thumb */
-    ::-webkit-scrollbar-thumb {
-        background-color: var(--muted-foreground);
-        border-radius: 6px;
-        border: 3px solid var(--background);
-    }
-
 }
 
 @layer components {
-
     /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _text_ CSS section -------------------------------------------------------------- */
 
@@ -92,8 +96,17 @@
         font-family: var(--font-roboto-mono);
     }
 
+    /* Elegant home icon animation */
+    .home-icon {
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .home-icon:hover {
+        transform: scale(1.05);
+    }
+
     .title-boss {
-        @apply font-bold text-3xl md:text-5xl mt-10 mb-5 md:mb-10 max-w-3xl md:max-w-5xl;
+        @apply font-bold text-3xl md:text-5xl mt-5 mb-5 md:mt-10 md:mb-10 max-w-3xl md:max-w-5xl;
         font-family: var(--font-roboto-mono);
         text-align: right;
     }
@@ -161,11 +174,11 @@
     /* Start of the _home_ CSS section ------------------------------------------------------------- */
 
     .home-text {
-        @apply text-roboto-mono font-bold text-2xl md:text-5xl mt-2 mb-2 md:mt-5 md:mb-5;
+        @apply text-foreground font-mono text-sm sm:text-base md:text-lg tracking-wide;
     }
 
     .home-text-container {
-        @apply flex gap-2 items-center pl-6 ml-6;
+        @apply flex gap-2 items-start mt-4;
     }
 
     /* End of the _home_ CSS section ------------------------------------------------------------- */
@@ -175,11 +188,48 @@
     /* Start of the _content_ CSS section ----------------------------------------------------------- */
 
     .preview_link {
-        @apply text-primary-500 hover:text-primary-50 underline;
+        @apply text-primary hover:underline transition-all duration-200 inline-flex items-center;
+        position: relative;
+    }
+
+    .preview_link::after {
+        @apply ml-1 opacity-0 -translate-x-2 transition-all duration-200;
+    }
+
+    .preview_link:hover::after {
+        @apply opacity-100 translate-x-0;
     }
 
     .preview_link_accent {
-        @apply text-accent-500 hover:text-accent-50 underline;
+        @apply text-accent hover:underline transition-all duration-200 inline-flex items-center;
+        position: relative;
+    }
+
+    .preview_link_accent::after {
+        @apply ml-1 opacity-0 -translate-x-2 transition-all duration-200;
+    }
+
+    .preview_link_accent:hover::after {
+        @apply opacity-100 translate-x-0;
+    }
+
+    /* VIP content styling */
+    .content_preview_title.vip {
+        color: var(--accent);
+    }
+
+    /* Dark mode VIP styling */
+    .dark .content_preview_title.vip {
+        color: var(--accent);
+        text-shadow: 0 0 8px rgba(167, 139, 250, 0.3);
+    }
+
+    /* Add a subtle indicator for VIP content */
+    .content_preview_title.vip::after {
+        display: inline-block;
+        margin-left: 0.5rem;
+        font-size: 0.75em;
+        vertical-align: super;
     }
 
     .content_date {
@@ -188,28 +238,99 @@
     }
 
     .content_container {
-        @apply w-full flex flex-col items-center justify-center p-6 md:p-8;
+        @apply max-w-4xl mx-auto px-4 py-8 md:py-12;
     }
 
     /* This is the styling for the content of the blog posts */
     .content_content {
-        @apply max-w-2xl md:max-w-4xl mx-auto leading-relaxed flex flex-col items-start
-        /* Text styling */
-        text-foreground [&>p]:body-large
-        /* Heading styles */
-        [&>h1]:title-large [&>h2]:title-medium [&>h3]:title-small
-        /* List styling */
-        [&>ul]:unordered-list [&>ol]:ordered-list
-        /* Math/LaTeX container spacing */
-        [&_.math-display]:my-4 [&_.math-display]:overflow-x-auto [&_.math-display]:max-w-full [&_.math-display]:break-words [&_.math-inline]:mx-1;
+        @apply mt-6 md:mt-8 mb-10 md:mb-16 w-full max-w-3xl md:max-w-4xl mx-auto;
+    }
+
+    /* Blog typography enhancements */
+    .content_content h1 {
+        @apply title-large;
+    }
+
+    .content_content h2 {
+        @apply title-medium;
+    }
+
+    .content_content h3 {
+        @apply title-small;
+    }
+
+    .content_content p {
+        @apply body-medium mb-4 leading-relaxed;
+    }
+
+    .content_content ul {
+        @apply unordered-list;
+    }
+
+    .content_content ol {
+        @apply ordered-list;
+    }
+
+    .content_content a {
+        @apply text-primary hover:underline;
+    }
+
+    .content_content img {
+        @apply rounded-md shadow-md my-6 mx-auto;
+    }
+
+    .content_content blockquote {
+        @apply border-l-4 border-primary pl-4 italic my-4;
+    }
+
+    .content_content pre {
+        @apply bg-card rounded-md p-4 my-4 overflow-x-auto;
+    }
+
+    .content_content code {
+        @apply font-mono text-accent bg-muted px-1 py-0.5 rounded;
     }
 
     .button {
-        @apply bg-card hover:bg-border pl-2 pr-2 p-1 md:pl-4 md:pr-4 md:p-3 rounded-full shadow-lg transition-all duration-300 z-50;
+        @apply px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-opacity-90 transition-all duration-200 inline-flex items-center justify-center text-sm font-medium;
     }
 
     .button-icon {
-        @apply w-4 h-4;
+        @apply mr-2 h-4 w-4;
+    }
+
+    .return-button {
+        @apply fixed p-3 rounded-full bg-card border border-border shadow-sm hover:shadow-md transition-all duration-200 z-10 w-12 h-12 flex items-center justify-center;
+        top: 4rem;
+        left: 1rem;
+    }
+
+    .return-button:hover {
+        @apply bg-muted transform scale-110;
+    }
+
+    @media (min-width: 768px) {
+        .return-button {
+            top: 6rem;
+            left: 2rem;
+        }
+    }
+
+    /* Add specific positioning for small screens */
+    @media (max-width: 767px) {
+        .return-button {
+            top: 5.5rem;
+            /* Move down a bit more on small screens */
+        }
+    }
+
+    /* Close button styling */
+    .close-button {
+        @apply p-3 rounded-full bg-card border border-border shadow-sm hover:shadow-md transition-all duration-200 z-10 w-10 h-10 flex items-center justify-center;
+    }
+
+    .close-button:hover {
+        @apply bg-muted transform scale-110;
     }
 
     /* End of the _content_ CSS section ------------------------------------------------------------- */
@@ -219,31 +340,87 @@
     /* Start of the _content_preview_ CSS section --------------------------------------------------- */
 
     .content_preview {
-        @apply bg-card rounded-lg p-2 md:p-3;
+        @apply bg-card border border-border rounded-md overflow-hidden transition-all duration-300 hover:shadow-md;
+        height: auto;
+        display: flex;
+        flex-direction: column;
     }
 
-    .content_preview_header {
-        @apply flex flex-row gap-3 mb-1 md:mb-2 items-start;
-    }
-
-    .content_preview_image_container {
-        @apply w-24 h-24 flex-shrink-0 object-cover;
-    }
-
+    /* Make the title clickable */
     .content_preview_title {
-        @apply flex-1;
+        @apply font-bold mb-1 transition-colors duration-200;
+    }
+
+    /* Add a hover effect for clickable titles */
+    .content_preview_title:hover {
+        @apply text-primary cursor-pointer;
+    }
+
+    /* Keep VIP titles using accent color on hover */
+    .content_preview_title.vip:hover {
+        color: var(--primary);
+        opacity: 0.8;
+    }
+
+    /* Make the entire card clickable */
+    .content_preview a {
+        @apply cursor-pointer;
+    }
+
+    .content_preview_inner {
+        @apply flex flex-col h-full;
+        flex: 1;
     }
 
     .content_preview_image {
-        @apply rounded-lg object-cover w-full h-full;
+        @apply relative w-full h-auto;
     }
 
     .content_preview_content {
-        @apply flex-1 flex flex-col;
+        @apply p-3 flex-1 flex flex-col;
+        min-height: 0;
+    }
+
+    .content_preview_footer {
+        @apply flex items-center justify-between mt-auto pt-2;
     }
 
     .content_preview_links {
-        @apply flex gap-8 items-center;
+        @apply flex gap-3 items-center;
+    }
+
+    /* GitHub link styling */
+    .github-link {
+        @apply text-sm py-1 px-3 bg-muted rounded-full font-medium hover:bg-opacity-80 !important;
+        display: inline-flex;
+        align-items: center;
+        color: var(--foreground);
+    }
+
+    /* Dark mode styles for GitHub button */
+    .dark .github-link {
+        background-color: #2d3748;
+        color: #e2e8f0;
+    }
+
+    .dark .github-link:hover {
+        background-color: #4a5568;
+    }
+
+    .github-link::before {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    /* Add dark mode specific styling for GitHub icon */
+    .dark .github-link::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e2e8f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22'%3E%3C/path%3E%3C/svg%3E");
     }
 
     /* End of the _content_preview_ CSS section --------------------------------------------------- */
@@ -253,7 +430,9 @@
     /* Start of the _project_ CSS section ----------------------------------------------------------- */
 
     .project_preview_grid {
-        @apply grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full;
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 w-full mt-6 md:mt-8;
+        display: grid;
+        grid-auto-rows: auto;
     }
 
     /* End of the _project_ CSS section ------------------------------------------------------------- */
@@ -263,7 +442,9 @@
     /* Start of the _blog_post_ CSS section --------------------------------------------------------- */
 
     .blog_post_preview_container {
-        @apply max-w-2xl w-full space-y-6;
+        @apply w-full space-y-0 mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4;
+        display: grid;
+        grid-auto-rows: auto;
     }
 
     /* End of the _blog_post_ CSS section ------------------------------------------------------------ */
@@ -272,27 +453,126 @@
     /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _navbar_ CSS section ------------------------------------------------------------ */
 
+    /* Base navbar styles */
     nav {
-        /* my navigation bar is in the font of Roboto Mono */
-        font-family: var(--font-roboto-mono);
-        /* fixed to top, full width, above other elements, with border and background */
-        @apply fixed top-0 w-full z-50 py-2 md:py-4 px-6 border-b border-border bg-background;
+        @apply py-3 md:py-4 border-b border-border bg-background sticky top-0 z-10 backdrop-blur-sm bg-opacity-80;
+        transition: all 0.3s ease;
     }
 
     .nav-container {
-        @apply container mx-auto flex justify-between items-center flex-col md:flex-row mb-1;
+        @apply container mx-auto px-4;
     }
 
-    .nav-link-container {
-        @apply md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0 gap-1
-    }
-
+    /* Navbar links */
     .nav-link {
-        @apply hover:opacity-80 font-medium flex items-center gap-2 px-2 py-1 rounded;
+        @apply text-foreground hover:text-primary transition-colors duration-200 font-mono text-sm tracking-wider py-1 px-2 -mx-2 rounded-md;
+        position: relative;
     }
 
     .nav-link-active {
-        @apply bg-foreground text-background;
+        @apply font-medium text-foreground;
+        position: relative;
+        display: inline-block;
+    }
+
+    .nav-link-active::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--primary);
+    }
+
+    .nav-link-active:hover {
+        color: var(--accent);
+    }
+
+    /* Hamburger menu */
+    .hamburger-menu {
+        @apply md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none;
+    }
+
+    .hamburger-line {
+        @apply block w-5 h-0.5 bg-foreground transition-all duration-300;
+    }
+
+    /* Mobile dropdown */
+    .mobile-dropdown {
+        @apply md:hidden overflow-hidden transition-all duration-300 ease-in-out;
+    }
+
+    .mobile-dropdown-content {
+        @apply flex flex-col space-y-3 py-3 mt-2 border-t border-border;
+    }
+
+    .mobile-dropdown-content>div {
+        @apply mb-2;
+    }
+
+    /* Mobile-specific styles */
+    @media (max-width: 767px) {
+        .nav-link-active {
+            @apply font-bold;
+            display: inline-block;
+        }
+
+        .nav-link {
+            @apply px-3 py-2 mx-0;
+            display: inline-block;
+        }
+
+        /* Mobile dropdown menu styles */
+        .mobile-dropdown-content .nav-link {
+            @apply text-left px-4 py-2 rounded-md;
+            display: inline-block;
+        }
+
+        .mobile-dropdown-content .nav-link-active {
+            @apply font-bold;
+            display: inline-block;
+        }
+
+        .mobile-dropdown-content .nav-link-active::after {
+            bottom: 0;
+        }
+    }
+
+    /* Desktop-specific styles */
+    @media (min-width: 768px) {
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link {
+            @apply bg-transparent px-0 mx-0;
+            display: inline-block;
+        }
+
+        .nav-link-active {
+            @apply bg-transparent font-bold;
+            display: inline-block;
+        }
+
+        .nav-link-active::after {
+            height: 2px;
+        }
+
+        .nav-link-active:hover {
+            color: var(--accent);
+        }
     }
 
     /* End of the _navbar_ CSS section -------------------------------------------------------------- */
@@ -301,61 +581,62 @@
     /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _footer_ CSS section ------------------------------------------------------------ */
 
+    /* Base footer styles */
     footer {
-        /* my footer is in the font of Roboto */
-        font-family: var(--font-roboto);
-        @apply w-full py-2 md:py-4 px-6 border-t border-border text-foreground bg-background;
+        @apply py-4 md:py-6 border-t border-border bg-background;
     }
 
     .footer-container {
-        @apply container mx-auto flex justify-between items-center;
+        @apply container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-3 md:gap-0;
     }
 
+    /* Footer social links */
     .footer-social-links {
-        @apply flex gap-3 md:gap-6;
+        @apply flex space-x-4 mt-3 md:mt-0;
     }
 
     .footer-social-icon {
-        @apply hover:opacity-80;
+        @apply text-muted-foreground hover:text-primary transition-colors duration-200;
     }
 
     .footer-icon {
-        @apply w-8 h-8;
+        @apply h-5 w-5;
+    }
+
+    /* Mobile-specific footer styles */
+    @media (max-width: 768px) {
+        .footer-container {
+            @apply flex-row justify-between items-center text-center space-y-0;
+        }
+
+        .footer-social-links {
+            @apply justify-end mt-0;
+        }
     }
 
     /* End of the _footer_ CSS section -------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
-    /* Start of the _masonry_ CSS section ----------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _masonry_grid_ CSS section ------------------------------------------------------- */
 
     .masonry-grid {
-        display: flex;
-        width: 100%;
-        max-width: 1800px;
-        /* Adjust based on your needs */
-        margin-left: -1rem;
-        /* Compensate for grid gap */
+        @apply flex w-full -ml-4;
     }
 
     .masonry-grid-column {
-        padding-left: 1rem;
-        /* Grid gap */
-        background-clip: padding-box;
+        @apply pl-4 bg-clip-padding;
     }
 
-    /* End of the _masonry_ CSS section ------------------------------------------------------------- */
+    /* End of the _masonry_grid_ CSS section --------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
     /* ---------------------------------------------------------------------------------------------- */
     /* Start of the _cursor_ CSS section ------------------------------------------------------------ */
 
     .blink-cursor {
+        @apply text-primary ml-1;
         animation: blink 1s step-end infinite;
-        font-family: var(--font-roboto-mono);
-        font-weight: bold;
-        font-size: inherit;
-        color: var(--muted-foreground);
     }
 
     @keyframes blink {
@@ -373,28 +654,25 @@
     /* End of the _cursor_ CSS section -------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
-    /* Add this after your existing components */
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _katex_ CSS section ------------------------------------------------------------ */
+
     .katex-display {
-        overflow-x: auto;
-        overflow-y: hidden;
-        max-width: 100%;
-        padding: 0.5rem 0;
+        @apply overflow-x-auto overflow-y-hidden my-4;
+    }
+
+    .katex-display>.katex {
+        @apply text-foreground;
     }
 
     /* Add support for line breaks in math equations */
-    .katex-display>.katex {
-        white-space: normal !important;
-        display: inline-block;
-    }
-
-    /* Ensure equations can break at operators */
     .katex-display>.katex>.katex-html {
         white-space: normal !important;
         max-width: 100%;
         display: inline-block;
     }
 
-    /* Allow line breaks at specific characters */
+    /* Ensure equations can break at operators */
     .katex-display>.katex>.katex-html>.base {
         margin: 0.25em 0;
         word-break: break-word;
@@ -402,4 +680,82 @@
         white-space: normal !important;
     }
 
+    /* End of the _katex_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
+
+    /* ---------------------------------------------------------------------------------------------- */
+    /* Start of the _gallery_ CSS section ------------------------------------------------------------ */
+
+    /* Gallery image styles */
+    .gallery-image-container {
+        @apply relative overflow-hidden rounded-md;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-image-container:hover {
+        transform: scale(1.02);
+    }
+
+    /* End of the _gallery_ CSS section -------------------------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------- */
 }
+
+/* Mobile-first improvements */
+@media (max-width: 768px) {
+    h1 {
+        @apply text-2xl;
+    }
+
+    h2 {
+        @apply text-xl;
+    }
+
+    .content_container {
+        @apply px-4 py-6;
+    }
+
+    .content_preview {
+        @apply shadow-sm;
+    }
+
+    /* Remove the grid styles for project and blog containers since we're using masonry */
+    .masonry-grid {
+        @apply -ml-2;
+    }
+
+    .masonry-grid-column {
+        @apply pl-2;
+    }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/* Start of the _utilities_ CSS section --------------------------------------------------------- */
+
+/* Hide scrollbar for various elements */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari and Opera */
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground bg-opacity-50 rounded-full hover:bg-opacity-70 transition-all duration-200;
+}
+
+/* End of the _utilities_ CSS section ----------------------------------------------------------- */
+/* ---------------------------------------------------------------------------------------------- */

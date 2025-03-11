@@ -181,9 +181,12 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
     return (
         <div className="content_container">
             <ReturnButton />
-            <h1 className="title-boss mb-2 md:mb-4">{post.title}</h1>
-            <div className="content_date">{post.date}</div>
-            <div className="content_content" dangerouslySetInnerHTML={{ __html: post.content }} />
+            <h1 className="title-boss mb-2 md:mb-4 font-mono">{post.title}</h1>
+            <div className="content_date font-mono">{post.date}</div>
+            <div
+                className="content_content prose prose-headings:font-sans prose-h1:title-large prose-h2:title-medium prose-h3:title-small prose-p:body-medium prose-ul:unordered-list prose-ol:ordered-list max-w-none"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+            />
 
             {selectedImage && (
                 <div
@@ -203,10 +206,10 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
                         {/* Close button */}
                         <button
                             onClick={closeModal}
-                            className="button absolute -top-4 -left-4"
+                            className="close-button absolute top-2 right-2"
                             aria-label="Close modal"
                         >
-                            <FontAwesomeIcon icon={faXmark} className="button-icon" />
+                            <FontAwesomeIcon icon={faXmark} className="h-5 w-5 text-foreground" />
                         </button>
 
                         <div

@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:45:32 by Zian Huang                               */
-/*   Updated: 2025/02/19 16:40:58 by Zian Huang                               */
+/*   Updated: 2025/03/11 01:11:27 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ function remarkWrapImages() {
                     data: {
                         hName: 'div',
                         hProperties: {
-                            className: ['relative', 'w-full', width && height ? '' : 'aspect-[2/1]', 'mb-8']
+                            className: ['relative', 'w-full', width && height ? '' : 'aspect-[2/1]', 'mb-8', 'image-container']
                         }
                     },
                     children: [{
@@ -100,15 +100,11 @@ function remarkWrapImages() {
                         data: {
                             hName: 'img',
                             hProperties: {
-                                alt: node.alt || 'This is an image giving insight into the content above and below',
-                                decoding: 'async',
-                                className: ['rounded-lg', 'object-cover'],
-                                style: width && height ?
-                                    [`width:${width}px`, `height:${height}px`] :
-                                    ['position:absolute', 'height:100%', 'width:100%', 'left:0', 'top:0', 'right:0', 'bottom:0', 'color:transparent'],
-                                sizes: "100vw",
                                 src: node.url,
-                                ...(width && height ? { width, height } : { fill: true }),
+                                alt: node.alt || '',
+                                width: width || '100%',
+                                height: height || 'auto',
+                                className: ['image', 'rounded-md', 'shadow-md', 'mx-auto']
                             }
                         }
                     }]

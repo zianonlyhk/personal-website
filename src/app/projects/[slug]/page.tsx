@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:48 by Zian Huang                               */
-/*   Updated: 2025/02/17 21:46:48 by Zian Huang                               */
+/*   Updated: 2025/03/11 13:37:31 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ export default async function ProjectPage({ params }: PageProps) {
     return (
         <div className="content_container">
             <ReturnButton />
-            <h1 className="title-boss">{post.title}</h1>
-            <div className="content_content" dangerouslySetInnerHTML={{ __html: post.content }} />
+            <h1 className="title-boss mb-2 md:mb-4 font-mono">{post.title}</h1>
+            <div
+                className="content_content prose prose-headings:font-sans prose-h1:title-large prose-h2:title-medium prose-h3:title-small prose-p:body-medium prose-ul:unordered-list prose-ol:ordered-list max-w-none"
+                dangerouslySetInnerHTML={{ __html: post.content }}
+            />
         </div>
     );
 }

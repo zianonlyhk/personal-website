@@ -6,74 +6,144 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:24 by Zian Huang                               */
-/*   Updated: 2025/02/17 21:46:24 by Zian Huang                               */
+/*   Updated: 2025/03/11 13:38:56 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function About() {
     return (
-        <div className="content_container">
-            <h1 className="title-boss">_aboutZian</h1>
+        <div className="max-w-6xl mx-auto px-4 py-6 md:py-12">
+            {/* Header section with consistent spacing */}
+            <div className="flex flex-col items-center mb-8">
+                <h1 className="title-boss text-center">
+                    <span className="text-primary">&gt;</span> <span className="font-mono">About Zian</span>
+                </h1>
+                <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
+                    Software developer and computational physicist
+                </p>
+            </div>
 
-            <div className="content_content items-start">
-
-                <div className='w-full flex flex-col md:flex-row justify-between items-center gap-8'>
-                    <p>
-                        Hi, this guy is a...<br />
-                        <span className='text-primary-500'>software developer</span>, and by training, a...<br />
-                        <span className='text-accent-500'>computational physicist</span><br />
-                        grew up in Hong Kong, born in Shenzhen<br />
-                    </p>
-
-                    <div>
-                        <Image
-                            src="/about/selfie.jpg"
-                            alt="About me image"
-                            width={200}
-                            height={200}
-                            priority
-                            className="image"
-                            unoptimized={true}
-                        />
+            <div className="space-y-10">
+                {/* Bio section with improved alignment - horizontal on all screen sizes */}
+                <div className="flex flex-row gap-4 md:gap-8 items-start">
+                    <div className="flex-1 space-y-4">
+                        <p className="text-foreground text-sm md:text-base leading-relaxed">
+                            Hi, I&apos;m a <span className="text-primary font-medium">software developer</span> with a background in <span className="text-accent font-medium">computational physics</span>.
+                            I grew up in Hong Kong and was born in Shenzhen.
+                        </p>
+                        <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
+                            My work sits at the intersection of technology and mathematics, where I enjoy building elegant solutions to complex problems.
+                        </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                        <div className="relative w-24 h-24 md:w-48 md:h-48 rounded-md overflow-hidden border border-border">
+                            <Image
+                                src="/about/selfie.jpg"
+                                alt="Zian Huang"
+                                fill
+                                sizes="(max-width: 768px) 96px, 192px"
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
                     </div>
                 </div>
 
+                {/* Skills section with consistent styling */}
+                <div className="bg-card border border-border rounded-md p-5 md:p-6">
+                    <h2 className="text-lg md:text-xl font-mono mb-4 text-foreground">
+                        <span className="text-primary">&gt;</span> Skills
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-3">
+                            <h3 className="text-base md:text-lg font-medium">Technical</h3>
+                            <ul className="space-y-2 text-muted-foreground text-sm md:text-base">
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                                    Software Development
+                                </li>
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                                    Scientific Computing
+                                </li>
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                                    Data Analysis
+                                </li>
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                                    Algorithm Design
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="space-y-3">
+                            <h3 className="text-base md:text-lg font-medium">Languages</h3>
+                            <ul className="space-y-2 text-muted-foreground text-sm md:text-base">
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-2"></span>
+                                    English (Fluent)
+                                </li>
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-2"></span>
+                                    Mandarin (Native)
+                                </li>
+                                <li className="flex items-center">
+                                    <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full mr-2"></span>
+                                    Cantonese (Native)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-                <h2>Skills</h2>
-                <p>
-                    So, he does...<br />
-                    software development & scientific computing<br />
-                    You will hear him speaking... <br />
-                    English, Mandarin, and Cantonese <br />
-                </p>
+                {/* Experience section with consistent timeline styling */}
+                <div className="space-y-5">
+                    <h2 className="text-lg md:text-xl font-mono text-foreground">
+                        <span className="text-primary">&gt;</span> Experience
+                    </h2>
+                    <div className="space-y-6 pl-1">
+                        <div className="relative pl-6">
+                            <div className="absolute w-4 h-4 bg-primary rounded-full left-0 top-1"></div>
+                            <h3 className="text-base md:text-lg font-medium">System Engineer - Network Security</h3>
+                            <p className="text-xs md:text-sm text-muted-foreground mt-1.5">Amidas Hong Kong Limited | 2024-2025</p>
+                            <p className="mt-3 text-foreground text-sm md:text-base">Working on network security solutions and implementations.</p>
+                        </div>
+                    </div>
+                </div>
 
-                <h2>Experience</h2>
-                <p>
-                    In the past, he has worked at...<br />
-                    2024-2025 - Amidas Hong Kong Limited: Network Security<br />
-                </p>
+                {/* Education section with matching timeline styling */}
+                <div className="space-y-5">
+                    <h2 className="text-lg md:text-xl font-mono text-foreground">
+                        <span className="text-primary">&gt;</span> Education
+                    </h2>
+                    <div className="space-y-6 pl-1">
+                        <div className="relative pl-6">
+                            <div className="absolute w-4 h-4 bg-accent rounded-full left-0 top-1"></div>
+                            <h3 className="text-base md:text-lg font-medium">MPhil in Scientific Computing</h3>
+                            <p className="text-xs md:text-sm text-muted-foreground mt-1.5">University of Cambridge | 2022-2023</p>
+                        </div>
+                        <div className="relative pl-6">
+                            <div className="absolute w-4 h-4 bg-accent rounded-full left-0 top-1"></div>
+                            <h3 className="text-base md:text-lg font-medium">BSc in Physics</h3>
+                            <p className="text-xs md:text-sm text-muted-foreground mt-1.5">University College London | 2019-2022</p>
+                        </div>
+                    </div>
+                </div>
 
-                <h2>Education</h2>
-                <p>
-                    Earlier than that, he spent a few years studying at...<br />
-                    2022-2023 - University of Cambridge: MPhil in Scientific Computing<br />
-                    2019-2022 - University College London: BSc in Physics<br />
-                </p>
-
-                {/* <div className="image-container">
-                    <Image
-                        src="/cat4.jpg"
-                        alt="About me image"
-                        width={200}
-                        height={400}
-                        priority
-                        className="image"
-                        unoptimized={true}
-                    />
-                </div> */}
-
+                {/* Contact section with improved styling */}
+                <div className="bg-card border border-border rounded-md p-6 text-center">
+                    <h2 className="text-lg md:text-xl font-mono mb-3 text-foreground">Get in Touch</h2>
+                    <p className="text-sm md:text-base text-muted-foreground mb-4">Interested in working together or have a question?</p>
+                    <Link
+                        href="mailto:zianhuang00@gmail.com"
+                        className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                    >
+                        Contact Me
+                    </Link>
+                </div>
             </div>
         </div>
     );

@@ -1,3 +1,5 @@
+'use client';
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
@@ -6,12 +8,57 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:45:52 by Zian Huang                               */
-/*   Updated: 2025/02/17 21:46:11 by Zian Huang                               */
+/*   Updated: 2025/03/11 01:25:36 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
 import Image from 'next/image';
 import Link from 'next/link';
+
+// Link type definition
+type LinkType = {
+    type: 'github' | 'external' | 'internal';
+    url: string;
+    label: string;
+    className?: string;
+};
+
+// Client component for handling links with click events
+function ContentLinks({ links }: { links: LinkType[] }) {
+    return (
+        <div className="content_preview_links">
+            {links.map((link, index) => {
+                if (link.type === 'internal') {
+                    return (
+                        <Link
+                            key={index}
+                            href={link.url}
+                            className={`${link.className} text-xs font-medium`}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {link.label}
+                        </Link>
+                    );
+                } else if (link.type === 'external' || link.type === 'github') {
+                    return (
+                        <Link
+                            key={index}
+                            href={link.url}
+                            className={`${link.className} ${link.type === 'github' ? 'github-link' : ''} text-xs font-medium`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {link.label}
+                        </Link>
+                    );
+                } else {
+                    return null;
+                }
+            })}
+        </div>
+    );
+}
 
 export interface ContentPreviewProps {
     title: string;
@@ -21,80 +68,48 @@ export interface ContentPreviewProps {
     // do not need thumbnail for some blogs
     thumbnailUrl?: string;
     // do not need github link for blogs or some projects
-    links?: {
-        type: 'github' | 'external' | 'internal';
-        url: string;
-        label: string;
-        className?: string;
-    }[];
+    links?: LinkType[];
+    // URL for the title link (if title should be clickable)
+    titleUrl?: string;
+    // Whether this is a VIP content
+    isVip?: boolean;
 }
 
-export default function ContentPreview({ title, preview, date, thumbnailUrl, links }: ContentPreviewProps) {
-    return (
-        <div className="content_preview">
-            <div className="content_preview_header">
-                {thumbnailUrl && (
-                    <div className="content_preview_image_container">
-                        <Image
-                            src={thumbnailUrl}
-                            alt={title}
-                            width={128}
-                            height={128}
-                            unoptimized={true}
-                            className="content_preview_image"
-                        />
-                    </div>
+export default function ContentPreview({ title, preview, date, thumbnailUrl, links, titleUrl, isVip }: ContentPreviewProps) {
+    const PreviewContent = (
+        <div className="content_preview_inner">
+            {thumbnailUrl && (
+                <div className="content_preview_image">
+                    <Image
+                        src={thumbnailUrl}
+                        alt={title}
+                        width={500}
+                        height={300}
+                        className="w-full h-auto object-cover"
+                    />
+                </div>
+            )}
+            <div className="content_preview_content">
+                {titleUrl ? (
+                    <Link href={titleUrl} className="inline-block no-underline">
+                        <h2 className={`content_preview_title title-small ${isVip ? 'vip' : ''}`}>{title}</h2>
+                    </Link>
+                ) : (
+                    <h2 className={`content_preview_title title-small ${isVip ? 'vip' : ''}`}>{title}</h2>
                 )}
-                <div className="content_preview_title">
-                    <h2 className="title-small">{title}</h2>
-                    {links && links.length > 0 && (
-                        <div className="content_preview_links">
-                            {links.map((link, index) => {
-                                if (link.type === 'internal') {
-                                    return (
-                                        <Link
-                                            key={index}
-                                            href={link.url}
-                                            className={link.className}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    );
-                                } else if (link.type === 'external') {
-                                    return (
-                                        <Link
-                                            key={index}
-                                            href={link.url}
-                                            className={link.className}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    );
-                                } else if (link.type === 'github') {
-                                    return (
-                                        <Link
-                                            key={index}
-                                            href={link.url}
-                                            className={link.className}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    );
-                                } else {
-                                    return null;
-                                }
-                            })}
-                        </div>
-                    )}
+                <p className="body-small text-muted-foreground">{preview}</p>
+
+                <div className="content_preview_footer">
+                    {date && <p className="text-xs text-muted-foreground">{date}</p>}
+                    {links && links.length > 0 && <ContentLinks links={links} />}
                 </div>
             </div>
-            <p className="body-small mb-1 md:mb-2">{preview}</p>
-            {date && <p className="body-small text-foreground text-right">{date}</p>}
+        </div>
+    );
 
+    return (
+        <div className="content_preview">
+            {PreviewContent}
         </div>
     );
 }

@@ -147,22 +147,29 @@ export default function Gallery() {
         };
 
         preloadImages();
-    }, []);
+    }, [galleryItems]);
 
     const breakpointColumns = {
-        default: 4,
-        1536: 3,
-        1024: 2,
-        768: 2,
-        640: 1
+        default: 3,
+        1100: 3,
+        700: 2,
+        500: 1
     };
 
     return (
-        <div className="content_container">
-            <h1 className="title-boss">_gallery</h1>
+        <div className="max-w-6xl mx-auto px-4 py-6 md:py-12">
+            <div className="flex flex-col items-center mb-8">
+                <h1 className="title-boss text-center">
+                    <span className="text-primary">&gt;</span> <span className="font-mono">Gallery</span>
+                </h1>
+                <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
+                    A collection of visual explorations and creative experiments.
+                </p>
+            </div>
+
             {!imagesLoaded ? (
-                <div className="flex justify-center items-center home-text">
-                    <p>Loading images...</p>
+                <div className="flex justify-center items-center h-64">
+                    <div className="text-muted-foreground">Loading gallery...</div>
                 </div>
             ) : (
                 <Masonry
@@ -173,26 +180,25 @@ export default function Gallery() {
                     {galleryItems.map((item) => (
                         <div
                             key={item.id}
-                            className="bg-card rounded-lg overflow-hidden mb-4"
+                            className="mb-4 overflow-hidden rounded-md border border-border bg-card hover:shadow-md transition-all duration-300 cursor-pointer"
+                            onClick={() => setSelectedItem(item)}
                         >
-                            <div
-                                className="cursor-pointer hover:opacity-90 transition-opacity"
-                                onClick={() => setSelectedItem(item)}
-                            >
-                                <div className="relative">
-                                    <NextImage
-                                        src={item.image_url}
-                                        alt={item.title}
-                                        width={item.width}
-                                        height={item.height}
-                                        className="image w-full h-auto"
-                                        unoptimized={true}
-                                    />
+                            <div className="gallery-image-container">
+                                <NextImage
+                                    src={item.image_url}
+                                    alt={item.title}
+                                    width={500}
+                                    height={500 * (item.height / item.width)}
+                                    className="w-full h-auto object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div className="p-4 w-full">
+                                        <h3 className="text-white font-medium truncate">
+                                            {item.title}
+                                        </h3>
+                                    </div>
                                 </div>
                             </div>
-                            <p className={`text-base p-2 ${item.isVip ? 'text-accent-500' : 'text-foreground'}`}>
-                                {item.title}
-                            </p>
                         </div>
                     ))}
                 </Masonry>
@@ -216,10 +222,10 @@ export default function Gallery() {
                         {/* Close button */}
                         <button
                             onClick={() => setSelectedItem(null)}
-                            className="button absolute -top-4 -left-4"
+                            className="close-button absolute top-2 right-2"
                             aria-label="Close modal"
                         >
-                            <FontAwesomeIcon icon={faXmark} className="button-icon" />
+                            <FontAwesomeIcon icon={faXmark} className="h-5 w-5 text-foreground" />
                         </button>
 
                         <div
