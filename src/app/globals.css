@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:56 by Zian Huang                               */
-/*   Updated: 2025/03/11 13:33:15 by Zian Huang                               */
+/*   Updated: 2025/03/11 14:45:33 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,21 +215,22 @@
 
     /* VIP content styling */
     .content_preview_title.vip {
-        color: var(--accent);
+        color: var(--foreground);
     }
 
     /* Dark mode VIP styling */
     .dark .content_preview_title.vip {
-        color: var(--accent);
-        text-shadow: 0 0 8px rgba(167, 139, 250, 0.3);
+        color: var(--foreground);
     }
 
     /* Add a subtle indicator for VIP content */
     .content_preview_title.vip::after {
+        content: '★';
         display: inline-block;
         margin-left: 0.5rem;
         font-size: 0.75em;
         vertical-align: super;
+        color: var(--accent);
     }
 
     .content_date {
@@ -348,7 +349,7 @@
 
     /* Make the title clickable */
     .content_preview_title {
-        @apply font-bold mb-1 transition-colors duration-200;
+        @apply font-bold mb-1;
     }
 
     /* Add a hover effect for clickable titles */
@@ -359,7 +360,6 @@
     /* Keep VIP titles using accent color on hover */
     .content_preview_title.vip:hover {
         color: var(--primary);
-        opacity: 0.8;
     }
 
     /* Make the entire card clickable */
