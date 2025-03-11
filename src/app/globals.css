@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:56 by Zian Huang                               */
-/*   Updated: 2025/03/11 14:45:33 by Zian Huang                               */
+/*   Updated: 2025/03/11 15:31:24 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,6 +334,12 @@
         @apply bg-muted transform scale-110;
     }
 
+    /* Point form styling for experience/education sections */
+    .relative.pl-6 .absolute.rounded-full {
+        @apply w-2.5 h-2.5;
+        top: 0.4rem;
+    }
+
     /* End of the _content_ CSS section ------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */
 
@@ -459,6 +465,13 @@
         transition: all 0.3s ease;
     }
 
+    /* Mobile-specific navbar styles */
+    @media (max-width: 767px) {
+        nav {
+            @apply fixed top-0 left-0 right-0 w-full;
+        }
+    }
+
     .nav-container {
         @apply container mx-auto px-4;
     }
@@ -500,15 +513,56 @@
 
     /* Mobile dropdown */
     .mobile-dropdown {
-        @apply md:hidden overflow-hidden transition-all duration-300 ease-in-out;
+        @apply md:hidden;
+        /* Use the same cubic-bezier curve for both opening and closing */
+        transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
     }
 
-    .mobile-dropdown-content {
-        @apply flex flex-col space-y-3 py-3 mt-2 border-t border-border;
+    /* Fixed mobile dropdown when open */
+    @media (max-width: 767px) {
+        .mobile-dropdown {
+            @apply fixed left-0 right-0 bg-background bg-opacity-95 backdrop-blur-sm z-10;
+            top: 60px;
+            /* Fixed position below navbar */
+        }
+
+        /* Closed state */
+        .mobile-dropdown.max-h-0 {
+            max-height: 0;
+            opacity: 0;
+            visibility: hidden;
+            /* Keep transition properties identical to open state */
+            transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0ms linear 300ms;
+            /* Delay visibility change until after animation */
+        }
+
+        /* Open state */
+        .mobile-dropdown.max-h-60 {
+            max-height: calc(100vh - 60px);
+            opacity: 1;
+            visibility: visible;
+            overflow-y: auto;
+            /* Keep transition properties identical to closed state */
+            transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0ms linear;
+            /* No delay for visibility when opening */
+        }
+
+        .mobile-dropdown-content {
+            @apply flex flex-col space-y-3 py-3 mt-2 border-t border-border;
+            /* Prevent layout shifts during animation */
+            transform: translateZ(0);
+            will-change: opacity, transform;
+        }
     }
 
     .mobile-dropdown-content>div {
-        @apply mb-2;
+        @apply mb-2 px-2;
     }
 
     /* Mobile-specific styles */
@@ -524,18 +578,40 @@
         }
 
         /* Mobile dropdown menu styles */
-        .mobile-dropdown-content .nav-link {
-            @apply text-left px-4 py-2 rounded-md;
-            display: inline-block;
-        }
-
         .mobile-dropdown-content .nav-link-active {
             @apply font-bold;
             display: inline-block;
+            /* Add padding below the text to create space between text and underline */
+            padding-bottom: 4px;
+            /* Ensure the underline stays with the text */
+            position: relative;
+            margin-bottom: 4px;
         }
 
         .mobile-dropdown-content .nav-link-active::after {
+            /* Position the underline relative to the text */
+            content: '';
+            position: absolute;
+            width: 90%;
+            height: 2px;
             bottom: 0;
+            left: 5%;
+            background-color: var(--primary);
+            /* Add transition for smooth movement */
+            transition: transform 0.3s ease;
+            transform-origin: center;
+            border-radius: 2px;
+        }
+
+        /* Add hover effect to make it more interactive */
+        .mobile-dropdown-content .nav-link-active:hover::after {
+            transform: scaleX(1.05);
+            background-color: var(--accent);
+        }
+
+        /* Add padding to the body to prevent content from being hidden under fixed navbar */
+        body {
+            @apply pt-14;
         }
     }
 

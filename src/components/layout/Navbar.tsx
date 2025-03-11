@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:02 by Zian Huang                               */
-/*   Updated: 2025/03/11 11:18:24 by Zian Huang                               */
+/*   Updated: 2025/03/11 15:18:37 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ const Navbar = () => {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const navHeight = useRef<number>(0);
     const navRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLAnchorElement>(null);
 
@@ -30,6 +31,10 @@ const Navbar = () => {
         };
 
         // Add event listeners when component mounts
+        // Store the navbar height for positioning the dropdown
+        if (navRef.current) {
+            navHeight.current = navRef.current.offsetHeight;
+        }
         window.addEventListener('scroll', handleScroll);
 
         // Clean up event listeners when component unmounts
