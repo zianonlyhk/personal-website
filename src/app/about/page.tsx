@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:24 by Zian Huang                               */
-/*   Updated: 2025/03/11 16:38:27 by Zian Huang                               */
+/*   Updated: 2025/03/14 00:35:21 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ export default function About() {
                 <h1 className="title-boss text-center">
                     <span className="text-primary">&gt;</span> <span className="font-mono">About Zian</span>
                 </h1>
-                <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
+                <p className="body-medium text-muted-foreground mt-2 text-center max-w-3xl">
                     I wish to visualize my thoughts and words, that people can talk without speaking
                 </p>
             </div>
@@ -32,7 +32,7 @@ export default function About() {
                     <div className="flex-1 space-y-4">
                         <p className="text-foreground text-sm md:text-base leading-relaxed">
                             Hi, I&apos;m a <span className="text-primary font-medium">software engineer</span> with a background in <span className="text-accent font-medium">computational physics</span>.
-                            I grew up in Hong Kong, was born in Shenzhen and once lived in the UK.
+                            I grew up in Hong Kong, was born in Shenzhen and did my university in the UK.
                         </p>
                         <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
                             My work sits at the intersection of mathematics and computer. I enjoy implementing and visualizing mathematical models for physical intuition.

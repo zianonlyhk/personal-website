@@ -1,17 +1,10 @@
 ---
 title: "Whole system simulation of ocean atmosphere dynamics"
-date: "2024-03-14"
-excerpt: "This is a brief excerpt of my second blog post..."
-thumbnailUrl: "/blogs/02_incompressible_flows_projection/sushi.jpg"
+date: "2024-13-32"
+excerpt: "Please come back later... I am making the best use of my spare time on this..."
+thumbnailUrl: "/under_construction.jpeg"
 isVip: true
 ---
 
-# Welcome to my second blog post!
-
-This is the content of my blog post. You can write in Markdown format here.
-
-## Subheading
-
-- List item 1
-- List item 2
-- List item 3
+# Please come back a bit later...
+![Under Construction](/under_construction.jpeg "width=500")

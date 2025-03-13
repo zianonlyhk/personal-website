@@ -75,14 +75,14 @@ fi
 # Execute the appropriate command
 if [ "$ACTION" == "up" ]; then
     echo "Starting containers..."
-    docker-compose -f $COMPOSE_FILE up -d $BUILD
+    docker compose -f $COMPOSE_FILE up -d $BUILD
 elif [ "$ACTION" == "down" ]; then
     echo "Stopping containers..."
-    docker-compose -f $COMPOSE_FILE down
+    docker- ompose -f $COMPOSE_FILE down
 elif [ "$ACTION" == "restart" ]; then
     echo "Restarting containers..."
-    docker-compose -f $COMPOSE_FILE down
-    docker-compose -f $COMPOSE_FILE up -d $BUILD
+    docker compose -f $COMPOSE_FILE down
+    docker compose -f $COMPOSE_FILE up -d $BUILD
 fi
 
 echo "Done!" 
