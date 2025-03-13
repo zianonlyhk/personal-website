@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:47:06 by Zian Huang                               */
-/*   Updated: 2025/03/11 16:14:42 by Zian Huang                               */
+/*   Updated: 2025/03/14 00:58:01 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [typedText, setTypedText] = useState("");
-    const fullText = "Ridin' the wave of tech and math, no pressure, merely fluid flow";
+    const fullText = "Ridin' the wave of maths and computer, no pressure, merely fluid flow";
     const typingSpeed = 50; // milliseconds per character
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function Home() {
                     {/* Left column - Text content */}
                     <div className="space-y-4 md:space-y-6">
                         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-foreground">
-                            <span className="text-primary">Zian</span> Huang
+                            <span className="text-primary">Zian</span> HUANG
                         </h1>
 
                         <div className="h-12 sm:h-16">
@@ -99,7 +99,7 @@ export default function Home() {
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
                             <span className="text-primary">&gt;</span> Blog
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts, ideas, at the crossroad of math and computer</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts and ideas, at the crossroad of math & computer</p>
                         <Link href="/blogs" className="text-primary hover:underline text-sm md:text-base">Read posts →</Link>
                     </div>
 

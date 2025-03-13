@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:47:02 by Zian Huang                               */
-/*   Updated: 2025/03/11 01:46:24 by Zian Huang                               */
+/*   Updated: 2025/03/14 00:55:10 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-    title: 'Zian Huang | Technology & Mathematics',
-    description: 'Personal website of Zian Huang, exploring the intersection of technology and mathematics.',
+    title: 'Z. Huang',
+    description: 'Portfolio website of Zian Huang, with some of his past projects, blogs, and drawings.',
 }
 
 export default function RootLayout({

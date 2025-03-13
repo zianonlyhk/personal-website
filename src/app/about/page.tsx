@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:46:24 by Zian Huang                               */
-/*   Updated: 2025/03/14 00:35:21 by Zian Huang                               */
+/*   Updated: 2025/03/14 01:00:29 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ export default function About() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">About Zian</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-3xl">
-                    I wish to visualize my thoughts and words, that people can talk without speaking
+                    I wish to visualise my thoughts and words, that people can talk without speaking
                 </p>
             </div>
 
@@ -35,7 +35,7 @@ export default function About() {
                             I grew up in Hong Kong, was born in Shenzhen and did my university in the UK.
                         </p>
                         <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
-                            My work sits at the intersection of mathematics and computer. I enjoy implementing and visualizing mathematical models for physical intuition.
+                            My work sits at the intersection of mathematics and computer. I enjoy implementing and visualising numerical models for physical intuition.
                         </p>
                     </div>
                     <div className="flex-shrink-0">
@@ -127,18 +127,6 @@ export default function About() {
                             <p className="text-xs md:text-sm text-muted-foreground mt-1.5">University College London | 2019-2022</p>
                         </div>
                     </div>
-                </div>
-
-                {/* Contact section with improved styling */}
-                <div className="bg-card border border-border rounded-md p-6 text-center">
-                    <h2 className="text-lg md:text-xl font-mono mb-3 text-foreground">Get in Touch</h2>
-                    <p className="text-sm md:text-base text-muted-foreground mb-4">Interested in working together or have a question?</p>
-                    <Link
-                        href="mailto:zianhuang00@gmail.com"
-                        className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
-                    >
-                        Contact Me
-                    </Link>
                 </div>
             </div>
         </div>
