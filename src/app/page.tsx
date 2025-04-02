@@ -6,7 +6,7 @@
 /*   By: Zian Huang <zianhuang00@gmail.com>                                   */
 /*                                                                            */
 /*   Created: 2025/02/17 21:47:06 by Zian Huang                               */
-/*   Updated: 2025/03/14 00:58:01 by Zian Huang                               */
+/*   Updated: 2025/03/14 01:08:04 by Zian Huang                               */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ export default function Home() {
                 <div className="flex md:hidden items-center justify-between mt-6 mb-8">
                     <div className="flex-1 pr-4">
                         <p className="text-sm text-muted-foreground">
-                            Software developer and computational physicist with a passion for elegant solutions to complex problems.
+                            A software engineer / computational physicist, with a passion for visualising physical and mathematical intuition.
                         </p>
                     </div>
 

@@ -71,7 +71,7 @@ export default function About() {
                                 </li>
                                 <li className="flex items-center">
                                     <span className="inline-block w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
-                                    Software Design
+                                    Software Engineering
                                 </li>
                             </ul>
                         </div>
@@ -103,7 +103,7 @@ export default function About() {
                     <div className="space-y-6 pl-1">
                         <div className="relative pl-6">
                             <div className="absolute w-4 h-4 bg-primary rounded-full left-0 top-1"></div>
-                            <h3 className="text-base md:text-lg font-medium">System Engineer - Network Security</h3>
+                            <h3 className="text-base md:text-lg font-medium">Assistant System Engineer - Network Security</h3>
                             <p className="text-xs md:text-sm text-muted-foreground mt-1.5">Amidas Hong Kong Limited | 2024-2025</p>
                             <p className="mt-3 text-foreground text-sm md:text-base">Implementation of the zero-trust security architecture in corporate network environment</p>
                         </div>
