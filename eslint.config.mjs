@@ -9,6 +9,9 @@ const compat = new FlatCompat({
     baseDirectory: __dirname,
 });
 
+// Extends two key Next.js ESLint configurations:
+// next/core-web-vitals: Best practices for Core Web Vitals
+// next/typescript: TypeScript-specific rules
 const eslintConfig = [
     ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
