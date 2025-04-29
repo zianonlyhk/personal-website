@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   content_page_generator.ts                                                */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/02/17 21:45:32 by Zian Huang                               */
-/*   Updated: 2025/03/11 01:11:27 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
 import fs from 'fs';
 import path from 'path';
@@ -149,3 +141,6 @@ export async function getContentPage(slug: string, contentType: ContentType) {
         return null;
     }
 } 
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

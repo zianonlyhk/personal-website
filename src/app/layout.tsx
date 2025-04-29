@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   layout.tsx                                                               */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/02/17 21:47:02 by Zian Huang                               */
-/*   Updated: 2025/03/14 00:55:10 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
 import "@/src/app/globals.css"
 import 'katex/dist/katex.min.css'
@@ -56,3 +48,6 @@ export default function RootLayout({
         </html>
     );
 }
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

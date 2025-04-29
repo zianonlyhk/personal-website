@@ -1,3 +1,7 @@
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -240,3 +244,6 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
         </div>
     );
 }
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

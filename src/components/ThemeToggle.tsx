@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   ThemeToggle.tsx                                                          */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/03/10 20:35:00 by Zian Huang                               */
-/*   Updated: 2025/03/10 20:59:15 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
 'use client';
 
@@ -34,3 +26,6 @@ export function ThemeToggle() {
         </button>
     );
 } 
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

@@ -1,16 +1,8 @@
-'use client';
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   ContentPreview.tsx                                                       */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/02/17 21:45:52 by Zian Huang                               */
-/*   Updated: 2025/03/11 01:25:36 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -113,3 +105,7 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
         </div>
     );
 }
+
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

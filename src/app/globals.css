@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   globals.css                                                              */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/02/17 21:46:56 by Zian Huang                               */
-/*   Updated: 2025/03/11 16:52:48 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+/* Author: Zian Huang
+/* Date Created: 2025-04-30
+/* ----------------------------------------
 
 @tailwind base;
 @tailwind components;
@@ -802,5 +794,5 @@
     @apply bg-muted-foreground bg-opacity-50 rounded-full hover:bg-opacity-70 transition-all duration-200;
 }
 
-/* End of the _utilities_ CSS section ----------------------------------------------------------- */
-/* ---------------------------------------------------------------------------------------------- */
+/* ----------------------------------------
+/* Copyright (c) 2025 Zian Huang. All rights reserved.

@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   Footer.tsx                                                               */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/02/17 21:46:06 by Zian Huang                               */
-/*   Updated: 2025/03/11 01:06:53 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
 'use client';
 
@@ -57,4 +49,7 @@ const Footer = () => {
     )
 }
 
-export default Footer 
+export default Footer
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

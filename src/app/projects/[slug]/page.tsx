@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   page.tsx                                                                 */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/02/17 21:46:48 by Zian Huang                               */
-/*   Updated: 2025/03/11 13:37:31 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
 import { getContentPage } from '@/src/lib/content_page_generator';
 import { notFound } from 'next/navigation';
@@ -41,3 +33,6 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
     );
 }
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

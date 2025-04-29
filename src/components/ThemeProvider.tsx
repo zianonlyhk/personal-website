@@ -1,14 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                                            */
-/*   ThemeProvider.tsx                                                        */
-/*                                                                            */
-/*   By: Zian Huang <zianhuang00@gmail.com>                                   */
-/*                                                                            */
-/*   Created: 2025/03/10 20:30:00 by Zian Huang                               */
-/*   Updated: 2025/03/10 20:59:14 by Zian Huang                               */
-/*                                                                            */
-/* ************************************************************************** */
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
 
 'use client';
 
@@ -82,3 +74,6 @@ export const useTheme = () => {
 
     return context;
 }; 
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.
