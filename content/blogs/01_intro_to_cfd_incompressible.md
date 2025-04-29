@@ -1,5 +1,5 @@
 ---
-title: "Introduction to CFD: the projection method for incompressible flows"
+title: "Introduction to CFD - incompressible fluid dynamics"
 date: "2024-13-32"
 excerpt: "Please come back later... I am making the best use of my spare time on this..."
 thumbnailUrl: "/under_construction.jpeg"

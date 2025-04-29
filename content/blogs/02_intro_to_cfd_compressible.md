@@ -1,5 +1,5 @@
 ---
-title: "Whole system simulation of ocean atmosphere dynamics"
+title: "Introduction to CFD - compressible fluid dynamics"
 date: "2024-13-32"
 excerpt: "Please come back later... I am making the best use of my spare time on this..."
 thumbnailUrl: "/under_construction.jpeg"
