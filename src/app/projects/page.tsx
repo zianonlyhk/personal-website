@@ -6,18 +6,39 @@
 
 import { useEffect, useState } from 'react';
 import ContentPreview from '@/src/components/ContentPreview';
+
+type Project = {
+    slug: string;
+    title: string;
+    date: string;
+    excerpt: string;
+    thumbnailUrl: string;
+    githubUrl?: string;
+    isVip: boolean;
+};
+
+type LinkType = {
+    type: 'github' | 'external' | 'internal';
+    url: string;
+    label: string;
+    className: string;
+};
 import Masonry from 'react-masonry-css';
-import { fetchProjects } from '../api/content';
+import { fetchProjects } from '../../lib/content_api';
 
 export default function Projects() {
-    const [projects, setProjects] = useState([]);
+    const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     useEffect(() => {
         async function loadProjects() {
             try {
-                const projectData = await fetchProjects();
+                const allProjects = await fetchProjects(1, 9999); // Get all to calculate total pages
+                const projectData = await fetchProjects(currentPage);
                 setProjects(projectData);
+                setTotalPages(Math.ceil(allProjects.length / 9));
             } catch (error) {
                 console.error('Error fetching projects:', error);
             } finally {
@@ -26,7 +47,7 @@ export default function Projects() {
         }
 
         loadProjects();
-    }, []);
+    }, [currentPage]);
 
     const breakpointColumns = {
         default: 3,
@@ -57,7 +78,7 @@ export default function Projects() {
                     columnClassName="masonry-grid-column"
                 >
                     {projects.map((eachProj) => {
-                        const links = [];
+                        const links: LinkType[] = [];
 
                         // Only add GitHub link if a GitHub url is provided
                         if (eachProj.githubUrl) {
@@ -83,6 +104,28 @@ export default function Projects() {
                         );
                     })}
                 </Masonry>
+            )}
+
+            {!loading && totalPages > 1 && (
+                <div className="flex justify-center mt-8 gap-2">
+                    <button
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Previous
+                    </button>
+                    <span className="px-4 py-2">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Next
+                    </button>
+                </div>
             )}
         </div>
     );

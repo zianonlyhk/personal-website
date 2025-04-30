@@ -6,18 +6,39 @@
 
 import { useEffect, useState } from 'react';
 import ContentPreview from '@/src/components/ContentPreview';
+
+type BlogPost = {
+    slug: string;
+    title: string;
+    date: string;
+    excerpt: string;
+    thumbnailUrl: string;
+    githubUrl?: string;
+    isVip: boolean;
+};
+
+type LinkType = {
+    type: 'github' | 'external' | 'internal';
+    url: string;
+    label: string;
+    className: string;
+};
 import Masonry from 'react-masonry-css';
-import { fetchBlogPosts } from '../api/content';
+import { fetchBlogPosts } from '../../lib/content_api';
 
 export default function Blog() {
-    const [blogPosts, setBlogPosts] = useState([]);
+    const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
     useEffect(() => {
         async function loadBlogPosts() {
             try {
-                const posts = await fetchBlogPosts();
+                const allPosts = await fetchBlogPosts(1, 9999); // Get all to calculate total pages
+                const posts = await fetchBlogPosts(currentPage);
                 setBlogPosts(posts);
+                setTotalPages(Math.ceil(allPosts.length / 9));
             } catch (error) {
                 console.error('Error fetching blog posts:', error);
             } finally {
@@ -26,7 +47,7 @@ export default function Blog() {
         }
 
         loadBlogPosts();
-    }, []);
+    }, [currentPage]);
 
     const breakpointColumns = {
         default: 3,
@@ -58,7 +79,7 @@ export default function Blog() {
                 >
                     {blogPosts.map((eachPost) => {
                         // We'll only add GitHub links if they exist, but no "Read More" link
-                        const links = [];
+                        const links: LinkType[] = [];
 
                         // Add GitHub link if it exists
                         if (eachPost.githubUrl) {
@@ -85,6 +106,28 @@ export default function Blog() {
                         );
                     })}
                 </Masonry>
+            )}
+
+            {!loading && totalPages > 1 && (
+                <div className="flex justify-center mt-8 gap-2">
+                    <button
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Previous
+                    </button>
+                    <span className="px-4 py-2">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Next
+                    </button>
+                </div>
             )}
         </div>
     );

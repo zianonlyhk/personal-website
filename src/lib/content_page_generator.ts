@@ -28,8 +28,7 @@ function getContentDirectory(contentType: ContentType) {
 }
 
 // Unified function to get content list
-export async function getContentList(contentType: ContentType) {
-
+export async function getContentList(contentType: ContentType, page: number = 1, pageSize: number = 9) {
     // based on the contentType, get the appropriate directory
     const directory = getContentDirectory(contentType);
     const fileNames = fs.readdirSync(directory);
@@ -55,7 +54,10 @@ export async function getContentList(contentType: ContentType) {
         };
     });
 
-    return allContentData.sort((a, b) => (a.date < b.date ? 1 : -1));
+    const sortedData = allContentData.sort((a, b) => (a.date < b.date ? 1 : -1));
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return sortedData.slice(startIndex, endIndex);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -64,7 +66,7 @@ export async function getContentList(contentType: ContentType) {
 
 // Custom plugin to wrap images
 function remarkWrapImages() {
-    return (tree) => {
+    return (tree: any) => {
         visit(tree, 'image', (node, index, parent) => {
             if (parent && index !== null) {
                 // Parse potential width and height from title field
@@ -72,7 +74,7 @@ function remarkWrapImages() {
                 let width, height;
                 if (node.title) {
                     const params = node.title.split(' ');
-                    params.forEach(param => {
+                    params.forEach((param: string) => {
                         const [key, value] = param.split('=');
                         if (key === 'width') width = value;
                         if (key === 'height') height = value;
@@ -140,7 +142,7 @@ export async function getContentPage(slug: string, contentType: ContentType) {
     } catch {
         return null;
     }
-} 
+}
 
 // ----------------------------------------
 // Copyright (c) 2025 Zian Huang. All rights reserved.
