@@ -4,7 +4,7 @@
 
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import NextImage from 'next/image';
 import Masonry from 'react-masonry-css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -107,13 +107,13 @@ export default function Gallery() {
     }, []);
 
     // Notes to my future self: If I want to add more images, I can add them here
-    const galleryItems: GalleryItem[] = [
+    const galleryItems: GalleryItem[] = useMemo(() => [
         { id: 1, title: "Pepper (colour pencil)", image_url: "/gallery/drpepper.jpg", width: 4108, height: 3081 },
         { id: 2, title: "Woman Sitting (charcoal)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259, isVip: true },
         { id: 5, title: "KC Printing (printing)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
         { id: 4, title: "Spaghetti (digital)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
         { id: 3, title: "三目 (Python & Cairo)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
-    ];
+    ], []);
 
     // Add this useEffect to handle image loading
     useEffect(() => {
@@ -155,7 +155,7 @@ export default function Gallery() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">Gallery</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    A set of visual explorations and digital creations
+                    A collection of visual explorations and digital creations
                 </p>
             </div>
 
@@ -251,7 +251,7 @@ export default function Gallery() {
             )}
         </div>
     );
-} 
+}
 
 // ----------------------------------------
 // Copyright (c) 2025 Zian Huang. All rights reserved.

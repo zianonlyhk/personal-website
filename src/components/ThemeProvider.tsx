@@ -12,6 +12,8 @@ type ThemeProviderProps = {
     children: React.ReactNode;
     defaultTheme?: Theme;
     storageKey?: string;
+    attribute?: string;
+    enableSystem?: boolean;
 };
 
 type ThemeProviderState = {
@@ -28,8 +30,10 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 
 export function ThemeProvider({
     children,
-    defaultTheme = 'dark',
+    defaultTheme = 'system',
     storageKey = 'theme',
+    attribute = 'class',
+    enableSystem,
     ...props
 }: ThemeProviderProps) {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
@@ -37,19 +41,32 @@ export function ThemeProvider({
     useEffect(() => {
         const root = window.document.documentElement;
 
-        // Remove the previous theme class
-        root.classList.remove('light', 'dark');
+        if (attribute === 'class') {
+            // Remove previous theme classes
+            root.classList.remove('light', 'dark');
 
-        // Add the current theme class
-        if (theme === 'system') {
-            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? 'dark'
-                : 'light';
-            root.classList.add(systemTheme);
+            // Add current theme class
+            if (theme === 'system' && enableSystem !== false) {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light';
+                root.classList.add(systemTheme);
+            } else if (theme !== 'system') {
+                root.classList.add(theme);
+            }
         } else {
-            root.classList.add(theme);
+            // For non-class attributes
+            root.removeAttribute(attribute);
+            if (theme === 'system' && enableSystem !== false) {
+                const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light';
+                root.setAttribute(attribute, systemTheme);
+            } else if (theme !== 'system') {
+                root.setAttribute(attribute, theme);
+            }
         }
-    }, [theme]);
+    }, [theme, attribute, enableSystem]);
 
     const value = {
         theme,
@@ -73,7 +90,7 @@ export const useTheme = () => {
         throw new Error('useTheme must be used within a ThemeProvider');
 
     return context;
-}; 
+};
 
 // ----------------------------------------
 // Copyright (c) 2025 Zian Huang. All rights reserved.

@@ -37,7 +37,7 @@ export default function RootLayout({
     return (
         <html lang="en" className={`h-full ${jetbrains.variable} ${inter.variable}`} suppressHydrationWarning>
             <body className="antialiased h-full flex flex-col bg-background text-foreground font-sans">
-                <ThemeProvider defaultTheme="dark">
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
                     <main className="flex-1">
                         {children}
