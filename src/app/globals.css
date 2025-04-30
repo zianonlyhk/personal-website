@@ -1,6 +1,6 @@
-/* Author: Zian Huang
-/* Date Created: 2025-04-30
-/* ----------------------------------------
+/* Author: Zian Huang */
+/* Date Created: 2025-04-30 */
+/* ---------------------------------------- */
 
 @tailwind base;
 @tailwind components;
@@ -794,5 +794,5 @@
     @apply bg-muted-foreground bg-opacity-50 rounded-full hover:bg-opacity-70 transition-all duration-200;
 }
 
-/* ----------------------------------------
-/* Copyright (c) 2025 Zian Huang. All rights reserved.
+/* ---------------------------------------- */
+/* Copyright (c) 2025 Zian Huang. All rights reserved. */

@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [typedText, setTypedText] = useState("");
-    const fullText = "Ridin' the wave of maths and computer, no pressure, merely fluid flow";
+    const fullText = "Ridin' the wave of digital numerics, no pressure, merely fluid flow";
     const typingSpeed = 50; // milliseconds per character
 
     useEffect(() => {

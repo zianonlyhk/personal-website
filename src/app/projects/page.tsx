@@ -42,7 +42,7 @@ export default function Projects() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">Projects</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    A collection of my academic and technical work
+                    A set of my academic and technical work
                 </p>
             </div>
 
