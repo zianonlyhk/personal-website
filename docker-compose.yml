@@ -3,7 +3,7 @@
 # ---------------------------------------- 
 
 services:
-  web:
+  app:
     # Next.js web application service
     build:
       context: . # Build context directory

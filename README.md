@@ -1,129 +1,75 @@
-## To my future self
+# Personal Website of Zian Huang
 
-If I want to add a new project, I can add it to the `content/projects` folder as a new markdown file.
+[![Next.js](https://img.shields.io/badge/Next.js-black?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/) [![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-If I want to add a new blog post, I can add it to the `content/blog` folder as a new markdown file.
+A personal website showcasing my computing projects, study blogs, and artworks. Built with Next.js, a React framework for production, and containerized using Docker for consistent deployment.
 
-If I want to add a new image to the gallery, I can add it to the `public/gallery` folder. I need to then go to the `src/app/gallery/page.tsx` file and add the image to the `galleryItems` array.
+## Features and Technologies
 
-If I want to edit the about page, I should edit the `src/app/about/page.tsx` file. There is no easy way to do it.
+* Static site generation with [Next.js](https://nextjs.org/)
+* Responsive design with [Tailwind CSS](https://tailwindcss.com/)
+* Dark/light theme toggle
+* [Dockerized](https://www.docker.com/) development and production environment
+* Markdown-based content management system
 
-## Docker Deployment
+## Getting Started
+
+Follow these instructions to get a copy of the project up and running on your local machine.
 
 ### Prerequisites
-- Docker installed on your system
-- Docker Compose installed on your system (optional, but recommended)
 
-### Quick Deployment with the Deploy Script
+Make sure you have the following installed:
 
-The easiest way to deploy the application is using the provided deploy script:
+* [Git](https://git-scm.com/)
+* [Docker](https://www.docker.com/get-started) (Recommended for consistent local setup)
+* [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)/[yarn](https://yarnpkg.com/)/[pnpm](https://pnpm.io/) (If you prefer local development without Docker)
 
-```bash
-# Make the script executable (first time only)
-chmod +x deploy.sh
+### Local Development with Docker
 
-# Development deployment
-./deploy.sh
+This is the recommended way to run the project locally as it mirrors the production environment setup.
 
-# Production deployment
-./deploy.sh -p
+1.  **Clone the repository:**
 
-# Stop the deployment
-./deploy.sh -s
+    ```bash
+    git clone https://github.com/zianonlyhk/personal-website.git
+    cd personal-website
+    ```
 
-# Restart the deployment
-./deploy.sh -r
+2.  **Build the Docker image:**
 
-# Force rebuild of containers
-./deploy.sh -b
+    ```bash
+    docker compose up -d --build
+    ```
 
-# Show all options
-./deploy.sh -h
-```
+3.  **Access the website:**
+    Open your web browser and go to [http://localhost:3000](http://localhost:3000).
 
-### Manual Deployment
+### Local Development without Docker
 
-#### Using Docker Compose (Development)
-1. Build and start the container:
-   ```bash
-   docker-compose up -d
-   ```
+If you prefer to develop directly on your machine, follow these steps:
 
-2. Stop the container:
-   ```bash
-   docker-compose down
-   ```
+1.  **Clone the repository:**
 
-#### Using Docker Directly
-1. Build the Docker image:
-   ```bash
-   docker build -t personal-website:latest .
-   ```
+    ```bash
+    git clone https://github.com/catapan/personal-website.git
+    cd personal-website
+    ```
 
-2. Run the container:
-   ```bash
-   docker run -dp 3000:3000 personal-website:latest
-   ```
+2.  **Install dependencies:**
 
-3. Stop the container:
-   ```bash
-   # Find the container ID
-   docker ps
-   
-   # Stop the container
-   docker stop <container_id>
-   ```
+    ```bash
+    npm install # or yarn install or pnpm install
+    ```
 
-### Accessing the Application
-Once the container is running, the application will be available at:
-- http://localhost:3000
+3.  **Run the development server:**
 
-### Production Deployment
+    ```bash
+    npm run dev # or yarn dev or pnpm dev
+    ```
 
-For production deployment with SSL and Nginx:
+4.  **Access the website:**
+    Open your web browser and go to [http://localhost:3000](http://localhost:3000).
 
-1. Update the domain name in `nginx.conf`:
-   - Replace `yourdomain.com` with your actual domain name
+## License
 
-2. Ensure SSL certificates are available:
-   - Install certbot: `sudo apt install certbot python3-certbot-nginx`
-   - Obtain certificates: `sudo certbot --nginx -d yourdomain.com -d www.yourdomain.com`
-
-3. Deploy using the production Docker Compose file:
-   ```bash
-   docker-compose -f docker-compose.prod.yml up -d
-   ```
-   
-   Or use the deploy script:
-   ```bash
-   ./deploy.sh -p
-   ```
-
-4. Stop the production deployment:
-   ```bash
-   docker-compose -f docker-compose.prod.yml down
-   ```
-   
-   Or use the deploy script:
-   ```bash
-   ./deploy.sh -p -s
-   ```
-
-#### Updating the Production Deployment
-
-To update the production deployment with new changes:
-
-1. Pull the latest changes:
-   ```bash
-   git pull
-   ```
-
-2. Rebuild and restart the containers:
-   ```bash
-   docker-compose -f docker-compose.prod.yml up -d --build
-   ```
-   
-   Or use the deploy script:
-   ```bash
-   ./deploy.sh -p -r -b
-   ```
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
