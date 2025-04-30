@@ -13,7 +13,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 interface BlogPost {
     slug: string;
     title: string;
-    date: string;
+    // since there is no date information on my project pages
+    date?: string;
     content: string;
     githubUrl?: string;
 }
