@@ -115,9 +115,20 @@ export default function Projects() {
                     >
                         Previous
                     </button>
-                    <span className="px-4 py-2">
-                        Page {currentPage} of {totalPages}
-                    </span>
+                    <div className="flex gap-1">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-4 py-2 rounded-md transition-colors ${currentPage === page
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'bg-background/80 hover:bg-muted text-foreground'
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+                    </div>
                     <button
                         onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                         disabled={currentPage === totalPages}
