@@ -78,6 +78,8 @@ export default function Gallery() {
     const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
 
     // Add ESC key handler
     useEffect(() => {
@@ -110,10 +112,16 @@ export default function Gallery() {
     const galleryItems: GalleryItem[] = useMemo(() => [
         { id: 1, title: "Pepper (2014)", image_url: "/gallery/drpepper.jpg", width: 4108, height: 3081 },
         { id: 2, title: "Woman Sitting (2021)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259, isVip: true },
-        { id: 5, title: "KC Printing (2018)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
+        { id: 3, title: "KC Printing (2018)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
         { id: 4, title: "Spaghetti (2020)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
-        { id: 3, title: "三目 (2020)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
+        { id: 5, title: "三目 (2020)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
     ], []);
+
+    const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+    const currentItems = galleryItems.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
 
     // Add this useEffect to handle image loading
     useEffect(() => {
@@ -169,7 +177,7 @@ export default function Gallery() {
                     className="masonry-grid"
                     columnClassName="masonry-grid-column"
                 >
-                    {galleryItems.map((item) => (
+                    {currentItems.map((item) => (
                         <div
                             key={item.id}
                             className="mb-4 overflow-hidden rounded-md border border-border bg-card hover:shadow-md transition-all duration-300 cursor-pointer"
@@ -194,6 +202,39 @@ export default function Gallery() {
                         </div>
                     ))}
                 </Masonry>
+            )}
+
+            {imagesLoaded && totalPages > 1 && (
+                <div className="flex justify-center mt-8 gap-2">
+                    <button
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Previous
+                    </button>
+                    <div className="flex gap-1">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-4 py-2 rounded-md transition-colors ${currentPage === page
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'bg-background/80 hover:bg-muted text-foreground'
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+                    </div>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Next
+                    </button>
+                </div>
             )}
 
             {selectedItem && (

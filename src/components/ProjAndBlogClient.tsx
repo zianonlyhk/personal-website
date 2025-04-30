@@ -9,6 +9,7 @@ import NextImage from 'next/image';
 import ReturnButton from '@/src/components/ReturnButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 interface BlogPost {
     slug: string;
@@ -188,6 +189,17 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
             <ReturnButton />
             <h1 className="title-boss mb-2 md:mb-4 font-mono">{post.title}</h1>
             <div className="content_date font-mono">{post.date}</div>
+            {post.githubUrl && (
+                <a
+                    href={post.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="github-button inline-flex items-center gap-2 mt-2 mb-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-md transition-colors"
+                >
+                    <FontAwesomeIcon icon={faGithub} className="h-5 w-5" />
+                    View on GitHub
+                </a>
+            )}
             <div
                 className="content_content prose prose-headings:font-sans prose-h1:title-large prose-h2:title-medium prose-h3:title-small prose-p:body-medium prose-ul:unordered-list prose-ol:ordered-list max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.content }}
