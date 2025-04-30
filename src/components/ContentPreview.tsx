@@ -1,83 +1,125 @@
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
+
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+
+// Link type definition
+type LinkType = {
+    type: 'github' | 'external' | 'internal';
+    url: string;
+    label: string;
+    className?: string;
+};
+
+// Client component for handling links with click events
+function ContentLinks({ links, isVip = false }: { links: LinkType[]; isVip?: boolean }) {
+    return (
+        <div className={`content_preview_links`}>
+            {links.map((link, index) => {
+                if (link.type === 'internal') {
+                    return (
+                        <Link
+                            key={index}
+                            href={link.url}
+                            className={`${link.className} text-xs font-medium`}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {link.label}
+                        </Link>
+                    );
+                } else if (link.type === 'external' || link.type === 'github') {
+                    return (
+                        <Link
+                            key={index}
+                            href={link.url}
+                            className={`${link.className} ${link.type === 'github' ? 'github-link' : ''} ${isVip ? 'vip' : ''} text-xs font-medium`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {link.label}
+                        </Link>
+                    );
+                } else {
+                    return null;
+                }
+            })}
+        </div>
+    );
+}
 
 export interface ContentPreviewProps {
     title: string;
     preview: string;
-    // do not need date for projects
     date?: string;
-    // do not need thumbnail for some blogs
     thumbnailUrl?: string;
-    // do not need github link for blogs or some projects
-    links?: {
-        type: 'github' | 'external' | 'internal';
-        url: string;
-        label: string;
-    }[];
+    links?: LinkType[];
+    titleUrl?: string;
+    isVip?: boolean;
 }
 
-export default function ContentPreview({ title, preview, date, thumbnailUrl, links }: ContentPreviewProps) {
+export default function ContentPreview({ title, preview, date, thumbnailUrl, links, titleUrl, isVip }: ContentPreviewProps) {
     return (
         <div className="content_preview">
-            {thumbnailUrl && (
-                <div className="content_preview_image_container">
-                    <Image
-                        src={thumbnailUrl}
-                        alt={title}
-                        width={128}
-                        height={128}
-                        className="content_preview_image"
-                    />
+            {titleUrl ? (
+                <div className="relative group">
+                    <Link href={titleUrl} className="absolute inset-0 z-10" aria-label={`View ${title}`} />
+                    <div className="content_preview_inner">
+                        {thumbnailUrl && (
+                            <div className="content_preview_image">
+                                <Image
+                                    src={thumbnailUrl}
+                                    alt={title}
+                                    width={500}
+                                    height={300}
+                                    className="w-full h-auto object-cover"
+                                />
+                            </div>
+                        )}
+                        <div className="content_preview_content">
+                            <h2 className={`content_preview_title title-small ${isVip ? 'vip' : ''}`}>{title}</h2>
+                            <p className="body-small text-muted-foreground">{preview}</p>
+                            <div className="content_preview_footer">
+                                {date && <p className="text-xs text-muted-foreground">{date}</p>}
+                                {links && links.length > 0 && (
+                                    <div className="relative z-20">
+                                        <ContentLinks links={links} isVip={isVip} />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="content_preview_inner">
+                    {thumbnailUrl && (
+                        <div className="content_preview_image">
+                            <Image
+                                src={thumbnailUrl}
+                                alt={title}
+                                width={500}
+                                height={300}
+                                className="w-full h-auto object-cover"
+                            />
+                        </div>
+                    )}
+                    <div className="content_preview_content">
+                        <h2 className={`content_preview_title title-small ${isVip ? 'vip' : ''}`}>{title}</h2>
+                        <p className="body-small text-muted-foreground">{preview}</p>
+                        <div className="content_preview_footer">
+                            {date && <p className="text-xs text-muted-foreground">{date}</p>}
+                            {links && links.length > 0 && <ContentLinks links={links} />}
+                        </div>
+                    </div>
                 </div>
             )}
-            <div className="content_preview_content">
-                <h2 className="title-small">{title}</h2>
-                {date && <p className="body-small text-foreground">{date}</p>}
-                <p className="body-small">{preview}</p>
-                {links && links.length > 0 && (
-                    <div className="content_preview_links">
-                        {links.map((link, index) => {
-                            if (link.type === 'internal') {
-                                return (
-                                    <Link
-                                        key={index}
-                                        href={link.url}
-                                        className="preview_link"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            } else if (link.type === 'external') {
-                                return (
-                                    <Link
-                                        key={index}
-                                        href={link.url}
-                                        className="preview_link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            } else if (link.type === 'github') {
-                                return (
-                                    <Link
-                                        key={index}
-                                        href={link.url}
-                                        className="preview_link"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                );
-                            } else {
-                                return null;
-                            }
-                        })}
-                    </div>
-                )}
-            </div>
         </div>
     );
 }
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

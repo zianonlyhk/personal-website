@@ -1,43 +1,109 @@
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
+
+'use client';
+
+import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+    const [typedText, setTypedText] = useState("");
+    const fullText = "Riding the tide and waves of numerics, no pressure, just fluid flows.";
+    const typingSpeed = 50; // milliseconds per character
+
+    useEffect(() => {
+        if (typedText.length < fullText.length) {
+            const timeout = setTimeout(() => {
+                setTypedText(fullText.slice(0, typedText.length + 1));
+            }, typingSpeed);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [typedText]);
+
     return (
-        <div className="h-full flex flex-col items-center justify-center p-8]">
-            <main className="flex flex-col gap-8 items-center sm:items-start">
-                <Image
-                    className="dark:invert"
-                    src="/next.svg"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
-                    priority
-                />
-                <div className="flex gap-4 items-center flex-col sm:flex-row">
-                    <a
-                        className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-                        href="https://vercel.com/new"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            className="dark:invert"
-                            src="/vercel.svg"
-                            alt="Vercel logomark"
-                            width={20}
-                            height={20}
-                        />
-                        Deploy now
-                    </a>
-                    <a
-                        className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-                        href="https://nextjs.org/docs"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Read our docs
-                    </a>
+        <div className="min-h-[calc(100vh-180px)] flex flex-col items-center justify-center py-8 md:py-12">
+            <div className="max-w-4xl w-full px-4 md:px-8">
+                {/* Header section with name and intro */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+                    {/* Left column - Text content */}
+                    <div className="space-y-4 md:space-y-6">
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-foreground">
+                            <span className="text-primary">Zian</span> HUANG
+                        </h1>
+
+                        <div className="h-12 sm:h-16">
+                            <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-mono">
+                                {typedText}
+                                <span className="blink-cursor">▊</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Right column - Geometric/Mathematical visual (desktop only) */}
+                    <div className="hidden md:flex justify-center items-center">
+                        <div className="relative w-48 h-48 flex items-center justify-center">
+                            <Image
+                                src="/homeicon.svg"
+                                alt="Home icon"
+                                width={160}
+                                height={160}
+                                className="w-40 h-40 opacity-80 transition-all duration-300 home-icon"
+                                style={{ filter: 'var(--svg-filter)' }}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </main>
+
+                {/* Mobile-only horizontal layout for intro and visual */}
+                <div className="flex md:hidden items-center justify-between mt-6 mb-8">
+                    <div className="flex-1 pr-4">
+                        <p className="text-sm text-muted-foreground">
+                            A software engineer / computational physicist, with a passion for visualising physical and mathematical intuition.
+                        </p>
+                    </div>
+
+                    <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center">
+                        <Image
+                            src="/homeicon.svg"
+                            alt="Home icon"
+                            width={64}
+                            height={64}
+                            className="w-16 h-16 opacity-80 home-icon"
+                            style={{ filter: 'var(--svg-filter)' }}
+                        />
+                    </div>
+                </div>
+
+                {/* Bottom section with quick links */}
+                <div className="mt-8 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                    <Link href="/projects" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
+                        <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
+                            <span className="text-primary">{'>'}</span> Projects
+                        </h2>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A set of my selected academic and technical work</p>
+                    </Link>
+
+                    <Link href="/blogs" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
+                        <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
+                            <span className="text-primary">{'>'}</span> Blog
+                        </h2>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts and ideas, at the crossroad of math & computer</p>
+                    </Link>
+
+                    <Link href="/gallery" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
+                        <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
+                            <span className="text-primary">{'>'}</span> Gallery
+                        </h2>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A collection of visual explorations and digital creations</p>
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 }
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

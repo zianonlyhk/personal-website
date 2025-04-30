@@ -1,3 +1,7 @@
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -24,8 +28,7 @@ function getContentDirectory(contentType: ContentType) {
 }
 
 // Unified function to get content list
-export async function getContentList(contentType: ContentType) {
-
+export async function getContentList(contentType: ContentType, page: number = 1, pageSize: number = 9) {
     // based on the contentType, get the appropriate directory
     const directory = getContentDirectory(contentType);
     const fileNames = fs.readdirSync(directory);
@@ -47,10 +50,14 @@ export async function getContentList(contentType: ContentType) {
             excerpt: data.excerpt,
             thumbnailUrl: data.thumbnailUrl,
             githubUrl: data.githubUrl,
+            isVip: data.isVip || false,
         };
     });
 
-    return allContentData.sort((a, b) => (a.date < b.date ? 1 : -1));
+    const sortedData = allContentData.sort((a, b) => (a.date < b.date ? 1 : -1));
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return sortedData.slice(startIndex, endIndex);
 }
 
 // ----------------------------------------------------------------------------------------------
@@ -59,31 +66,39 @@ export async function getContentList(contentType: ContentType) {
 
 // Custom plugin to wrap images
 function remarkWrapImages() {
-    return (tree) => {
+    return (tree: any) => {
         visit(tree, 'image', (node, index, parent) => {
             if (parent && index !== null) {
+                // Parse potential width and height from title field
+                // Format: ![alt](src "width=500 height=300")
+                let width, height;
+                if (node.title) {
+                    const params = node.title.split(' ');
+                    params.forEach((param: string) => {
+                        const [key, value] = param.split('=');
+                        if (key === 'width') width = value;
+                        if (key === 'height') height = value;
+                    });
+                }
+
                 const wrapper = {
                     type: 'div',
                     data: {
                         hName: 'div',
                         hProperties: {
-                            // HTML image container class
-                            className: ['relative', 'w-full', 'aspect-[2/1]', 'mb-8']
+                            className: ['relative', 'w-full', width && height ? '' : 'aspect-[2/1]', 'mb-8', 'image-container']
                         }
                     },
                     children: [{
                         type: 'element',
                         data: {
                             hName: 'img',
-                            // HTML image properties
                             hProperties: {
-                                alt: node.alt || 'This is an image giving insight into the content above and below',
-                                decoding: 'async',
-                                className: ['rounded-lg', 'object-cover'],
-                                style: ['position:absolute', 'height:100%', 'width:100%', 'left:0', 'top:0', 'right:0', 'bottom:0', 'color:transparent'],
-                                sizes: "100vw",
-                                fill: true,
                                 src: node.url,
+                                alt: node.alt || '',
+                                width: width || '100%',
+                                height: height || 'auto',
+                                className: ['image', 'rounded-md', 'shadow-md', 'mx-auto']
                             }
                         }
                     }]
@@ -127,4 +142,7 @@ export async function getContentPage(slug: string, contentType: ContentType) {
     } catch {
         return null;
     }
-} 
+}
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.

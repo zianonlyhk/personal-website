@@ -1,7 +1,14 @@
+// Author: Zian Huang
+// Date Created: 2025-04-30
+// ----------------------------------------
+
 'use client';
-import { useState } from 'react';
-import Image from 'next/image';
+
+import { useState, useEffect, useMemo } from 'react';
+import NextImage from 'next/image';
 import Masonry from 'react-masonry-css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 interface GalleryItem {
     id: number;
@@ -9,14 +16,42 @@ interface GalleryItem {
     image_url: string;
     width: number;
     height: number;
+    isVip?: boolean;
 }
 
-function calculateDimensions(imageWidth: number, imageHeight: number) {
-    if (typeof window === 'undefined') return { width: 0, height: 0 };
+function getModalDimensions(imageWidth: number, imageHeight: number, isSmallScreen: boolean) {
+    if (typeof window === 'undefined') return { width: 0, height: 0, shouldRotate: false };
 
-    const maxWidth = window.innerWidth * 0.95 - 32; // 95% of viewport width minus padding
-    const maxHeight = window.innerHeight * 0.95 - 32; // 95% of viewport height minus padding
+    const maxWidth = window.innerWidth * 0.9 - 32; // 90% of viewport width minus padding
+    const maxHeight = window.innerHeight * 0.9 - 32; // 90% of viewport height minus padding
 
+    // For landscape images on small screens, rotate the image
+    if (isSmallScreen && imageWidth > imageHeight) {
+        // Swap image dimensions to account for rotation
+        const rotatedWidth = imageHeight;
+        const rotatedHeight = imageWidth;
+        const rotatedAspectRatio = rotatedWidth / rotatedHeight;
+
+        let width = rotatedWidth;
+        let height = rotatedHeight;
+
+        // Scale down if rotated image is larger than viewport
+        if (width > maxWidth || height > maxHeight) {
+            if (maxWidth / maxHeight > rotatedAspectRatio) {
+                // Height is the limiting factor
+                height = maxHeight;
+                width = height * rotatedAspectRatio;
+            } else {
+                // Width is the limiting factor
+                width = maxWidth;
+                height = width / rotatedAspectRatio;
+            }
+        }
+
+        return { width, height, shouldRotate: true };
+    }
+
+    // For portrait images or non-small screens, handle normally
     const aspectRatio = imageWidth / imageHeight;
 
     let width = imageWidth;
@@ -35,89 +70,221 @@ function calculateDimensions(imageWidth: number, imageHeight: number) {
         }
     }
 
-    return { width, height };
+    // default to not rotate
+    return { width, height, shouldRotate: false };
 }
 
 export default function Gallery() {
     const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+    const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 9;
+
+    // Add ESC key handler
+    useEffect(() => {
+        const handleEscKey = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setSelectedItem(null);
+            }
+        };
+
+        // Add screen size check
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth < 768); // 768px is typical mobile breakpoint
+        };
+
+        // Initial check
+        handleResize();
+
+        // Add event listeners
+        window.addEventListener('keydown', handleEscKey);
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup
+        return () => {
+            window.removeEventListener('keydown', handleEscKey);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // Notes to my future self: If I want to add more images, I can add them here
-    const galleryItems: GalleryItem[] = [
-        { id: 1, title: "My first cat", image_url: "/gallery/cat1.png", width: 775, height: 607 },
-        { id: 2, title: "My second cat", image_url: "/gallery/cat2.png", width: 360, height: 500 },
-        { id: 3, title: "My third cat", image_url: "/gallery/cat3.jpeg", width: 3000, height: 4500 },
-        { id: 4, title: "My fourth cat", image_url: "/gallery/cat4.jpg", width: 5403, height: 3602 },
-        { id: 5, title: "My fifth cat", image_url: "/gallery/cat5.jpg", width: 2303, height: 3012 },
-        { id: 6, title: "My sixth cat", image_url: "/gallery/cat4.jpg", width: 5403, height: 3602 },
-        { id: 7, title: "My seventh cat", image_url: "/gallery/cat4.jpg", width: 5403, height: 3602 },
-    ];
+    const galleryItems: GalleryItem[] = useMemo(() => [
+        { id: 1, title: "Pepper (2014)", image_url: "/gallery/drpepper.jpg", width: 4108, height: 3081 },
+        { id: 2, title: "Woman Sitting (2021)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259, isVip: true },
+        { id: 3, title: "KC Printing (2018)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
+        { id: 4, title: "Spaghetti (2020)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
+        { id: 5, title: "三目 (2020)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
+    ], []);
+
+    const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+    const currentItems = galleryItems.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    );
+
+    // Add this useEffect to handle image loading
+    useEffect(() => {
+        // Preload images to ensure they're available
+        const preloadImages = async () => {
+            try {
+                const promises = galleryItems.map(item => {
+                    return new Promise((resolve, reject) => {
+                        const img = new window.Image();
+                        img.src = item.image_url;
+                        img.onload = resolve;
+                        img.onerror = reject;
+                    });
+                });
+
+                await Promise.all(promises);
+                setImagesLoaded(true);
+            } catch (error) {
+                console.error("Failed to load images:", error);
+                // Still set to true to allow rendering even if some images fail
+                setImagesLoaded(true);
+            }
+        };
+
+        preloadImages();
+    }, [galleryItems]);
 
     const breakpointColumns = {
-        default: 4,
-        1536: 3,
-        1024: 2,
-        640: 1
+        default: 3,
+        1100: 3,
+        700: 2,
+        500: 1
     };
 
     return (
-        <div className="content_container">
-            <h1 className="title-boss">Gallery</h1>
-            <Masonry
-                breakpointCols={breakpointColumns}
-                className="masonry-grid"
-                columnClassName="masonry-grid-column"
-            >
-                {galleryItems.map((item) => (
-                    <div
-                        key={item.id}
-                        className="masonry-item bg-card rounded-lg overflow-hidden mb-4"
-                    >
+        <div className="max-w-6xl mx-auto px-4 py-6 md:py-12">
+            <div className="flex flex-col items-center mb-8">
+                <h1 className="title-boss text-center">
+                    <span className="text-primary">&gt;</span> <span className="font-mono">Gallery</span>
+                </h1>
+                <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
+                    A collection of visual explorations and digital creations
+                </p>
+            </div>
+
+            {!imagesLoaded ? (
+                <div className="flex justify-center items-center h-64">
+                    <div className="text-muted-foreground">Loading gallery...</div>
+                </div>
+            ) : (
+                <Masonry
+                    breakpointCols={breakpointColumns}
+                    className="masonry-grid"
+                    columnClassName="masonry-grid-column"
+                >
+                    {currentItems.map((item) => (
                         <div
-                            className="cursor-pointer hover:opacity-90 transition-opacity"
+                            key={item.id}
+                            className="mb-4 overflow-hidden rounded-md border border-border bg-card hover:shadow-md transition-all duration-300 cursor-pointer"
                             onClick={() => setSelectedItem(item)}
                         >
-                            <div className="relative">
-                                <Image
+                            <div className="gallery-image-container">
+                                <NextImage
                                     src={item.image_url}
                                     alt={item.title}
-                                    width={item.width}
-                                    height={item.height}
-                                    className="image w-full h-auto"
+                                    width={500}
+                                    height={500 * (item.height / item.width)}
+                                    className="w-full h-auto object-cover"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div className="p-4 w-full">
+                                        <h3 className="text-white font-medium truncate">
+                                            {item.title}
+                                        </h3>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <p className="body-medium p-3">{item.title}</p>
-                    </div>
-                ))}
-            </Masonry>
+                    ))}
+                </Masonry>
+            )}
 
-            {/* Modal */}
+            {imagesLoaded && totalPages > 1 && (
+                <div className="flex justify-center mt-8 gap-2">
+                    <button
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Previous
+                    </button>
+                    <div className="flex gap-1">
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-4 py-2 rounded-md transition-colors ${currentPage === page
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'bg-background/80 hover:bg-muted text-foreground'
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+                    </div>
+                    <button
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                        className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
+
             {selectedItem && (
                 <div
-                    className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50"
+                    className="modal"
                     onClick={() => setSelectedItem(null)}
                 >
                     <div
-                        className="bg-card rounded-lg p-4 relative"
+                        className="modal-content"
                         onClick={(e) => e.stopPropagation()}
                         style={{
-                            maxWidth: '95vw',
-                            maxHeight: '95vh',
+                            maxWidth: '90vw',
+                            maxHeight: '90vh',
                             width: 'auto',
-                            height: 'auto'
+                            height: 'auto',
                         }}
                     >
-                        <div className="relative" style={{
-                            width: calculateDimensions(selectedItem.width, selectedItem.height).width,
-                            height: calculateDimensions(selectedItem.width, selectedItem.height).height,
-                        }}>
-                            <Image
+                        {/* Close button */}
+                        <button
+                            onClick={() => setSelectedItem(null)}
+                            className="close-button absolute top-2 right-2"
+                            aria-label="Close modal"
+                        >
+                            <FontAwesomeIcon icon={faXmark} className="h-5 w-5 text-foreground" />
+                        </button>
+
+                        <div
+                            // if not relative then size of image is not correct
+                            className="relative"
+                            style={{
+                                width: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).width,
+                                height: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).height,
+                            }}
+                        >
+                            <NextImage
                                 src={selectedItem.image_url}
                                 alt={selectedItem.title}
                                 fill
                                 className="image object-contain"
-                                sizes="95vw"
                                 priority
+                                unoptimized={true}
+                                style={{
+                                    // shouldRotate the image if it is landscape on a small screen
+                                    transform: getModalDimensions(selectedItem.width, selectedItem.height, isSmallScreen).shouldRotate
+                                        // rotate then zoom in if landscape
+                                        ? `rotate(-90deg) scale(${selectedItem.width / selectedItem.height})`
+                                        // do nothing if portrait
+                                        : 'none',
+                                    transformOrigin: 'center center',
+                                }}
                             />
                         </div>
                     </div>
@@ -125,4 +292,7 @@ export default function Gallery() {
             )}
         </div>
     );
-} 
+}
+
+// ----------------------------------------
+// Copyright (c) 2025 Zian Huang. All rights reserved.
