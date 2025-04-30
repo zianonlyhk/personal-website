@@ -66,7 +66,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className={`${scrolled ? 'shadow-sm' : ''}`} ref={navRef}>
+        <nav className={`${scrolled ? 'shadow-sm' : ''} z-50`} ref={navRef}>
             <div className="nav-container">
                 {/* Top row with logo and navigation */}
                 <div className="flex justify-between items-center w-full">

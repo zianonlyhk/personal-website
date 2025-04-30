@@ -14,13 +14,13 @@ export default function ReturnButton() {
     return (
         <button
             onClick={() => router.back()}
-            className="return-button hover:bg-muted"
+            className="return-button hover:bg-muted z-40"
             aria-label="Return to previous page"
         >
             <FontAwesomeIcon icon={faArrowLeft} className="h-5 w-5 text-foreground" />
         </button>
     );
-} 
+}
 
 // ----------------------------------------
 // Copyright (c) 2025 Zian Huang. All rights reserved.
