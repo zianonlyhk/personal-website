@@ -23,10 +23,10 @@ export default function About() {
                     <div className="flex-1 space-y-4">
                         <p className="text-foreground text-sm md:text-base leading-relaxed">
                             Hi, I&apos;m a <span className="text-primary font-medium">software engineer</span> with a background in <span className="text-accent font-medium">computational physics</span>.
-                            I grew up in Hong Kong, was born in Shenzhen and did my university in the UK.
+                            I was born in Shenzhen, grew up in Hong Kong, and did my university in the UK.
                         </p>
                         <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
-                            My work sits at the intersection of mathematics and computer. I enjoy implementing and visualising numerical models for physical intuition.
+                            My work sits at the intersection of mathematics and computing. I enjoy implementing and visualising numerical models for physical intuition.
                         </p>
                     </div>
                     <div className="flex-shrink-0">
@@ -96,7 +96,7 @@ export default function About() {
                             <div className="absolute w-4 h-4 bg-primary rounded-full left-0 top-1"></div>
                             <h3 className="text-base md:text-lg font-medium">Assistant System Engineer - Network Security</h3>
                             <p className="text-xs md:text-sm text-muted-foreground mt-1.5">Amidas Hong Kong Limited | 2024-2025</p>
-                            <p className="mt-3 text-foreground text-sm md:text-base">Implementation of the zero-trust security architecture in corporate network environment</p>
+                            <p className="mt-3 text-foreground text-sm md:text-base">Implemented the zero-trust security architecture on the application-level of a corporate network</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ export default function About() {
             </div>
         </div>
     );
-} 
+}
 
 // ----------------------------------------
 // Copyright (c) 2025 Zian Huang. All rights reserved.

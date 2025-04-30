@@ -79,29 +79,26 @@ export default function Home() {
 
                 {/* Bottom section with quick links */}
                 <div className="mt-8 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                    <div className="p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300">
+                    <Link href="/projects" className="p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
-                            <span className="text-primary">&gt;</span> Projects
+                            <span className="text-primary">{'>'}</span> Projects
                         </h2>
                         <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A set of my selected academic and technical work</p>
-                        <Link href="/projects" className="text-primary hover:underline text-sm md:text-base">View all →</Link>
-                    </div>
+                    </Link>
 
-                    <div className="p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300">
+                    <Link href="/blogs" className="p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
-                            <span className="text-primary">&gt;</span> Blog
+                            <span className="text-primary">{'>'}</span> Blog
                         </h2>
                         <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts and ideas, at the crossroad of math & computer</p>
-                        <Link href="/blogs" className="text-primary hover:underline text-sm md:text-base">Read posts →</Link>
-                    </div>
+                    </Link>
 
-                    <div className="p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300">
+                    <Link href="/gallery" className="p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground">
-                            <span className="text-primary">&gt;</span> Gallery
+                            <span className="text-primary">{'>'}</span> Gallery
                         </h2>
                         <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A collection of visual explorations and digital creations</p>
-                        <Link href="/gallery" className="text-primary hover:underline text-sm md:text-base">Browse gallery →</Link>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
