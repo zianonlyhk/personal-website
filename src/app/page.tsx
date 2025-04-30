@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [typedText, setTypedText] = useState("");
-    const fullText = "Ridin' the wave of digital numerics, no pressure, merely fluid flow";
+    const fullText = "Riding the tide and waves of numerics, no pressure, just fluid flows.";
     const typingSpeed = 50; // milliseconds per character
 
     useEffect(() => {
@@ -50,7 +50,7 @@ export default function Home() {
                                 alt="Home icon"
                                 width={160}
                                 height={160}
-                                className="w-40 h-40 opacity-80 transition-all duration-300 hover:opacity-100 home-icon"
+                                className="w-40 h-40 opacity-80 transition-all duration-300 home-icon"
                                 style={{ filter: 'var(--svg-filter)' }}
                             />
                         </div>

@@ -87,7 +87,7 @@ export default function Blog() {
                                 type: 'github',
                                 url: eachPost.githubUrl,
                                 label: 'GitHub',
-                                className: eachPost.isVip ? 'preview_link_accent' : 'preview_link'
+                                className: 'preview_link'
                             });
                         }
 
@@ -123,8 +123,8 @@ export default function Blog() {
                                 key={page}
                                 onClick={() => setCurrentPage(page)}
                                 className={`px-4 py-2 rounded-md transition-colors ${currentPage === page
-                                        ? 'bg-primary text-primary-foreground'
-                                        : 'bg-background/80 hover:bg-muted text-foreground'
+                                    ? 'bg-primary text-primary-foreground'
+                                    : 'bg-background/80 hover:bg-muted text-foreground'
                                     }`}
                             >
                                 {page}

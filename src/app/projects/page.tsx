@@ -86,7 +86,7 @@ export default function Projects() {
                                 type: 'github',
                                 url: eachProj.githubUrl,
                                 label: 'GitHub',
-                                className: eachProj.isVip ? 'preview_link_accent' : 'preview_link'
+                                className: 'preview_link'
                             });
                         }
 

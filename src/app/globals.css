@@ -89,10 +89,6 @@
         transition: transform 0.5s ease-in-out;
     }
 
-    .home-icon:hover {
-        transform: scale(1.05);
-    }
-
     .title-boss {
         @apply font-bold text-3xl md:text-5xl mt-5 mb-5 md:mt-10 md:mb-10 max-w-3xl md:max-w-5xl;
         font-family: var(--font-roboto-mono);
@@ -171,19 +167,6 @@
     }
 
     .preview_link:hover::after {
-        @apply opacity-100 translate-x-0;
-    }
-
-    .preview_link_accent {
-        @apply text-accent hover:underline transition-all duration-200 inline-flex items-center;
-        position: relative;
-    }
-
-    .preview_link_accent::after {
-        @apply ml-1 opacity-0 -translate-x-2 transition-all duration-200;
-    }
-
-    .preview_link_accent:hover::after {
         @apply opacity-100 translate-x-0;
     }
 
@@ -326,11 +309,34 @@
     /* Make the title clickable */
     .content_preview_title {
         @apply font-bold mb-1;
+        transition: color 0.2s ease;
     }
 
-    /* Add a hover effect for clickable titles */
-    .content_preview_title:hover {
-        @apply text-primary cursor-pointer;
+    /* Change title color when hovering card (but not when hovering GitHub links) */
+    .content_preview:hover:not(:has(.github-link:hover)) .content_preview_title:not(.vip) {
+        color: var(--primary);
+    }
+
+    .content_preview:hover:not(:has(.github-link:hover)) .content_preview_title.vip {
+        color: var(--accent);
+    }
+
+    /* Remove all hover effects when hovering GitHub links */
+    .content_preview:has(.github-link:hover) {
+        box-shadow: none;
+    }
+
+    .content_preview:has(.github-link:hover) .content_preview_title {
+        color: inherit !important;
+    }
+
+    /* VIP content styling */
+    .content_preview_title.vip {
+        color: var(--foreground);
+    }
+
+    .dark .content_preview_title.vip {
+        color: var(--foreground);
     }
 
     /* Keep VIP titles using accent color on hover */
@@ -367,20 +373,25 @@
 
     /* GitHub link styling */
     .github-link {
-        @apply text-sm py-1 px-3 bg-muted rounded-full font-medium hover:bg-opacity-80 !important;
+        @apply text-sm py-1 px-3 bg-muted rounded-full font-medium !important;
         display: inline-flex;
         align-items: center;
         color: var(--foreground);
+        background-color: var(--muted);
+        transition: all 0.2s ease;
     }
 
-    /* Dark mode styles for GitHub button */
-    .dark .github-link {
-        background-color: #2d3748;
-        color: #e2e8f0;
+    /* GitHub link hover effects */
+    .github-link:hover {
+        @apply shadow-md;
+        background-color: var(--primary);
+        color: var(--primary-foreground);
     }
 
-    .dark .github-link:hover {
-        background-color: #4a5568;
+    /* VIP GitHub link hover effects */
+    .github-link.vip:hover {
+        background-color: var(--accent);
+        color: var(--accent-foreground);
     }
 
     .github-link::before {
