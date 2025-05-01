@@ -6,6 +6,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles for LaTeX equations */
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5rem 0;
+}
+
+.katex-display>.katex {
+    white-space: nowrap;
+}
+
 /* ---------------------------------------------------------------------------------------------- */
 /* Start of the _theme_variables_ CSS section ---------------------------------------------------- */
 
