@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [typedText, setTypedText] = useState("");
-    const fullText = "Riding the tide and waves of numerics, no pressure, just fluid flows.";
+    const fullText = "Riding the tide and waves of numerics, no pressure, as fluid simply flows";
     const typingSpeed = 50; // milliseconds per character
 
     useEffect(() => {
@@ -44,13 +44,13 @@ export default function Home() {
 
                     {/* Right column - Geometric/Mathematical visual (desktop only) */}
                     <div className="hidden md:flex justify-center items-center">
-                        <div className="relative w-48 h-48 flex items-center justify-center">
+                        <div className="relative h-48 flex items-center justify-center">
                             <Image
                                 src="/homeicon.svg"
                                 alt="Home icon"
                                 width={160}
                                 height={160}
-                                className="w-40 h-40 opacity-80 transition-all duration-300 home-icon"
+                                className="opacity-80 transition-all duration-300 home-icon"
                                 style={{ filter: 'var(--svg-filter)' }}
                             />
                         </div>
@@ -58,46 +58,46 @@ export default function Home() {
                 </div>
 
                 {/* Mobile-only horizontal layout for intro and visual */}
-                <div className="flex md:hidden items-center justify-between mt-6 mb-8">
+                <div className="flex md:hidden items-center justify-between mt-6 mb-8 ml-10 mr-10">
                     <div className="flex-1 pr-4">
                         <p className="text-sm text-muted-foreground">
-                            A software engineer / computational physicist, with a passion for visualising physical and mathematical intuition.
+                            A <span className="text-primary font-medium">software engineer</span> / <span className="text-accent font-medium">computational physicist</span>
                         </p>
                     </div>
 
-                    <div className="relative w-20 h-20 flex-shrink-0 flex items-center justify-center">
+                    <div className="relative h-20 flex-shrink-0 flex items-center justify-center">
                         <Image
                             src="/homeicon.svg"
                             alt="Home icon"
-                            width={64}
-                            height={64}
-                            className="w-16 h-16 opacity-80 home-icon"
+                            width={70}
+                            height={70}
+                            className="opacity-80 home-icon"
                             style={{ filter: 'var(--svg-filter)' }}
                         />
                     </div>
                 </div>
 
                 {/* Bottom section with quick links */}
-                <div className="mt-8 md:mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <div className="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     <Link href="/projects" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
                             <span className="text-primary">{'>'}</span> Projects
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A set of my selected academic and technical work</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">My selected academic and technical works</p>
                     </Link>
 
                     <Link href="/blogs" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
                             <span className="text-primary">{'>'}</span> Blog
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts and ideas, at the crossroad of math & computer</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">My thoughts at the crossroad of maths and computing</p>
                     </Link>
 
                     <Link href="/gallery" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
                             <span className="text-primary">{'>'}</span> Gallery
                         </h2>
-                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">A collection of visual explorations and digital creations</p>
+                        <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">My visual art studies and creative explorations</p>
                     </Link>
                 </div>
             </div>

@@ -4,12 +4,29 @@
 
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useTheme } from '@/src/components/ThemeProvider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <button
+                className="p-1.5 rounded-md hover:bg-card hover:bg-opacity-80 transition-all duration-200 flex items-center justify-center"
+                aria-label="Toggle theme"
+            >
+                <div className="h-4 w-4" />
+            </button>
+        );
+    }
 
     return (
         <button
@@ -25,7 +42,7 @@ export function ThemeToggle() {
             )}
         </button>
     );
-} 
+}
 
 // ----------------------------------------
 // Copyright (c) 2025 Zian Huang. All rights reserved.

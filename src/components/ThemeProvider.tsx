@@ -37,6 +37,18 @@ export function ThemeProvider({
     ...props
 }: ThemeProviderProps) {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const storedTheme = localStorage.getItem(storageKey) as Theme | null;
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+
+        setTheme(storedTheme ||
+            (defaultTheme === 'system' || enableSystem ? systemTheme : defaultTheme));
+    }, [defaultTheme, enableSystem, storageKey]);
 
     useEffect(() => {
         const root = window.document.documentElement;
