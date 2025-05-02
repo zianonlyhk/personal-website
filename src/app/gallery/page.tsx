@@ -163,7 +163,7 @@ export default function Gallery() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">Gallery</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    A collection of visual explorations and digital creations
+                    A collection of visual art studies and creative explorations
                 </p>
             </div>
 

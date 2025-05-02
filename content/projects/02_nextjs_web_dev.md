@@ -1,7 +1,7 @@
 ---
 title: "How this website was built with Next.js"
 excerpt: "Please come back later... I am making the best use of my spare time on this..."
-githubUrl: "https://github.com/yourusername/personal-portfolio-second-project"
+githubUrl: "https://github.com/zianonlyhk/personal-website"
 thumbnailUrl: "/under_construction.jpeg"
 ---
 

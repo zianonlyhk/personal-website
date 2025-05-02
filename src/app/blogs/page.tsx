@@ -63,7 +63,7 @@ export default function Blog() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">Blogs</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-2xl">
-                    Thoughts and ideas, at the crossroad of math and computer
+                    An archive of my thoughts at the crossroad of maths and computing
                 </p>
             </div>
 
