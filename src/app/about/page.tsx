@@ -30,12 +30,12 @@ export default function About() {
                         </p>
                     </div>
                     <div className="flex-shrink-0">
-                        <div className="relative w-24 h-24 md:w-48 md:h-48 rounded-md overflow-hidden border border-border">
+                        <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-md overflow-hidden border border-border">
                             <Image
-                                src="/about/selfie.jpg"
+                                src="/about/selfie.png"
                                 alt="Zian Huang"
                                 fill
-                                sizes="(max-width: 768px) 96px, 192px"
+                                sizes="(max-width: 768px)"
                                 className="object-cover"
                                 priority
                             />
