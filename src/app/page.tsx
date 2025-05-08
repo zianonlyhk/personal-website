@@ -46,10 +46,10 @@ export default function Home() {
                     <div className="hidden md:flex items-center">
                         <div className="relative h-48 flex items-center justify-center">
                             <Image
-                                src="/homeicon.svg"
+                                src="/favicon_mascot.png"
                                 alt="Home icon"
-                                width={160}
-                                height={160}
+                                width={192}
+                                height={192}
                                 className="opacity-80 transition-all duration-300 home-icon"
                                 style={{ filter: 'var(--svg-filter)' }}
                             />
@@ -67,10 +67,10 @@ export default function Home() {
 
                     <div className="relative h-20 flex-shrink-0 flex items-center justify-center">
                         <Image
-                            src="/homeicon.svg"
+                            src="/favicon_mascot.png"
                             alt="Home icon"
-                            width={70}
-                            height={70}
+                            width={95}
+                            height={95}
                             className="opacity-80 home-icon"
                             style={{ filter: 'var(--svg-filter)' }}
                         />
