@@ -31,6 +31,7 @@ export default function Blog() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const numberOfCardPerPage = 6;
 
     useEffect(() => {
         async function loadBlogPosts() {
@@ -38,7 +39,7 @@ export default function Blog() {
                 const allPosts = await fetchBlogPosts(1, 9999); // Get all to calculate total pages
                 const posts = await fetchBlogPosts(currentPage);
                 setBlogPosts(posts);
-                setTotalPages(Math.ceil(allPosts.length / 9));
+                setTotalPages(Math.ceil(allPosts.length / numberOfCardPerPage));
             } catch (error) {
                 console.error('Error fetching blog posts:', error);
             } finally {

@@ -28,7 +28,7 @@ function getContentDirectory(contentType: ContentType) {
 }
 
 // Unified function to get content list
-export async function getContentList(contentType: ContentType, page: number = 1, pageSize: number = 9) {
+export async function getContentList(contentType: ContentType, page: number = 1, pageSize: number = 6) {
     // based on the contentType, get the appropriate directory
     const directory = getContentDirectory(contentType);
     const fileNames = fs.readdirSync(directory);

@@ -31,6 +31,7 @@ export default function Projects() {
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const numberOfPreviewPerPage = 6;
 
     useEffect(() => {
         async function loadProjects() {
@@ -38,7 +39,7 @@ export default function Projects() {
                 const allProjects = await fetchProjects(1, 9999); // Get all to calculate total pages
                 const projectData = await fetchProjects(currentPage);
                 setProjects(projectData);
-                setTotalPages(Math.ceil(allProjects.length / 9));
+                setTotalPages(Math.ceil(allProjects.length / numberOfPreviewPerPage));
             } catch (error) {
                 console.error('Error fetching projects:', error);
             } finally {

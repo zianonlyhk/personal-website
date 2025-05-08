@@ -7,12 +7,12 @@
 import { getContentList } from '@/src/lib/content_page_generator';
 
 // Server action to fetch blog posts
-export async function fetchBlogPosts(page: number = 1, pageSize: number = 9) {
+export async function fetchBlogPosts(page: number = 1, pageSize: number = 6) {
     return getContentList('blogs', page, pageSize);
 }
 
 // Server action to fetch projects
-export async function fetchProjects(page: number = 1, pageSize: number = 9) {
+export async function fetchProjects(page: number = 1, pageSize: number = 6) {
     return getContentList('project', page, pageSize);
 }
 
