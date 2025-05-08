@@ -43,7 +43,7 @@ export default function Home() {
                     </div>
 
                     {/* Right column - Geometric/Mathematical visual (desktop only) */}
-                    <div className="hidden md:flex justify-center items-center">
+                    <div className="hidden md:flex items-center">
                         <div className="relative h-48 flex items-center justify-center">
                             <Image
                                 src="/homeicon.svg"

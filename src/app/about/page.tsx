@@ -26,7 +26,7 @@ export default function About() {
                             I was born in Shenzhen, grew up in Hong Kong, and did my university in the UK.
                         </p>
                         <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
-                            My work sits at the intersection of mathematics and computing. I enjoy implementing and visualising numerical models for physical intuition.
+                            My works sit at the intersection of mathematics and computing. I enjoy implementing and visualising numerical models for physical intuition.
                         </p>
                     </div>
                     <div className="flex-shrink-0">

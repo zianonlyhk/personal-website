@@ -79,7 +79,7 @@ export default function Gallery() {
     const [isSmallScreen, setIsSmallScreen] = useState(false);
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9;
+    const itemsPerPage = 6;
 
     // Add ESC key handler
     useEffect(() => {
@@ -113,8 +113,9 @@ export default function Gallery() {
         { id: 1, title: "Pepper (2014)", image_url: "/gallery/drpepper.jpg", width: 4108, height: 3081 },
         { id: 2, title: "Woman Sitting (2021)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259, isVip: true },
         { id: 3, title: "KC Printing (2018)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
-        { id: 4, title: "Spaghetti (2020)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
-        { id: 5, title: "三目 (2020)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
+        { id: 4, title: "Ruins (2014)", image_url: "/gallery/ruins.jpg", width: 5184, height: 3456 },
+        { id: 5, title: "Spaghetti (2020)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
+        { id: 6, title: "三目 (2020)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
     ], []);
 
     const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
