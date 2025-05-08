@@ -25,8 +25,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-    title: 'Z. Huang',
-    description: 'Portfolio website of Zian Huang, with some of his past projects, blogs, and drawings.',
+    title: 'Zian H.',
+    description: 'Personal website of Zian Huang, with some of his selected projects, blogs, and artworks.',
 }
 
 export default function RootLayout({

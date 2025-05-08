@@ -5,6 +5,7 @@
 'use client';
 
 import Link from 'next/link'
+import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
@@ -16,7 +17,20 @@ const Footer = () => {
             <div className="footer-container">
                 {/* Left side - Copyright text */}
                 <div className="flex items-center">
-                    <span className="text-primary mr-1">&copy;</span>
+                    <Link
+                        href="https://creativecommons.org/licenses/by/4.0/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <Image
+                            src="/ccby_license.png"
+                            alt="CC BY License"
+                            width={80}
+                            height={80}
+                            className="opacity-80 transition-all duration-300 home-icon mr-2"
+                        />
+                    </Link>
+                    <span className="mr-1">&copy;</span>
                     <span>{currentYear} Zian Huang</span>
                 </div>
 
