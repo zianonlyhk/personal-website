@@ -91,10 +91,10 @@ export default function About() {
                     <h2 className="text-lg md:text-xl font-mono text-foreground">
                         <span className="text-primary">&gt;</span> Experience
                     </h2>
-                    <div className="space-y-6 pl-1">
+                    <div className="space-y-6 pl-1 pr-2">
                         <div className="relative pl-6">
                             <div className="absolute w-4 h-4 bg-primary rounded-full left-0 top-1"></div>
-                            <h3 className="text-base md:text-lg font-medium">Assistant System Engineer - Network Security</h3>
+                            <h3 className="text-base md:text-lg font-medium">Assistant System Engineer - Security</h3>
                             <p className="text-xs md:text-sm text-muted-foreground mt-1.5">Amidas Hong Kong Limited | 2024-2025</p>
                             <p className="mt-3 text-foreground text-sm md:text-base">Optimising firewall configurations: implementation of the application-level zero-trust security architecture on each compute endpoint within a corporate network</p>
                         </div>
@@ -106,7 +106,7 @@ export default function About() {
                     <h2 className="text-lg md:text-xl font-mono text-foreground">
                         <span className="text-primary">&gt;</span> Education
                     </h2>
-                    <div className="space-y-6 pl-1">
+                    <div className="space-y-6 pl-1 pr-2">
                         <div className="relative pl-6">
                             <div className="absolute w-4 h-4 bg-accent rounded-full left-0 top-1"></div>
                             <h3 className="text-base md:text-lg font-medium">MPhil in Scientific Computing</h3>
