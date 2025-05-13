@@ -29,11 +29,11 @@ export default function Home() {
                 {/* Header section with name and intro */}
                 <div className="grid grid-cols-[3fr_2fr] gap-4 md:gap-8 items-center">
                     {/* Left column - Text content */}
-                    <div className="space-y-4 md:space-y-6">
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-foreground">
+                    <div className="space-y-6">
+                        <h1 className="sm:text-3xl md:text-4xl font-mono font-bold text-foreground">
                             <span className="text-primary">Zian</span> HUANG
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-mono">
+                        <p className="text-base sm:text-md md:text-lg text-muted-foreground font-mono">
                             {typedText}
                             <span className="blink-cursor">▊</span>
                         </p>
