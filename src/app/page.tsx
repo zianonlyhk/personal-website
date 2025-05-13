@@ -63,7 +63,7 @@ export default function Home() {
 
                     <Link href="/blogs" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
-                            <span className="text-primary">{'>'}</span> Blog
+                            <span className="text-primary">{'>'}</span> Blogs
                         </h2>
                         <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts at the crossroad of maths and computing</p>
                     </Link>
