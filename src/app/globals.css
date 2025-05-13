@@ -642,36 +642,34 @@
 
     /* Base footer styles */
     footer {
-        @apply py-4 md:py-6 border-t border-border bg-background;
+        @apply py-3 md:py-4 border-t border-border bg-background;
     }
 
     .footer-container {
-        @apply container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-3 md:gap-0;
+        @apply container mx-auto flex flex-row justify-between items-center text-sm text-muted-foreground;
+    }
+
+    /* Mobile-specific footer styles, as additional CSS commands added on top */
+    @media (max-width: 768px) {
+        .footer-container {
+            @apply justify-center gap-20;
+        }
+    }
+
+    .footer-cclicense-img {
+        @apply opacity-80 hover:opacity-100 transition duration-200 home-icon mr-4
     }
 
     /* Footer social links */
-    .footer-social-links {
-        @apply flex space-x-4 mt-3 md:mt-0;
+    .footer-social-container {
+        @apply space-x-4;
     }
 
     .footer-social-icon {
-        @apply text-muted-foreground hover:text-primary transition-colors duration-200;
+        @apply h-6 w-6 md:h-8 md:w-8 text-muted-foreground hover:text-primary transition-colors duration-200;
+        ;
     }
 
-    .footer-icon {
-        @apply h-6 w-6 md:h-7 md:w-7;
-    }
-
-    /* Mobile-specific footer styles */
-    @media (max-width: 768px) {
-        .footer-container {
-            @apply flex-row justify-center items-center text-center space-y-0;
-        }
-
-        .footer-social-links {
-            @apply justify-center mt-0 ml-4;
-        }
-    }
 
     /* End of the _footer_ CSS section -------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */

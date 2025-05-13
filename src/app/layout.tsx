@@ -36,9 +36,14 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`h-full ${jetbrains.variable} ${inter.variable}`} suppressHydrationWarning>
-            <body className="antialiased h-full flex flex-col bg-background text-foreground font-sans">
+            {/* antialiased - Enables subpixel antialiasing for smoother font rendering
+                h-full - Makes the body take up 100% height of its parent (html element)
+                flex - Enables flexbox layout system
+                flex-col - Arranges child elements in a vertical column (Navbar on top, main content in middle, Footer at bottom) */}
+            <body className="antialiased h-full flex flex-col">
                 <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                     <Navbar />
+                    {/* adding flex-1 so that the footer bar is always at the bottom */}
                     <main className="flex-1">
                         {children}
                     </main>
