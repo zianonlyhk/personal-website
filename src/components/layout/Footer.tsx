@@ -10,8 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
-    const currentYear = new Date().getFullYear();
-
     return (
         <footer>
             <div className="footer-container">
@@ -27,24 +25,23 @@ const Footer = () => {
                             alt="CC BY License"
                             width={80}
                             height={80}
-                            className="opacity-80 transition-all duration-300 home-icon mr-2"
+                            className="footer-cclicense-img"
                         />
                     </Link>
                     <span className="mr-1">&copy;</span>
-                    <span>{currentYear} Zian Huang</span>
+                    <span> Zian Huang</span>
                 </div>
 
                 {/* Right side - Social Media Icons */}
-                <div className="footer-social-links">
+                <div className="footer-social-container">
                     {/* GitHub */}
                     <Link
                         href="https://github.com/zianonlyhk"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="footer-social-icon"
                         aria-label="GitHub"
                     >
-                        <FontAwesomeIcon icon={faGithub} className="footer-icon" />
+                        <FontAwesomeIcon icon={faGithub} className="footer-social-icon" />
                     </Link>
 
                     {/* LinkedIn */}
@@ -52,10 +49,9 @@ const Footer = () => {
                         href="https://linkedin.com/in/zian-huang/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="footer-social-icon"
                         aria-label="LinkedIn"
                     >
-                        <FontAwesomeIcon icon={faLinkedin} className="footer-icon" />
+                        <FontAwesomeIcon icon={faLinkedin} className="footer-social-icon" />
                     </Link>
                 </div>
             </div>

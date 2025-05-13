@@ -429,8 +429,7 @@
 
     /* Base navbar styles */
     nav {
-        @apply py-2 md:py-4 border-b border-border bg-background fixed top-0 left-0 right-0 w-full z-10 backdrop-blur-sm bg-opacity-80;
-        transition: all 0.3s ease;
+        @apply py-2 md:py-4 border-b border-border bg-background fixed top-0 w-full z-10;
     }
 
     /* Add padding to the body to prevent content from being hidden under fixed navbar for all screen sizes */
@@ -439,17 +438,22 @@
     }
 
     .nav-container {
-        @apply container mx-auto px-3 md:px-4;
+        @apply container flex justify-between mx-auto px-6 items-center pt-1 pb-1 md:pt-0 md:pb-0;
+    }
+
+    .nav-link-desktop-container {
+        @apply hidden md:flex items-center space-x-8 hide-scrollbar
     }
 
     /* Navbar links */
     .nav-link {
-        @apply text-foreground hover:text-primary transition-colors duration-200 font-mono text-sm tracking-wider py-1 px-2 -mx-2 rounded-md;
+        @apply text-foreground text-base font-mono hover:text-primary transition-colors duration-200;
         position: relative;
     }
 
+    /* Addtional CSS parameters overwriting .nav-link */
     .nav-link-active {
-        @apply font-medium text-foreground;
+        @apply font-medium text-foreground bg-transparent font-bold;
         position: relative;
         display: inline-block;
     }
@@ -459,7 +463,7 @@
         position: absolute;
         width: 100%;
         height: 2px;
-        bottom: -2px;
+        bottom: -4px;
         left: 0;
         background-color: var(--primary);
     }
@@ -468,33 +472,43 @@
         color: var(--accent);
     }
 
+    .mobile-dropdown {
+        @apply md:hidden fixed;
+    }
+
     /* Hamburger menu */
     .hamburger-menu {
-        @apply md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none;
+        @apply md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5;
     }
 
     .hamburger-line {
-        @apply block w-5 h-0.5 bg-foreground transition-all duration-300;
+        @apply block w-5 h-0.5 bg-foreground transition-all duration-200;
     }
 
-    /* Mobile dropdown */
-    .mobile-dropdown {
-        @apply md:hidden;
-        /* Use the same cubic-bezier curve for both opening and closing */
-        transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
-        overflow: hidden;
-    }
-
-    /* Fixed mobile dropdown when open */
+    /* Mobile-specific styles */
     @media (max-width: 767px) {
+        .nav-link {
+            @apply px-2 py-1.5 mx-0;
+            display: inline-block;
+        }
+
+        .nav-link-active::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 2px;
+            bottom: 3px;
+            left: 10%;
+            background-color: var(--primary);
+        }
+
         .mobile-dropdown {
-            @apply fixed left-0 right-0 bg-background bg-opacity-95 backdrop-blur-sm z-10;
-            top: 48px;
-            /* Adjusted to match navbar height */
-            /* Fixed position below navbar */
-            border-top: 1px solid var(--border);
-            /* Add border to connect with navbar */
+            @apply md:hidden fixed border-l border-t border-b right-0 border-border bg-background;
+            /* Use the same cubic-bezier curve for both opening and closing */
+            transition: max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            top: 60px;
         }
 
         /* Closed state */
@@ -523,114 +537,32 @@
             /* No delay for visibility when opening */
         }
 
-        .mobile-dropdown-content {
-            @apply flex flex-col space-y-3 py-3 px-3;
-            /* Added px-3 to match navbar padding */
-            /* Remove the border-t and mt-2 since we're adding border to the container */
-            /* Prevent layout shifts during animation */
-            transform: translateZ(0);
-            will-change: opacity, transform;
-        }
-    }
-
-    .mobile-dropdown-content>div {
-        @apply mb-2 px-2;
-    }
-
-    /* Mobile-specific styles */
-    @media (max-width: 767px) {
-        .nav-link-active {
-            @apply font-bold;
-            display: inline-block;
+        .mobile-dropdown-nav-link-container {
+            @apply flex flex-col py-3 px-3;
         }
 
-        .nav-link {
-            @apply px-2 py-1.5 mx-0;
-            display: inline-block;
+        .mobile-dropdown-nav-link-container>div {
+            @apply mb-2 px-2;
         }
 
-        /* Mobile dropdown menu styles */
-        .mobile-dropdown-content .nav-link-active {
-            @apply font-bold;
-            display: inline-block;
-            /* Add padding below the text to create space between text and underline */
-            padding-bottom: 4px;
-            /* Ensure the underline stays with the text */
-            position: relative;
-            margin-bottom: 4px;
-        }
-
-        .mobile-dropdown-content .nav-link-active::after {
-            /* Position the underline relative to the text */
+        .mobile-dropdown-nav-link-container .nav-link-active::after {
             content: '';
             position: absolute;
-            width: 90%;
+            width: 80%;
             height: 2px;
-            bottom: 0;
-            left: 5%;
+            bottom: 3px;
+            left: 10%;
             background-color: var(--primary);
-            /* Add transition for smooth movement */
-            transition: transform 0.3s ease;
-            transform-origin: center;
-            border-radius: 2px;
-        }
-
-        /* Add hover effect to make it more interactive */
-        .mobile-dropdown-content .nav-link-active:hover::after {
-            transform: scaleX(1.05);
-            background-color: var(--accent);
-        }
-
-        /* Add padding to the body to prevent content from being hidden under fixed navbar */
-        body {
-            @apply pt-12;
         }
     }
 
     /* Desktop-specific styles */
     @media (min-width: 768px) {
-        nav {
-            /* Ensure the navbar has proper styling on desktop */
-            @apply py-4;
-        }
 
         /* Adjust the return button position for fixed navbar */
         .return-button {
-            top: 6rem;
-            left: 2rem;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link {
-            @apply bg-transparent px-0 mx-0;
-            display: inline-block;
-        }
-
-        .nav-link-active {
-            @apply bg-transparent font-bold;
-            display: inline-block;
-        }
-
-        .nav-link-active::after {
-            height: 2px;
-        }
-
-        .nav-link-active:hover {
-            color: var(--accent);
+            top: 9.5rem;
+            left: 5.5rem;
         }
     }
 
@@ -642,36 +574,34 @@
 
     /* Base footer styles */
     footer {
-        @apply py-4 md:py-6 border-t border-border bg-background;
+        @apply py-3 md:py-4 border-t border-border bg-background;
     }
 
     .footer-container {
-        @apply container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground gap-3 md:gap-0;
+        @apply container mx-auto flex flex-row justify-between px-6 items-center text-sm text-muted-foreground;
+    }
+
+    /* Mobile-specific footer styles, as additional CSS commands added on top */
+    @media (max-width: 768px) {
+        .footer-container {
+            @apply justify-center gap-20;
+        }
+    }
+
+    .footer-cclicense-img {
+        @apply opacity-80 hover:opacity-100 transition duration-200 home-icon mr-4
     }
 
     /* Footer social links */
-    .footer-social-links {
-        @apply flex space-x-4 mt-3 md:mt-0;
+    .footer-social-container {
+        @apply space-x-4;
     }
 
     .footer-social-icon {
-        @apply text-muted-foreground hover:text-primary transition-colors duration-200;
+        @apply h-6 w-6 md:h-8 md:w-8 text-muted-foreground hover:text-primary transition-colors duration-200;
+        ;
     }
 
-    .footer-icon {
-        @apply h-6 w-6 md:h-7 md:w-7;
-    }
-
-    /* Mobile-specific footer styles */
-    @media (max-width: 768px) {
-        .footer-container {
-            @apply flex-row justify-center items-center text-center space-y-0;
-        }
-
-        .footer-social-links {
-            @apply justify-center mt-0 ml-4;
-        }
-    }
 
     /* End of the _footer_ CSS section -------------------------------------------------------------- */
     /* ---------------------------------------------------------------------------------------------- */

@@ -17,6 +17,7 @@ const Navbar = () => {
     const navRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLAnchorElement>(null);
 
+    // hides the return button in small screen
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 10);
@@ -35,6 +36,7 @@ const Navbar = () => {
         };
     }, []);
 
+    // clicking the content closes the menu bar
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             // Don't close if clicking inside the navbar or on the hamburger button
@@ -68,82 +70,80 @@ const Navbar = () => {
     return (
         <nav className={`${scrolled ? 'shadow-sm' : ''} z-50`} ref={navRef}>
             <div className="nav-container">
-                {/* Top row with logo and navigation */}
-                <div className="flex justify-between items-center w-full">
-                    {/* Left side - Logo and theme toggle */}
-                    <div className="flex items-center gap-3">
-                        <div>
-                            <Link
-                                href="/"
-                                className={`nav-link ${pathname === '/' ? 'nav-link-active' : ''} text-base`}
-                                onClick={handleNavClick}
-                                ref={logoRef}
-                            >
-                                zian
-                            </Link>
-                        </div>
-                        <ThemeToggle />
+                {/* Left side - the button "zian" and theme toggle */}
+                <div className="flex items-center gap-2">
+                    <div>
+                        <Link
+                            href="/"
+                            className={`nav-link ${pathname === '/' ? 'nav-link-active' : ''}`}
+                            onClick={handleNavClick}
+                            ref={logoRef}
+                        >
+                            zian
+                        </Link>
                     </div>
+                    <ThemeToggle />
+                </div>
 
-                    {/* Hamburger menu for mobile */}
-                    <button
-                        className="hamburger-menu"
-                        onClick={toggleMenu}
-                        aria-label="Toggle menu"
-                    >
-                        <span className={`hamburger-line ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-                        <span className={`hamburger-line ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-                        <span className={`hamburger-line ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-                    </button>
-
-                    {/* Navigation links - visible only on desktop */}
-                    <div className="hidden md:flex items-center space-x-8 overflow-x-auto hide-scrollbar px-1 py-1">
-                        <div>
-                            <Link
-                                href="/projects"
-                                className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''} text-base whitespace-nowrap`}
-                                onClick={handleNavClick}
-                            >
-                                projects
-                            </Link>
-                        </div>
-                        <div>
-                            <Link
-                                href="/blogs"
-                                className={`nav-link ${pathname?.startsWith('/blogs') ? 'nav-link-active' : ''} text-base whitespace-nowrap`}
-                                onClick={handleNavClick}
-                            >
-                                blogs
-                            </Link>
-                        </div>
-                        <div>
-                            <Link
-                                href="/gallery"
-                                className={`nav-link ${pathname?.startsWith('/gallery') ? 'nav-link-active' : ''} text-base whitespace-nowrap`}
-                                onClick={handleNavClick}
-                            >
-                                gallery
-                            </Link>
-                        </div>
-                        <div>
-                            <Link
-                                href="/about"
-                                className={`nav-link ${pathname?.startsWith('/about') ? 'nav-link-active' : ''} text-base whitespace-nowrap`}
-                                onClick={handleNavClick}
-                            >
-                                about
-                            </Link>
-                        </div>
+                {/* Navigation links - visible only on desktop */}
+                <div className="nav-link-desktop-container">
+                    <div>
+                        <Link
+                            href="/projects"
+                            className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''}`}
+                            onClick={handleNavClick}
+                        >
+                            projects
+                        </Link>
+                    </div>
+                    <div>
+                        <Link
+                            href="/blogs"
+                            className={`nav-link ${pathname?.startsWith('/blogs') ? 'nav-link-active' : ''}`}
+                            onClick={handleNavClick}
+                        >
+                            blogs
+                        </Link>
+                    </div>
+                    <div>
+                        <Link
+                            href="/gallery"
+                            className={`nav-link ${pathname?.startsWith('/gallery') ? 'nav-link-active' : ''}`}
+                            onClick={handleNavClick}
+                        >
+                            gallery
+                        </Link>
+                    </div>
+                    <div>
+                        <Link
+                            href="/about"
+                            className={`nav-link ${pathname?.startsWith('/about') ? 'nav-link-active' : ''}`}
+                            onClick={handleNavClick}
+                        >
+                            about
+                        </Link>
                     </div>
                 </div>
 
+
+                {/* Hamburger menu for mobile */}
+                <button
+                    className="hamburger-menu"
+                    onClick={toggleMenu}
+                    aria-label="Toggle menu"
+                >
+                    <span className={`hamburger-line ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                    <span className={`hamburger-line ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+                    <span className={`hamburger-line ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                </button>
+
                 {/* Mobile dropdown menu */}
                 <div className={`mobile-dropdown ${isMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <div className="mobile-dropdown-content">
+                    <div className="mobile-dropdown-nav-link-container">
                         <div>
                             <Link
                                 href="/projects"
-                                className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''} text-base py-2`}
+                                className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
                             >
                                 projects
@@ -152,7 +152,7 @@ const Navbar = () => {
                         <div>
                             <Link
                                 href="/blogs"
-                                className={`nav-link ${pathname?.startsWith('/blogs') ? 'nav-link-active' : ''} text-base py-2`}
+                                className={`nav-link ${pathname?.startsWith('/blogs') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
                             >
                                 blogs
@@ -161,7 +161,7 @@ const Navbar = () => {
                         <div>
                             <Link
                                 href="/gallery"
-                                className={`nav-link ${pathname?.startsWith('/gallery') ? 'nav-link-active' : ''} text-base py-2`}
+                                className={`nav-link ${pathname?.startsWith('/gallery') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
                             >
                                 gallery
@@ -170,7 +170,7 @@ const Navbar = () => {
                         <div>
                             <Link
                                 href="/about"
-                                className={`nav-link ${pathname?.startsWith('/about') ? 'nav-link-active' : ''} text-base py-2`}
+                                className={`nav-link ${pathname?.startsWith('/about') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
                             >
                                 about

@@ -29,11 +29,11 @@ export default function Home() {
                 {/* Header section with name and intro */}
                 <div className="grid grid-cols-[3fr_2fr] gap-4 md:gap-8 items-center">
                     {/* Left column - Text content */}
-                    <div className="space-y-4 md:space-y-6">
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold text-foreground">
+                    <div className="space-y-6">
+                        <h1 className="sm:text-3xl md:text-4xl font-mono font-bold text-foreground">
                             <span className="text-primary">Zian</span> HUANG
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl text-muted-foreground font-mono">
+                        <p className="text-base sm:text-md md:text-lg text-muted-foreground font-mono">
                             {typedText}
                             <span className="blink-cursor">▊</span>
                         </p>
@@ -63,7 +63,7 @@ export default function Home() {
 
                     <Link href="/blogs" className="group p-4 md:p-6 bg-card rounded-md border border-border hover:shadow-md transition-all duration-300 block">
                         <h2 className="text-lg md:text-xl font-mono mb-2 md:mb-3 text-foreground group-hover:text-primary">
-                            <span className="text-primary">{'>'}</span> Blog
+                            <span className="text-primary">{'>'}</span> Blogs
                         </h2>
                         <p className="text-sm md:text-base text-muted-foreground mb-3 md:mb-4">Thoughts at the crossroad of maths and computing</p>
                     </Link>
