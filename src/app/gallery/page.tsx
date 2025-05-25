@@ -110,10 +110,9 @@ export default function Gallery() {
 
     // Notes to my future self: If I want to add more images, I can add them here
     const galleryItems: GalleryItem[] = useMemo(() => [
-        { id: 91, title: "Woman Sitting (2021)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259 },
-        { id: 92, title: "Woman Posing (2021)", image_url: "/gallery/woman_posing.jpg", width: 2095, height: 2980 },
-        { id: 93, title: "Man Sitting (2021)", image_url: "/gallery/man_sitting.jpg", width: 2322, height: 3011 },
-        { id: 94, title: "Man Posing (2021)", image_url: "/gallery/man_posing.jpg", width: 2152, height: 2862 },
+        { id: 92, title: "Woman Sitting (2021)", image_url: "/gallery/woman_sitting.jpg", width: 3012, height: 2259 },
+        { id: 93, title: "Woman Posing (2021)", image_url: "/gallery/woman_posing.jpg", width: 2095, height: 2980 },
+        { id: 94, title: "Man Sitting (2021)", image_url: "/gallery/man_sitting.jpg", width: 2322, height: 3011 },
         { id: 95, title: "三目 (2020)", image_url: "/gallery/three_eyes.jpg", width: 359, height: 359 },
         { id: 96, title: "Spaghetti (2020)", image_url: "/gallery/spaghetti.jpg", width: 1568, height: 1568 },
         { id: 97, title: "KC Printing (2018)", image_url: "/gallery/kc_printing.jpg", width: 3903, height: 2672 },
