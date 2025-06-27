@@ -232,6 +232,14 @@
         @apply body-medium mb-4 leading-relaxed;
     }
 
+    .content_content strong {
+        color: var(--foreground);
+    }
+
+    .content_content em {
+        color: var(--foreground);
+    }
+
     .content_content ul {
         @apply unordered-list;
     }
@@ -258,6 +266,15 @@
 
     .content_content code {
         @apply font-mono text-accent bg-muted px-1 py-0.5 rounded;
+    }
+
+    /* Dark mode specific styling */
+    .dark .content_content strong {
+        color: var(--foreground);
+    }
+
+    .dark .content_content em {
+        color: var(--foreground);
     }
 
     .button {

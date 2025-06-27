@@ -25,8 +25,57 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-    title: 'Zian H.',
-    description: 'Personal website of Zian Huang, with some of his selected projects, blogs, and artworks.',
+    title: {
+        default: 'Zian Huang',
+        template: '%s | Zian Huang'
+    },
+    description: 'Personal website of Zian Huang: explore his technical projects, blog post, and creative artworks.',
+    keywords: ['Zian Huang', 'technical projects', 'blogs', 'art gallery'],
+    authors: [{ name: 'Zian Huang' }],
+    creator: 'Zian Huang',
+    publisher: 'Zian Huang',
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    },
+    metadataBase: new URL('https://zianhuang.com'),
+    alternates: {
+        canonical: '/',
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: '/',
+        title: 'Zian Huang',
+        description: 'Personal website of Zian Huang: explore his technical projects, blog post, and creative artworks.',
+        siteName: 'Zian Huang',
+        images: [
+            {
+                url: '/favicon_mascot.png',
+                width: 200,
+                height: 200,
+                alt: 'Zian Huang',
+            },
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Zian Huang',
+        description: 'Personal website of Zian Huang: explore his technical projects, blog post, and creative artworks.',
+        images: ['/favicon_mascot.png'],
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1,
+        },
+    }
 }
 
 export default function RootLayout({
@@ -34,8 +83,41 @@ export default function RootLayout({
 }: {
     children: React.ReactNode;
 }) {
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Zian Huang",
+        "jobTitle": "Computational Fluid Dynamics Researcher & Software Engineer",
+        "description": "Computational fluid dynamics researcher and software engineer specializing in numerical methods, mathematics, and web development.",
+        "url": "https://zianhuang.com",
+        "sameAs": [
+            "https://github.com/zianhuang"
+        ],
+        "knowsAbout": [
+            "Computational Fluid Dynamics",
+            "Software Engineering",
+            "Mathematics",
+            "Numerical Methods",
+            "Next.js",
+            "React",
+            "TypeScript"
+        ],
+        "alumniOf": {
+            "@type": "Organization",
+            "name": "University"
+        }
+    };
+
     return (
         <html lang="en" className={`h-full ${jetbrains.variable} ${inter.variable}`} suppressHydrationWarning>
+            <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(structuredData),
+                    }}
+                />
+            </head>
             {/* antialiased - Enables subpixel antialiasing for smoother font rendering
                 h-full - Makes the body take up 100% height of its parent (html element)
                 flex - Enables flexbox layout system
