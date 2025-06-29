@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         siteName: 'Zian Huang',
         images: [
             {
-                url: '/favicon_mascot.png',
+                url: '/about/zianhuang.png',
                 width: 200,
                 height: 200,
                 alt: 'Zian Huang - Gallery',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Gallery | Zian Huang',
         description: 'Explore the art gallery of Zian Huang featuring visual art studies and creative explorations.',
-        images: ['/favicon_mascot.png'],
+        images: ['/about/zianhuang.png'],
     },
 };
 

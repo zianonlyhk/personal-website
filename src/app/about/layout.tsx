@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         siteName: 'Zian Huang',
         images: [
             {
-                url: '/about/selfie.png',
+                url: '/about/zianhuang.png',
                 width: 400,
                 height: 400,
                 alt: 'Zian Huang - About',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'About | Zian Huang',
         description: 'Learn about Zian Huang, a computational researcher and software engineer specializing in numerical methods, mathematics, and technical computing.',
-        images: ['/about/selfie.png'],
+        images: ['/about/zianhuang.png'],
     },
 };
 

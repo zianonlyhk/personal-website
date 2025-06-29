@@ -52,7 +52,7 @@ export const metadata: Metadata = {
         siteName: 'Zian Huang',
         images: [
             {
-                url: '/favicon_mascot.png',
+                url: '/about/zianhuang.png',
                 width: 200,
                 height: 200,
                 alt: 'Zian Huang',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Zian Huang',
         description: 'Personal website of Zian Huang: explore his technical projects, blog post, and creative artworks.',
-        images: ['/favicon_mascot.png'],
+        images: ['/about/zianhuang.png'],
     },
     robots: {
         index: true,

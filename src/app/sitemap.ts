@@ -5,14 +5,14 @@ export default async function sitemap() {
 
     // Get all blog posts and projects (using a large page size to get all)
     const blogs = await getContentList('blogs', 1, 100);
-    const projects = await getContentList('project', 1, 100);
+    const projects = await getContentList('projects', 1, 100);
 
     // Static pages
     const staticPages = [
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: 'monthly' as const,
             priority: 1.0,
         },
         {
@@ -24,13 +24,13 @@ export default async function sitemap() {
         {
             url: `${baseUrl}/blogs`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: 'monthly' as const,
             priority: 0.9,
         },
         {
             url: `${baseUrl}/projects`,
             lastModified: new Date(),
-            changeFrequency: 'weekly' as const,
+            changeFrequency: 'monthly' as const,
             priority: 0.9,
         },
         {

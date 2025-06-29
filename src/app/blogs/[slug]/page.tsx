@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             authors: ['Zian Huang'],
             images: [
                 {
-                    url: '/favicon_mascot.png',
+                    url: '/about/zianhuang.png',
                     width: 200,
                     height: 200,
                     alt: post.title,
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             card: 'summary_large_image',
             title: post.title,
             description: `Read "${post.title}" - A technical blog post by Zian Huang.`,
-            images: ['/favicon_mascot.png'],
+            images: ['/about/zianhuang.png'],
         },
         robots: {
             index: true,

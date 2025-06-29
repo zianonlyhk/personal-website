@@ -13,7 +13,7 @@ import rehypeStringify from 'rehype-stringify';
 import { visit } from 'unist-util-visit';
 
 // define different types of content
-type ContentType = 'blogs' | 'project';
+type ContentType = 'blogs' | 'projects';
 
 // ----------------------------------------------------------------------------------------------
 // ---------------------- used by blogs/page.tsx and projects/page.tsx -------------------------

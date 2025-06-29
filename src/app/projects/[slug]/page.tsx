@@ -13,7 +13,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const resolvedParams = await params;
-    const project = await getContentPage(resolvedParams.slug, 'project');
+    const project = await getContentPage(resolvedParams.slug, 'projects');
 
     if (!project) {
         return {
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             authors: ['Zian Huang'],
             images: [
                 {
-                    url: '/favicon_mascot.png',
+                    url: '/about/zianhuang.png',
                     width: 200,
                     height: 200,
                     alt: project.title,
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             card: 'summary_large_image',
             title: project.title,
             description: `Explore "${project.title}" - A project by Zian Huang.`,
-            images: ['/favicon_mascot.png'],
+            images: ['/about/zianhuang.png'],
         },
         robots: {
             index: true,
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProjectPage({ params }: PageProps) {
     const resolvedParams = await params;
-    const post = await getContentPage(resolvedParams.slug, 'project');
+    const post = await getContentPage(resolvedParams.slug, 'projects');
 
     if (!post) {
         notFound();

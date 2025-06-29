@@ -32,7 +32,7 @@ export default function About() {
                     <div className="flex-shrink-0">
                         <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-md overflow-hidden border border-border">
                             <Image
-                                src="/about/selfie.png"
+                                src="/about/zianhuang.png"
                                 alt="Zian Huang"
                                 fill
                                 sizes="(max-width: 768px)"

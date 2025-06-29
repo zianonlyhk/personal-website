@@ -197,14 +197,18 @@ $$
 + (\mathbf{F}_{i+\frac{1}{2},j,k} - \mathbf{F}_{i-\frac{1}{2},j,k}) \Delta y \Delta z \\
 + (\mathbf{G}_{i,j+\frac{1}{2},k} - \mathbf{G}_{i,j-\frac{1}{2},k}) \Delta x \Delta z 
 + (\mathbf{H}_{i,j,k+\frac{1}{2}} - \mathbf{H}_{i,j,k-\frac{1}{2}}) \Delta x \Delta y
-&= \mathbf{0} \\ \\
-\implies
-\mathbf{U}^{n+1}_{i,j,k}=\mathbf{U}^{n}_{i,j,k}
-- \frac{\Delta t}{\Delta x}\left(\mathbf{F}_{i+\frac{1}{2},j,k} - \mathbf{F}_{i-\frac{1}{2},j,k}\right) \\
-- \frac{\Delta t}{\Delta y}\left(\mathbf{G}_{i,j+\frac{1}{2},k} - \mathbf{G}_{i,j-\frac{1}{2},k}\right)
-- \frac{\Delta t}{\Delta z}\left(\mathbf{H}_{i,j,k+\frac{1}{2}} - \mathbf{H}_{i,j,k-\frac{1}{2}}\right).
+&= \mathbf{0}
 \end{align*}
 $$
+$$
+\boxed{
+\begin{align*}
+\mathbf{U}^{n+1}_{i,j,k}=\mathbf{U}^{n}_{i,j,k}
+&- \frac{\Delta t}{\Delta x}\left(\mathbf{F}_{i+\frac{1}{2},j,k} - \mathbf{F}_{i-\frac{1}{2},j,k}\right) \\&- \frac{\Delta t}{\Delta y}\left(\mathbf{G}_{i,j+\frac{1}{2},k} - \mathbf{G}_{i,j-\frac{1}{2},k}\right)\\
+&- \frac{\Delta t}{\Delta z}\left(\mathbf{H}_{i,j,k+\frac{1}{2}} - \mathbf{H}_{i,j,k-\frac{1}{2}}\right).
+\end{align*}}
+$$
+
 This approach is known as an **explicit time scheme** because the future state $\mathbf{U}^{n+1}$ can be calculated directly from the current state $\mathbf{U}^{n}$.
 
 There is one crucial constraint on the size of our time step, $\Delta t$, known as the **CFL (Courant-Friedrichs-Lewy) condition**:

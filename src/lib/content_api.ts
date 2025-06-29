@@ -13,7 +13,7 @@ export async function fetchBlogPosts(page: number = 1, pageSize: number = 6) {
 
 // Server action to fetch projects
 export async function fetchProjects(page: number = 1, pageSize: number = 6) {
-    return getContentList('project', page, pageSize);
+    return getContentList('projects', page, pageSize);
 }
 
 // ---------------------------------------- 
