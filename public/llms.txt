@@ -1,0 +1,6 @@
+# AI/LLM Crawling Policy
+User-agent: *
+Allow: /
+
+# Sitemap reference
+Sitemap: https://zianhuang.com/sitemap.xml

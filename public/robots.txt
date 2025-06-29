@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Crawl-delay for polite crawling
-Crawl-delay: 1
+Crawl-delay: 3
 
 # Allow all search engines to access images
 User-agent: *
