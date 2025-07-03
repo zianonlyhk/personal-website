@@ -6,6 +6,7 @@
 
 import { useEffect, useState } from 'react';
 import ContentPreview from '@/src/components/ContentPreview';
+import { ContentGridSkeleton } from '@/src/components/LoadingSkeletons';
 
 type Project = {
     slug: string;
@@ -69,9 +70,7 @@ export default function Projects() {
             </div>
 
             {loading ? (
-                <div className="flex justify-center items-center h-64">
-                    <div className="text-muted-foreground">Loading projects...</div>
-                </div>
+                <ContentGridSkeleton count={numberOfPreviewPerPage} />
             ) : (
                 <Masonry
                     breakpointCols={breakpointColumns}

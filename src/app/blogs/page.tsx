@@ -6,6 +6,7 @@
 
 import { useEffect, useState } from 'react';
 import ContentPreview from '@/src/components/ContentPreview';
+import { ContentGridSkeleton } from '@/src/components/LoadingSkeletons';
 
 type BlogPost = {
     slug: string;
@@ -69,9 +70,7 @@ export default function Blog() {
             </div>
 
             {loading ? (
-                <div className="flex justify-center items-center h-64">
-                    <div className="text-muted-foreground">Loading blog posts...</div>
-                </div>
+                <ContentGridSkeleton count={numberOfCardPerPage} />
             ) : (
                 <Masonry
                     breakpointCols={breakpointColumns}
