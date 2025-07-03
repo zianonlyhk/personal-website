@@ -9,6 +9,8 @@ import NextImage from 'next/image';
 import Masonry from 'react-masonry-css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { LazyImage } from '@/src/components/LazyImage';
+import { GalleryGridSkeleton } from '@/src/components/LoadingSkeletons';
 
 interface GalleryItem {
     id: number;
@@ -171,28 +173,28 @@ export default function Gallery() {
             </div>
 
             {!imagesLoaded ? (
-                <div className="flex justify-center items-center h-64">
-                    <div className="text-muted-foreground">Loading gallery...</div>
-                </div>
+                <GalleryGridSkeleton count={itemsPerPage} />
             ) : (
                 <Masonry
                     breakpointCols={breakpointColumns}
                     className="masonry-grid"
                     columnClassName="masonry-grid-column"
                 >
-                    {currentItems.map((item) => (
+                    {currentItems.map((item, index) => (
                         <div
                             key={item.id}
                             className="mb-4 overflow-hidden rounded-md border border-border bg-card hover:shadow-md transition-all duration-300 cursor-pointer"
                             onClick={() => setSelectedItem(item)}
                         >
-                            <div className="gallery-image-container">
-                                <NextImage
+                            <div className="gallery-image-container relative">
+                                <LazyImage
                                     src={item.image_url}
                                     alt={item.title}
                                     width={500}
                                     height={500 * (item.height / item.width)}
                                     className="w-full h-auto object-cover"
+                                    priority={index < 3} // Prioritize first 3 images
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
                                     <div className="p-4 w-full">
