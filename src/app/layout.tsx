@@ -80,6 +80,13 @@ export const metadata: Metadata = {
     }
 }
 
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+}
+
 export default function RootLayout({
     children,
 }: {
@@ -117,6 +124,8 @@ export default function RootLayout({
                 <link rel="preload" href="/favicon_mascot.png" as="image" />
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+                <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

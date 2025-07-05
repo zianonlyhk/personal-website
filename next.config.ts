@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
     compress: true,
     // Enable experimental features for better SEO
     experimental: {
-        optimizePackageImports: ['react-icons'],
+        optimizePackageImports: ['react-icons', '@fortawesome/react-fontawesome', '@fortawesome/free-solid-svg-icons', '@fortawesome/free-brands-svg-icons'],
     },
     // Headers for better SEO and security
     async headers() {

@@ -4,13 +4,14 @@
 
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import NextImage from 'next/image';
-import Masonry from 'react-masonry-css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { LazyImage } from '@/src/components/LazyImage';
 import { GalleryGridSkeleton } from '@/src/components/LoadingSkeletons';
+
+const Masonry = lazy(() => import('react-masonry-css'));
 
 interface GalleryItem {
     id: number;
@@ -175,7 +176,8 @@ export default function Gallery() {
             {!imagesLoaded ? (
                 <GalleryGridSkeleton count={itemsPerPage} />
             ) : (
-                <Masonry
+                <Suspense fallback={<GalleryGridSkeleton count={itemsPerPage} />}>
+                    <Masonry
                     breakpointCols={breakpointColumns}
                     className="masonry-grid"
                     columnClassName="masonry-grid-column"
@@ -207,6 +209,7 @@ export default function Gallery() {
                         </div>
                     ))}
                 </Masonry>
+                </Suspense>
             )}
 
             {imagesLoaded && totalPages > 1 && (
