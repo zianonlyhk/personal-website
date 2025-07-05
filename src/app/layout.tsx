@@ -16,12 +16,14 @@ const jetbrains = JetBrains_Mono({
     subsets: ['latin'],
     variable: '--font-mono',
     display: 'swap',
+    preload: true,
 })
 
 const inter = Inter({
     subsets: ['latin'],
     variable: '--font-sans',
     display: 'swap',
+    preload: true,
 })
 
 export const metadata: Metadata = {
@@ -111,6 +113,10 @@ export default function RootLayout({
     return (
         <html lang="en" className={`h-full ${jetbrains.variable} ${inter.variable}`} suppressHydrationWarning>
             <head>
+                <link rel="preload" href="/about/zianhuang.png" as="image" />
+                <link rel="preload" href="/favicon_mascot.png" as="image" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
