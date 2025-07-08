@@ -8,7 +8,6 @@ import { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import NextImage from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { LazyImage } from '@/src/components/LazyImage';
 import { GalleryGridSkeleton } from '@/src/components/LoadingSkeletons';
 
 const Masonry = lazy(() => import('react-masonry-css'));
@@ -80,7 +79,6 @@ function getModalDimensions(imageWidth: number, imageHeight: number, isSmallScre
 export default function Gallery() {
     const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
-    const [imagesLoaded, setImagesLoaded] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
@@ -129,31 +127,6 @@ export default function Gallery() {
         currentPage * itemsPerPage
     );
 
-    // Add this useEffect to handle image loading
-    useEffect(() => {
-        // Preload images to ensure they're available
-        const preloadImages = async () => {
-            try {
-                const promises = galleryItems.map(item => {
-                    return new Promise((resolve, reject) => {
-                        const img = new window.Image();
-                        img.src = item.image_url;
-                        img.onload = resolve;
-                        img.onerror = reject;
-                    });
-                });
-
-                await Promise.all(promises);
-                setImagesLoaded(true);
-            } catch (error) {
-                console.error("Failed to load images:", error);
-                // Still set to true to allow rendering even if some images fail
-                setImagesLoaded(true);
-            }
-        };
-
-        preloadImages();
-    }, [galleryItems]);
 
     const breakpointColumns = {
         default: 3,
@@ -173,46 +146,42 @@ export default function Gallery() {
                 </p>
             </div>
 
-            {!imagesLoaded ? (
-                <GalleryGridSkeleton count={itemsPerPage} />
-            ) : (
-                <Suspense fallback={<GalleryGridSkeleton count={itemsPerPage} />}>
-                    <Masonry
-                    breakpointCols={breakpointColumns}
-                    className="masonry-grid"
-                    columnClassName="masonry-grid-column"
-                >
-                    {currentItems.map((item, index) => (
-                        <div
-                            key={item.id}
-                            className="mb-4 overflow-hidden rounded-md border border-border bg-card hover:shadow-md transition-all duration-300 cursor-pointer"
-                            onClick={() => setSelectedItem(item)}
-                        >
-                            <div className="gallery-image-container relative">
-                                <LazyImage
-                                    src={item.image_url}
-                                    alt={item.title}
-                                    width={500}
-                                    height={500 * (item.height / item.width)}
-                                    className="w-full h-auto object-cover"
-                                    priority={index < 3} // Prioritize first 3 images
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                    <div className="p-4 w-full">
-                                        <h3 className="text-white font-medium truncate">
-                                            {item.title}
-                                        </h3>
-                                    </div>
+            <Suspense fallback={<GalleryGridSkeleton count={itemsPerPage} />}>
+                <Masonry
+                breakpointCols={breakpointColumns}
+                className="masonry-grid"
+                columnClassName="masonry-grid-column"
+            >
+                {currentItems.map((item, index) => (
+                    <div
+                        key={item.id}
+                        className="mb-4 overflow-hidden rounded-md border border-border bg-card hover:shadow-md transition-all duration-300 cursor-pointer"
+                        onClick={() => setSelectedItem(item)}
+                    >
+                        <div className="gallery-image-container relative">
+                            <NextImage
+                                src={item.image_url}
+                                alt={item.title}
+                                width={500}
+                                height={500 * (item.height / item.width)}
+                                className="w-full h-auto object-cover"
+                                priority={index < 3} // Prioritize first 3 images
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                <div className="p-4 w-full">
+                                    <h3 className="text-white font-medium truncate">
+                                        {item.title}
+                                    </h3>
                                 </div>
                             </div>
                         </div>
-                    ))}
-                </Masonry>
-                </Suspense>
-            )}
+                    </div>
+                ))}
+            </Masonry>
+            </Suspense>
 
-            {imagesLoaded && totalPages > 1 && (
+            {totalPages > 1 && (
                 <div className="flex justify-center mt-8 gap-2">
                     <button
                         onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
