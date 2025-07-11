@@ -7,6 +7,12 @@ app = 'personal-website-app'
 primary_region = 'sin'
 
 [build]
+  dockerfile = "Dockerfile"
+  ignorefile = ".dockerignore"
+  build-target = "runner"
+  
+[build.args]
+  NODE_ENV = "production"
 
 [http_service]
   internal_port = 3000
