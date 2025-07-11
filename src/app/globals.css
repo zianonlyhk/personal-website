@@ -169,7 +169,7 @@
     /* Start of the _content_ CSS section ----------------------------------------------------------- */
 
     .preview_link {
-        @apply text-primary hover:underline transition-all duration-200 inline-flex items-center;
+        @apply text-primary transition-all duration-200 inline-flex items-center;
         position: relative;
     }
 
@@ -249,7 +249,7 @@
     }
 
     .content_content a {
-        @apply text-primary hover:underline;
+        @apply text-primary;
     }
 
     .content_content img {

@@ -1,5 +1,0 @@
-## Git Workflow
-- Always branch out when working on a feature
-- When a milestone is reached or issue is fixed, create a pull request to main branch
-- After PR is merged, create new individual branches for further development
-- Never work directly on main branch
