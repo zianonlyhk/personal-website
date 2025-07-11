@@ -17,6 +17,8 @@ const jetbrains = JetBrains_Mono({
     variable: '--font-mono',
     display: 'swap',
     preload: true,
+    fallback: ['monospace'],
+    adjustFontFallback: false,
 })
 
 const inter = Inter({
@@ -24,6 +26,8 @@ const inter = Inter({
     variable: '--font-sans',
     display: 'swap',
     preload: true,
+    fallback: ['system-ui', 'arial'],
+    adjustFontFallback: false,
 })
 
 export const metadata: Metadata = {
@@ -120,12 +124,19 @@ export default function RootLayout({
     return (
         <html lang="en" className={`h-full ${jetbrains.variable} ${inter.variable}`} suppressHydrationWarning>
             <head>
-                <link rel="preload" href="/about/zianhuang.png" as="image" />
-                <link rel="preload" href="/favicon_mascot.png" as="image" />
+                {/* Critical resource preloading for LCP optimization */}
+                <link rel="preload" href="/favicon_mascot.png" as="image" type="image/png" fetchPriority="high" />
+                <link rel="preload" href="/about/zianhuang.png" as="image" type="image/png" />
+                
+                {/* Font optimization - Next.js fonts handle preloading automatically */}
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+                
+                {/* DNS prefetch for performance */}
                 <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
                 <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+                
+                {/* Structured data */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{

@@ -19,11 +19,15 @@ const nextConfig: NextConfig = {
     },
     // Enable compression for better performance
     compress: true,
-    // Enable experimental features for better SEO
+    // Optimize server response time
+    poweredByHeader: false,
+    generateEtags: false,
+    // Enable experimental features for better performance and SEO
     experimental: {
         optimizePackageImports: ['react-icons', '@fortawesome/react-fontawesome', '@fortawesome/free-solid-svg-icons', '@fortawesome/free-brands-svg-icons'],
+        webpackBuildWorker: true,
     },
-    // Headers for better SEO and security
+    // Headers for better performance, SEO and security
     async headers() {
         return [
             {
@@ -44,6 +48,28 @@ const nextConfig: NextConfig = {
                     {
                         key: 'Referrer-Policy',
                         value: 'origin-when-cross-origin',
+                    },
+                    {
+                        key: 'X-DNS-Prefetch-Control',
+                        value: 'on',
+                    },
+                ],
+            },
+            {
+                source: '/favicon_mascot.png',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable',
+                    },
+                ],
+            },
+            {
+                source: '/(.*)\\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2)',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable',
                     },
                 ],
             },

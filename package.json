@@ -6,7 +6,15 @@
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "test:performance": "node scripts/performance-test.js",
+        "test:lighthouse": "lhci autorun",
+        "test:budget": "node scripts/performance-budget.js",
+        "performance:monitor": "node scripts/performance-monitor.js",
+        "performance:trend": "node scripts/performance-monitor.js trend",
+        "performance:compare": "node scripts/performance-monitor.js compare",
+        "performance:continuous": "node scripts/performance-monitor.js continuous",
+        "performance:full": "npm run test:performance && npm run test:budget && npm run performance:monitor add"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -30,6 +38,7 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
+        "@lhci/cli": "^0.15.1",
         "@tailwindcss/forms": "^0.5.10",
         "@tailwindcss/typography": "^0.5.16",
         "@types/node": "^20",
@@ -37,8 +46,11 @@
         "@types/react-dom": "^19",
         "eslint": "^9",
         "eslint-config-next": "15.1.6",
+        "lighthouse": "^12.7.1",
         "postcss": "^8",
+        "puppeteer": "^24.12.0",
         "tailwindcss": "^3.4.1",
-        "typescript": "^5"
+        "typescript": "^5",
+        "web-vitals": "^5.0.3"
     }
 }

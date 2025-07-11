@@ -2,26 +2,12 @@
 // Date Created: 2025-04-30
 // ----------------------------------------
 
-'use client';
-
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import TypingEffect from "@/src/components/TypingEffect";
 
 export default function Home() {
-    const [typedText, setTypedText] = useState("");
     const fullText = "Swaying the waves of numerics, no pressure, as I drift and fluid flows :)";
-    const typingSpeed = 50; // milliseconds per character
-
-    useEffect(() => {
-        if (typedText.length < fullText.length) {
-            const timeout = setTimeout(() => {
-                setTypedText(fullText.slice(0, typedText.length + 1));
-            }, typingSpeed);
-
-            return () => clearTimeout(timeout);
-        }
-    }, [typedText]);
 
     return (
         <div className="min-h-[calc(100vh-180px)] flex flex-col items-center justify-center py-8 md:py-12">
@@ -33,10 +19,10 @@ export default function Home() {
                         <h1 className="sm:text-3xl md:text-4xl font-mono font-bold text-foreground">
                             <span className="text-primary">Zian</span> HUANG
                         </h1>
-                        <p className="text-base sm:text-md md:text-lg text-muted-foreground font-mono">
-                            {typedText}
-                            <span className="blink-cursor">▊</span>
-                        </p>
+                        <TypingEffect 
+                            text={fullText}
+                            className="text-base sm:text-md md:text-lg text-muted-foreground font-mono"
+                        />
                     </div>
 
                     {/* Right column - Geometric/Mathematical visual */}
@@ -46,8 +32,10 @@ export default function Home() {
                             alt="Home icon with mascot"
                             width={200}
                             height={200}
+                            priority={true}
                             className="opacity-80 transition-all duration-300 home-icon"
                             style={{ filter: 'var(--svg-filter)' }}
+                            sizes="(max-width: 768px) 150px, 200px"
                         />
                     </div>
                 </div>
