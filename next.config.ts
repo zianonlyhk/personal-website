@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
         optimizePackageImports: ['react-icons', '@fortawesome/react-fontawesome', '@fortawesome/free-solid-svg-icons', '@fortawesome/free-brands-svg-icons'],
         webpackBuildWorker: true,
     },
+    // Additional optimizations
+    productionBrowserSourceMaps: false,
     // Headers for better performance, SEO and security
     async headers() {
         return [
