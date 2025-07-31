@@ -601,7 +601,7 @@
     /* Mobile-specific footer styles, as additional CSS commands added on top */
     @media (max-width: 768px) {
         .footer-container {
-            @apply justify-center gap-20;
+            @apply justify-between px-4;
         }
     }
 
