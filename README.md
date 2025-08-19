@@ -51,7 +51,7 @@ If you prefer to develop directly on your machine, follow these steps:
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/catapan/personal-website.git
+    git clone https://github.com/zianonlyhk/personal-website.git
     cd personal-website
     ```
 

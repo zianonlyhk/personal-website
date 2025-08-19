@@ -115,7 +115,7 @@ $$
 \left\{
 \begin{align*}
 \frac{\partial \rho}{\partial t} + \mathbf{\nabla}\cdot(\rho\mathbf{u}) &= 0\\
-\frac{\partial (\rho \mathbf{u})}{\partial t} + \mathbf{\nabla}\cdot(\rho \mathbf{u} \otimes \mathbf{u}^T + p \mathbf{I})) &= 0\\
+\frac{\partial (\rho \mathbf{u})}{\partial t} + \mathbf{\nabla}\cdot(\rho \mathbf{u} \otimes \mathbf{u}^T + p \mathbf{I}) &= 0\\
 \frac{\partial E}{\partial t} +\mathbf{\nabla}\cdot((E+p)\mathbf{u})=0,
 \end{align*}
 \right.
@@ -239,7 +239,7 @@ c &= \sqrt{\gamma p / \rho} \quad \textnormal{(speed of sound)}.
 \end{align*}
 $$
 
-Term $\text{F1}$ is a simple average of the fluxes from the left and right cells. Term $\text{F2}$ is a crucial stabilising term, often called a numerical dissipation or diffusion term. It smooths the sharp jump at the interface by taking an average ($\frac{1}{2}(\mathbf{U}_R - \mathbf{U}_L)$), then scales it by the maximum speed at which information can travel away from the discontinuity ($S_{\text{max}}$​).
+Term $\text{F1}$ is a simple average of the fluxes from the left and right cells. Term $\text{F2}$ is a crucial stabilizing term, often called a numerical dissipation or diffusion term. It smooths the sharp jump at the interface by taking an average ($\frac{1}{2}(\mathbf{U}_R - \mathbf{U}_L)$), then scales it by the maximum speed at which information can travel away from the discontinuity ($S_{\text{max}}$​).
 
 One should easily get the remaining $\mathbf{G}_{i,j\pm\frac{1}{2},k}$ and $\mathbf{H}_{i,j,k\pm\frac{1}{2}}$ by considering symmetry, and complete our quest to model the compressible inviscid fluid.
 
@@ -248,7 +248,7 @@ Solving the Riemann problem accurately and efficiently remains an active field o
 
 The solution to the Riemann problem typically involves three distinct wave structures moving away from the initial discontinuity:
 ![A plot of the solution to the Riemann problem at a specific point in time. It illustrates the distinct wave pattern that forms from an initial discontinuity, with labels pointing to the three main components: a left-moving rarefaction wave, a central contact discontinuity, and a right-moving shock wave.](/blogs/01_intro_to_cfd_compressible/screenshot_solution_animation.png "width=600")
-Understanding the behaviour of these waves is the foundation for developing more sophisticated and accurate Riemann solvers. Prof. Toro's book [1] is an excellent and complete guide to support you on that journey 👍.
+Understanding the behavior of these waves is the foundation for developing more sophisticated and accurate Riemann solvers. Prof. Toro's book [1] is an excellent and complete guide to support you on that journey 👍.
 
 ## We have come a long way from the first little whorl, even without viscosity
 

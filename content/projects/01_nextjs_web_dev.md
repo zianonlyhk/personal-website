@@ -91,9 +91,7 @@ The website features a fully functional dark mode that persists across page load
 
 ## Deployment and SEO Implementation
 
-The application is containerized using Docker with a multi-stage build process optimized for production deployment:
-
-Paired with Cloudflare's DNS service, the deployment utilizes Fly.io's global edge network with the following configuration:
+The application is containerized using Docker with a multi-stage build process optimized for production deployment. Paired with Cloudflare's DNS service, the deployment utilizes Fly.io's global edge network with the following configuration:
 
 - **Region**: Singapore (sin) for optimal Asia-Pacific performance
 - **Auto-scaling**: Automatic machine management with zero-downtime deployments

@@ -7,7 +7,7 @@ import Image from "next/image";
 import TypingEffect from "@/src/components/TypingEffect";
 
 export default function Home() {
-    const fullText = "Swaying the waves of numerics, no pressure, as I drift and fluid flows :)";
+    const fullText = "Swaying the waves of numerics, no pressure, as I drift and fluids flow :)";
 
     return (
         <div className="min-h-[calc(100vh-180px)] flex flex-col items-center justify-center py-8 md:py-12">
