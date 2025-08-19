@@ -1,25 +1,25 @@
 ---
 title: "How this website was built with Next.js"
-excerpt: "An overview of my personal website built with Next.js featuring responsive design, content management, LaTeX support, and optimised deployment"
+excerpt: "An overview of my personal website built with Next.js featuring responsive design, content management, LaTeX support, and optimized deployment"
 githubUrl: "https://github.com/zianonlyhk/personal-website"
 thumbnailUrl: "/projects/01_nextjs_web_dev/web_dev_thumbnail.jpg"
 ---
 
-This personal website is my exploration of modern web development practices. It demonstrates advanced React patterns, server-side rendering optimisation, and scalable content management techniques, creating a maintainable developer workflow and a seamless user experience across all devices.
+This personal website is my exploration of modern web development practices. It demonstrates advanced React patterns, server-side rendering optimization, and scalable content management techniques, creating a maintainable developer workflow and a seamless user experience across all devices.
 
 ## Foundation and Architecture
 
-The website is built on Next.js 15, leveraging the latest App Router architecture to provide optimal performance and developer experience. A key architectural decision is to run as many code as possible on the server side, to ensure a fast and responsive user experience on their client browsers. 
+The website is built on Next.js 15, leveraging the latest App Router architecture to provide optimal performance and developer experience. A key architectural decision is to run as much code as possible on the server side, to ensure a fast and responsive user experience on client browsers. 
 
-The project structure follows modern React conventions with a clear separation of concerns between server and client components. The application utilises TypeScript throughout for type safety and enhanced development experience, ensuring robust code quality and maintainability.
+The project structure follows modern React conventions with a clear separation of concerns between server and client components. The application utilizes TypeScript throughout for type safety and enhanced development experience, ensuring robust code quality and maintainability.
 
-The core architecture revolves around a content-driven approach where blog posts and project pages are authored in Markdown format and processed server-side into optimised HTML. This approach provides the flexibility of static site generation while maintaining the dynamic capabilities of a full-stack application.
+The core architecture revolves around a content-driven approach where blog posts and project pages are authored in Markdown format and processed server-side into optimized HTML. This approach provides the flexibility of static site generation while maintaining the dynamic capabilities of a full-stack application.
 
 ## Scalable Content Management System
 
 ### Markdown Processing Pipeline
 
-All articles on this sites are editted and stored as Markdown (`.md`). For each project page and blog post one sees, there exists an individual file for such.
+All articles on this site are edited and stored as Markdown (`.md`). For each project page and blog post one sees, there exists an individual file for it.
 
 The content management system implements a sophisticated Markdown processing pipeline that transforms raw files into rich, interactive web content. Key challenges addressed include:
 
@@ -38,9 +38,9 @@ const processedContent = await remark()
   .process(content);
 ```
 
-This pipeline enables seamless integration of mathematical equations using KaTeX, automatic image optimisation, and the use of code snippet. The `remarkWrapImages` plugin automatically wraps images in responsive containers with proper aspect ratios and styling classes. Plugins `remarkMath` and `rehypeKatex` handle the rendering and presentation of mathematical equations and `rehypeStringify` allows the showcase of code in monospace font.
+This pipeline enables seamless integration of mathematical equations using KaTeX, automatic image optimization, and the use of code snippets. The `remarkWrapImages` plugin automatically wraps images in responsive containers with proper aspect ratios and styling classes. Plugins `remarkMath` and `rehypeKatex` handle the rendering and presentation of mathematical equations, and `rehypeStringify` allows the showcase of code in monospace font.
 
-To translate what the developer sees to what an user would see:
+To translate what the developer sees to what a user would see:
 ![](/projects/01_nextjs_web_dev/cm.png)
 
 ### Dynamic Content Loading
@@ -80,7 +80,7 @@ For small screen devices such as mobile phones, the system implements intelligen
 ![](/projects/01_nextjs_web_dev/mobile_view.gif "width=300")
 
 
-In addition, the uniform adoption of a single function, `addImageClickHandlers`, ensures all images within project and blog contents become interactive without requiring manual configuration.
+In addition, the uniform adoption of a single function, `addImageClickHandlers`, ensures all images within project and blog content become interactive without requiring manual configuration.
 
 ### Dark Mode!
 
@@ -91,18 +91,18 @@ The website features a fully functional dark mode that persists across page load
 
 ## Deployment and SEO Implementation
 
-The application is containerized using Docker with a multi-stage build process optimised for production deployment:
+The application is containerized using Docker with a multi-stage build process optimized for production deployment:
 
-Paired with Cloudflare's DNS service, the deployment much utilises Fly.io's global edge network with the following configuration:
+Paired with Cloudflare's DNS service, the deployment utilizes Fly.io's global edge network with the following configuration:
 
 - **Region**: Singapore (sin) for optimal Asia-Pacific performance
 - **Auto-scaling**: Automatic machine management with zero-downtime deployments
-- **HTTPS adoption**: Enforcethe use of HTTPS and SSL certificate for tight security
+- **HTTPS adoption**: Enforce the use of HTTPS and SSL certificates for tight security
 
 Fly.io has a very polished user interface and experience. Love it!
 ![](/projects/01_nextjs_web_dev/flyio.png "width=300")
 
-The site implements comprehensive SEO optimisation through Next.js's Metadata API, providing dynamic meta tags, Open Graph integration, and structured data markup. Each page generates appropriate metadata based on content type and context.
+The site implements comprehensive SEO optimization through Next.js's Metadata API, providing dynamic meta tags, Open Graph integration, and structured data markup. Each page generates appropriate metadata based on content type and context.
 
 Crawler Control is managed via both `llms.txt` and `robots.txt` with:
 - **AI Access**: Open crawling policy for all LLM/AI agents via llms.txt
@@ -120,9 +120,9 @@ The file `src/app/sitemap.ts` automatically generates a sitemap for web crawlers
 
 The architecture is designed for future expansion with planned enhancements including:
 
-- **Chinese language support**: `zh-CN` internationalisation using Next.js i18n
+- **Chinese language support**: `zh-CN` internationalization using Next.js i18n
 - **Comment system**: Interactive user engagement features
-- **Analytics integration**: Comprehensive user behaviour tracking
+- **Analytics integration**: Comprehensive user behavior tracking
 
 This personal website serves as both a portfolio and a technical showcase. The complete implementation is available on GitHub for reference and learning purposes.
 

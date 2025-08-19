@@ -13,7 +13,7 @@ export default function About() {
                     <span className="text-primary">&gt;</span> <span className="font-mono">About Zian</span>
                 </h1>
                 <p className="body-medium text-muted-foreground mt-2 text-center max-w-3xl">
-                    I wish to visualise my thoughts and words, that people can talk without speaking
+                    I wish to visualize my thoughts and words, that people can talk without speaking
                 </p>
             </div>
 
@@ -23,10 +23,10 @@ export default function About() {
                     <div className="flex-1 space-y-4">
                         <p className="text-foreground text-sm md:text-base leading-relaxed">
                             Hi, I&apos;m a <span className="text-primary font-medium">software engineer</span> with a background in <span className="text-accent font-medium">computational physics</span>.
-                            I was born in Shenzhen, grew up in Hong Kong, and did my university in the UK. I currently live between the cities of Shenzhen and Hong Kong.
+                            I was born in Shenzhen, grew up in Hong Kong, and studied at universities in the UK. I currently live between the cities of Shenzhen and Hong Kong.
                         </p>
                         <p className="text-foreground text-sm md:text-base leading-relaxed hidden md:block">
-                            My works sit at the intersection of mathematics and computing. I much enjoy visualising numerical models for conceptual elegance and physical intuition.
+                            My work sits at the intersection of mathematics and computing. I much enjoy visualisation for conceptual elegance and physical intuition.
                         </p>
                     </div>
                     <div className="flex-shrink-0">

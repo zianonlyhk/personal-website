@@ -27,13 +27,13 @@ Consider this one-second evolution of whorls prepared by Jacob [2]. What do you 
 
 Eddies, and the smaller eddies within them, represent a complex natural phenomenon. It's challenging to describe the intricate motion of a fluid using words alone.
 
-We therefore need a deterministic and systematic way to describe a fluid at a given time ($t$). One powerful method is **discretisation**, where we approximate our continuous reality. Think of it as applying a mosaic effect to the snapshots above. This approach gives us a way to quantify what we see. For example, we can now say that at the box located at $(10,14)$ on the $x\text{-}y$ plane – 10 boxes to the right and 14 boxes up from the bottom left – the colour intensity fades as time passes. Notice how each mosaic box is represented by a single colour, which is an average of all the colours inside that box. This representation, where each box holds a single value for a fluid attribute, is known as a **piece-wise constant** configuration.
-![The same fluid flow evolution as the previous image, but with a coarse grid, or 'mosaic effect,' applied. Each square in the grid has a single, averaged colour, illustrating the concept of discretisation.](/blogs/01_intro_to_cfd_compressible/mosaic_fluid_eddies_evolution.png "width=850")
+We therefore need a deterministic and systematic way to describe a fluid at a given time ($t$). One powerful method is **discretization**, where we approximate our continuous reality. Think of it as applying a mosaic effect to the snapshots above. This approach gives us a way to quantify what we see. For example, we can now say that at the box located at $(10,14)$ on the $x\text{-}y$ plane – 10 boxes to the right and 14 boxes up from the bottom left – the color intensity fades as time passes. Notice how each mosaic box is represented by a single color, which is an average of all the colors inside that box. This representation, where each box holds a single value for a fluid attribute, is known as a **piece-wise constant** configuration.
+![The same fluid flow evolution as the previous image, but with a coarse grid, or 'mosaic effect,' applied. Each square in the grid has a single, averaged color, illustrating the concept of discretization.](/blogs/01_intro_to_cfd_compressible/mosaic_fluid_eddies_evolution.png "width=850")
 
 As the size of these boxes shrinks, ($\Delta x \Delta y \Delta z \to 0$), we're moving from a 240p fluid to a 4K fluid and beyond! As the time step drops from $\Delta t = 1$ second towards zero ($\Delta t \rightarrow 0$), it's like we're blinking our eyes faster than a machine gun. As these discrete elements get smaller, our mosaic animation becomes a more realistic representation of the actual flow.
 
-Since we've discretised space and time into boxes and frames, this is the perfect moment to introduce the concept of a control volume. Imagine the fluid we wish to model lives within 3D blocks like those in Minecraft, also known as Cartesian grids. In the example above, these boxes carry information about colour intensity (decreasing from orange to yellow to white). For our purposes, we'll replace colour with the key physical properties of fluid that interest us: density ($\rho$), momentum ($\rho \mathbf{u} = \rho (u, v, w)^T$), and total energy ($E$).
-![The Drake 'Hotline Bling' meme format. The top panel shows Drake looking displeased, with the text 'Tracking colour'. The bottom panel shows Drake looking approvingly, with the text 'Tracking density, momentum, and total energy'.](/blogs/01_intro_to_cfd_compressible/drake_meme.png "width=500")
+Since we've discretized space and time into boxes and frames, this is the perfect moment to introduce the concept of a control volume. Imagine the fluid we wish to model lives within 3D blocks like those in Minecraft, also known as Cartesian grids. In the example above, these boxes carry information about color intensity (decreasing from orange to yellow to white). For our purposes, we'll replace color with the key physical properties of fluid that interest us: density ($\rho$), momentum ($\rho \mathbf{u} = \rho (u, v, w)^T$), and total energy ($E$).
+![The Drake 'Hotline Bling' meme format. The top panel shows Drake looking displeased, with the text 'Tracking color'. The bottom panel shows Drake looking approvingly, with the text 'Tracking density, momentum, and total energy'.](/blogs/01_intro_to_cfd_compressible/drake_meme.png "width=500")
 
 ### Euler Equations: The Inviscid Holy Grail of Fluid Mechanics
 
@@ -47,7 +47,7 @@ $$
 $$
 where the grad operator is defined as $\mathbf{\nabla}=(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z})^T$. The superscript $^T$ indicates the transpose of a matrix.
 
-Term $\textnormal{D1}$ is the local rate of change of density at a fixed point. Term $\textnormal{D2}$ accounts for the change in density due to fluid moving past that point (advection). Finally, term $\textnormal{C1}$ is the essence of compressibility, representing density change due to the divergence of the velocity field. With the help of a negative scaling, intuitively, this expression means that if fluid is gathering (negative $\mathbf{\nabla}\cdot\mathbf{u}$), the density in that region should rise. Conversely, if fluid is spreading out (positive $\mathbf{\nabla}\cdot\mathbf{u}$), the density should fall. This change must be balanced by either a local density variation ($\textnormal{D1}$) or the advection of fluid from neighbouring regions ($\textnormal{D2}$). The presence of $\rho$ to the first power means that as fluid accumulates, density increases linearly.
+Term $\textnormal{D1}$ is the local rate of change of density at a fixed point. Term $\textnormal{D2}$ accounts for the change in density due to fluid moving past that point (advection). Finally, term $\textnormal{C1}$ is the essence of compressibility, representing density change due to the divergence of the velocity field. With the help of a negative scaling, intuitively, this expression means that if fluid is gathering (negative $\mathbf{\nabla}\cdot\mathbf{u}$), the density in that region should rise. Conversely, if fluid is spreading out (positive $\mathbf{\nabla}\cdot\mathbf{u}$), the density should fall. This change must be balanced by either a local density variation ($\textnormal{D1}$) or the advection of fluid from neighboring regions ($\textnormal{D2}$). The presence of $\rho$ to the first power means that as fluid accumulates, density increases linearly.
 
 Using the vector identity $\mathbf{\nabla}\cdot(\rho\mathbf{u}) = \mathbf{u}\cdot\mathbf{\nabla}\rho+\rho\mathbf{\nabla}\cdot\mathbf{u}$, we can rewrite the above to have the **conservative continuity equation**:
 $$
@@ -71,7 +71,7 @@ $$
 
 Here, $\mathbf{I}$ is the identity matrix, representing isotropic pressure contribution in all directions, while $\otimes$ is the outer product operator applied on two matrices.
 
-Let's quickly recap. We now have two equations modelling the change in density and momentum:
+Let's quickly recap. We now have two equations modeling the change in density and momentum:
 $$
 \left\{
 \begin{align*}
@@ -130,7 +130,7 @@ $$
 
 ## 2. How do we solve the model we've just built?
 
-We now have two key pieces: a discretised domain (our 'Minecraft' world) with initial fluid properties contained in each box, and the system of equations that governs them. The goal of this section is to bring them together by discretising the governing equations to fit our gridded space.
+We now have two key pieces: a discretized domain (our 'Minecraft' world) with initial fluid properties contained in each box, and the system of equations that governs them. The goal of this section is to bring them together by discretizing the governing equations to fit our gridded space.
 
 ### A Deeper Dive into Control Volumes and the Finite Volume Method
 
@@ -140,7 +140,7 @@ Conservation is a fundamental principle in physics, and we've already seen its i
 
 **(2) Each control volume is treated as a distinct entity, and the fluid properties within it are represented by a single, volume-averaged value.**
 
-From principle **(2)**, we consider the value within each box to be piece-wise constant and uniformly distributed. This is a necessary compromise for modelling the continuous reality of nature on a discrete computer. To implement this, we transform our continuous differential equations into an integral form that applies over a finite volume. Taking the density equation as an example:
+From principle **(2)**, we consider the value within each box to be piece-wise constant and uniformly distributed. This is a necessary compromise for modeling the continuous reality of nature on a discrete computer. To implement this, we transform our continuous differential equations into an integral form that applies over a finite volume. Taking the density equation as an example:
 ![A diagram illustrating the integration of the continuity equation over a finite control volume.](/blogs/01_intro_to_cfd_compressible/finite_volume_integration.png "width=850")
 
 We apply the divergence theorem, $\iiint_{\textnormal{CV}} (\nabla \cdot \mathbf{F}) \, dV = \iint_{\textnormal{S}} \mathbf{F} \cdot d\mathbf{S}$, where $\mathbf{F}$ is a vector field and $\textnormal{S}$ is the surface of the control volume (the 6 faces of the box):
@@ -171,8 +171,8 @@ $$
 p(\mathbf{U}) = \rho(\gamma - 1)\left( \frac{E}{\rho} - \frac{1}{2}(u^2+v^2+w^2) \right).
 $$
 
-Let's then consider a single control volume indexed by $(i,j,k)$ at its centre:
-![A diagram of a central control volume labelled with index (i,j,k) at its centre. It is surrounded by its six neighbouring cells, labelled (i+1,j,k), (i-1,j,k), (i,j+1,k), etc., to illustrate the computational stencil.](/blogs/01_intro_to_cfd_compressible/univolume_centerandneighbor.png "width=500")
+Let's then consider a single control volume indexed by $(i,j,k)$ at its center:
+![A diagram of a central control volume labeled with index (i,j,k) at its center. It is surrounded by its six neighboring cells, labeled (i+1,j,k), (i-1,j,k), (i,j+1,k), etc., to illustrate the computational stencil.](/blogs/01_intro_to_cfd_compressible/univolume_centerandneighbor.png "width=500")
 
 Integrating the vector equation over this control volume and applying the divergence theorem gives:
 $$
@@ -215,7 +215,7 @@ There is one crucial constraint on the size of our time step, $\Delta t$, known 
 $$
 \text{CFL} = \Delta t \left( \frac{|u|}{\Delta x} + \frac{|v|}{\Delta y} + \frac{|w|}{\Delta z} \right) \leq \text{CFL}_{\text{max}},
 $$
-where $\text{CFL}_{\text{max}}$​ depends on the numerical scheme. For the simple scheme we're using, we generally need $\text{CFL} \leq 1$ to ensure the simulation is stable and doesn't 'blow up'. A CFL number close to its maximum stable value helps to minimise numerical diffusion, which keeps sharp features in the flow, like shock waves, from smearing out over time.
+where $\text{CFL}_{\text{max}}$​ depends on the numerical scheme. For the simple scheme we're using, we generally need $\text{CFL} \leq 1$ to ensure the simulation is stable and doesn't 'blow up'. A CFL number close to its maximum stable value helps to minimize numerical diffusion, which keeps sharp features in the flow, like shock waves, from smearing out over time.
 
 Our update equation shows that we can find the state of a cell at the next time frame, $\mathbf{U}^{n+1}$, based on its current state, $\mathbf{U}^{n}$, _if and only if_ we can determine the flux terms ($\mathbf{F}_{i\pm\frac{1}{2},j,k}$​​, etc.) at the cell boundaries.
 
@@ -252,9 +252,9 @@ Understanding the behaviour of these waves is the foundation for developing more
 
 ## We have come a long way from the first little whorl, even without viscosity
 
-If you've made it this far, thank you for reading! I hope you now feel a bit more knowledgeable about, and interested in, the art of fluid modelling. Lastly, I want to point out the other paths on the broader roadmap of computational fluid dynamics that we didn't take. Some of the choices we made are modular, meaning you can swap in a more sophisticated numerical method for higher accuracy. Others are rabbit holes that lead to entirely new fields of analysis, such as viscous or incompressible flows.
+If you've made it this far, thank you for reading! I hope you now feel a bit more knowledgeable about, and interested in, the art of fluid modeling. Lastly, I want to point out the other paths on the broader roadmap of computational fluid dynamics that we didn't take. Some of the choices we made are modular, meaning you can swap in a more sophisticated numerical method for higher accuracy. Others are rabbit holes that lead to entirely new fields of analysis, such as viscous or incompressible flows.
 
-Bon voyage in your fluid modelling quest ⛵.
+Bon voyage in your fluid modeling quest ⛵.
 
 ![](/blogs/01_intro_to_cfd_compressible/roadmap.png "width=600")
 
