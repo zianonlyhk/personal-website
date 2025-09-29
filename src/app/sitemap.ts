@@ -42,7 +42,7 @@ export default async function sitemap() {
     ];
 
     // Dynamic blog pages
-    const blogPages = blogs.map((blog: any) => {
+    const blogPages = blogs.map((blog: { slug: string; date?: string }) => {
         // Create a valid date, fallback to current date if invalid
         let lastModified = new Date();
         if (blog.date) {
@@ -61,7 +61,7 @@ export default async function sitemap() {
     });
 
     // Dynamic project pages
-    const projectPages = projects.map((project: any) => {
+    const projectPages = projects.map((project: { slug: string; date?: string }) => {
         // Create a valid date, fallback to current date if invalid
         let lastModified = new Date();
         if (project.date) {
