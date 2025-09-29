@@ -16,6 +16,7 @@ const Navbar = () => {
     const navHeight = useRef<number>(0);
     const navRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef<HTMLAnchorElement>(null);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
 
     // hides the return button in small screen
     useEffect(() => {
@@ -66,6 +67,24 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    // Handle keyboard events for mobile menu
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+        if (event.key === 'Escape' && isMenuOpen) {
+            setIsMenuOpen(false);
+        }
+    };
+
+    // Focus management for mobile menu
+    useEffect(() => {
+        if (isMenuOpen && mobileMenuRef.current) {
+            // Focus the first link when menu opens
+            const firstLink = mobileMenuRef.current.querySelector('a');
+            if (firstLink) {
+                (firstLink as HTMLAnchorElement).focus();
+            }
+        }
+    }, [isMenuOpen]);
 
     return (
         <nav className={`${scrolled ? 'shadow-sm' : ''} z-50`} ref={navRef}>
@@ -138,13 +157,20 @@ const Navbar = () => {
                 </button>
 
                 {/* Mobile dropdown menu */}
-                <div className={`mobile-dropdown ${isMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
+                <div 
+                    className={`mobile-dropdown ${isMenuOpen ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}
+                    ref={mobileMenuRef}
+                    onKeyDown={handleKeyDown}
+                    role="menu"
+                    aria-label="Main navigation menu"
+                >
                     <div className="mobile-dropdown-nav-link-container">
                         <div>
                             <Link
                                 href="/projects"
                                 className={`nav-link ${pathname?.startsWith('/projects') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
+                                role="menuitem"
                             >
                                 projects
                             </Link>
@@ -154,6 +180,7 @@ const Navbar = () => {
                                 href="/blogs"
                                 className={`nav-link ${pathname?.startsWith('/blogs') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
+                                role="menuitem"
                             >
                                 blogs
                             </Link>
@@ -163,6 +190,7 @@ const Navbar = () => {
                                 href="/gallery"
                                 className={`nav-link ${pathname?.startsWith('/gallery') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
+                                role="menuitem"
                             >
                                 gallery
                             </Link>
@@ -172,6 +200,7 @@ const Navbar = () => {
                                 href="/about"
                                 className={`nav-link ${pathname?.startsWith('/about') ? 'nav-link-active' : ''}`}
                                 onClick={handleNavClick}
+                                role="menuitem"
                             >
                                 about
                             </Link>
