@@ -4,7 +4,7 @@
 
 import { getContentPage } from '@/src/lib/content_page_generator';
 import { notFound } from 'next/navigation';
-import BlogPostClient from '@/src/components/ProjAndBlogClient';
+import ContentPageClient from '@/src/components/ProjAndBlogClient';
 import { Metadata } from 'next';
 
 type PageProps = {
@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: PageProps) {
         notFound();
     }
 
-    return <BlogPostClient post={post} />;
+    return <ContentPageClient post={post} contentType="project" />;
 }
 
 // ----------------------------------------

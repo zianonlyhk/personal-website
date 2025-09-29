@@ -9,8 +9,9 @@ import BlogHeader from '@/src/components/blog/BlogHeader';
 import BlogContent from '@/src/components/blog/BlogContent';
 import ImageModal from '@/src/components/blog/ImageModal';
 import { useImageModal } from '@/src/hooks/useImageModal';
+import Breadcrumbs from '@/src/components/Breadcrumbs';
 
-interface BlogPost {
+interface ContentPage {
     slug: string;
     title: string;
     // since there is no date information on my project pages
@@ -19,23 +20,54 @@ interface BlogPost {
     githubUrl?: string;
 }
 
-interface BlogPostClientProps {
-    post: BlogPost | null;
+interface ContentPageClientProps {
+    post: ContentPage | null;
+    contentType?: 'blog' | 'project';
 }
 
-export default function BlogPostClient({ post }: BlogPostClientProps) {
+export default function ContentPageClient({ post, contentType = 'blog' }: ContentPageClientProps) {
     const { selectedImage, isSmallScreen, closeModal } = useImageModal();
 
     if (!post) {
         return (
             <div className="content_container">
-                <p>Post not found</p>
+                <p>Content not found</p>
             </div>
         );
     }
 
+    // Structured data for SEO
+    const structuredData = contentType === 'blog' ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "datePublished": post.date,
+        "author": {
+            "@type": "Person",
+            "name": "Zian Huang"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Zian Huang"
+        }
+    } : {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "headline": post.title,
+        "datePublished": post.date,
+        "author": {
+            "@type": "Person",
+            "name": "Zian Huang"
+        }
+    };
+
     return (
         <div className="content_container">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
+            <Breadcrumbs />
             <ReturnButton />
             <BlogHeader 
                 title={post.title}
