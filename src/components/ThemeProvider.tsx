@@ -88,6 +88,11 @@ export function ThemeProvider({
         },
     };
 
+    // Prevent rendering theme-dependent components on server
+    if (!mounted) {
+        return <>{children}</>;
+    }
+
     return (
         <ThemeProviderContext.Provider {...props} value={value}>
             {children}
