@@ -27,6 +27,7 @@ function ContentLinks({ links, isVip = false }: { links: LinkType[]; isVip?: boo
                             href={link.url}
                             className={`${link.className} text-xs font-medium`}
                             onClick={(e) => e.stopPropagation()}
+                            aria-label={`View ${link.label}`}
                         >
                             {link.label}
                         </Link>
@@ -40,6 +41,7 @@ function ContentLinks({ links, isVip = false }: { links: LinkType[]; isVip?: boo
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
+                            aria-label={`View ${link.label} (opens in new tab)`}
                         >
                             {link.label}
                         </Link>
@@ -77,6 +79,8 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                                     width={500}
                                     height={300}
                                     className="w-full h-auto object-cover"
+                                    loading="lazy"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                             </div>
                         )}
@@ -104,6 +108,8 @@ export default function ContentPreview({ title, preview, date, thumbnailUrl, lin
                                 width={500}
                                 height={300}
                                 className="w-full h-auto object-cover"
+                                loading="lazy"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                         </div>
                     )}

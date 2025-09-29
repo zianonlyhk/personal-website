@@ -1,6 +1,7 @@
 // Author: Zian Huang
 // Date Created: 2025-04-30
 // ----------------------------------------
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import fs from 'fs';
 import path from 'path';
@@ -67,8 +68,8 @@ export async function getContentList(contentType: ContentType, page: number = 1,
 // Custom plugin to wrap images
 function remarkWrapImages() {
     return (tree: any) => {
-        visit(tree, 'image', (node, index, parent) => {
-            if (parent && index !== null) {
+        visit(tree, 'image', (node: any, index: number | undefined, parent: any) => {
+            if (parent && index !== undefined) {
                 // Parse potential width and height from title field
                 // Format: ![alt](src "width=500 height=300")
                 let width, height;
@@ -98,7 +99,8 @@ function remarkWrapImages() {
                                 alt: node.alt || '',
                                 width: width || '100%',
                                 height: height || 'auto',
-                                className: ['image', 'rounded-md', 'shadow-md', 'mx-auto']
+                                className: ['image', 'rounded-md', 'shadow-md', 'mx-auto'],
+                                loading: 'lazy'
                             }
                         }
                     }]
