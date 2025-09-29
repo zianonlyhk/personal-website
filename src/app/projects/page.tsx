@@ -112,6 +112,7 @@ export default function Projects() {
                         onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                         disabled={currentPage === 1}
                         className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                        aria-label="Go to previous page"
                     >
                         Previous
                     </button>
@@ -124,6 +125,8 @@ export default function Projects() {
                                     ? 'bg-primary text-primary-foreground'
                                     : 'bg-background/80 hover:bg-muted text-foreground'
                                     }`}
+                                aria-label={`Go to page ${page}`}
+                                aria-current={currentPage === page ? 'page' : undefined}
                             >
                                 {page}
                             </button>
@@ -133,6 +136,7 @@ export default function Projects() {
                         onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                         disabled={currentPage === totalPages}
                         className="px-4 py-2 rounded-md bg-background/80 hover:bg-muted disabled:hover:bg-transparent disabled:opacity-50 text-foreground transition-colors"
+                        aria-label="Go to next page"
                     >
                         Next
                     </button>
