@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 
@@ -17,8 +17,10 @@ export default function TypingEffect({ text, className = "", typingSpeed = 50 }:
     }, []);
 
     useEffect(() => {
-        if (!mounted) return;
-        
+        if (!mounted) {
+            return;
+        }
+
         if (typedText.length < text.length) {
             const timeout = setTimeout(() => {
                 setTypedText(text.slice(0, typedText.length + 1));
@@ -26,6 +28,8 @@ export default function TypingEffect({ text, className = "", typingSpeed = 50 }:
 
             return () => clearTimeout(timeout);
         }
+
+        return;
     }, [typedText, text, typingSpeed, mounted]);
 
     // Show full text immediately on server-side and before mount to prevent layout shift
