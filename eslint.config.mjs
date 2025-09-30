@@ -12,8 +12,9 @@ const compat = new FlatCompat({
 // Extends two key Next.js ESLint configurations:
 // next/core-web-vitals: Best practices for Core Web Vitals
 // next/typescript: TypeScript-specific rules
+// prettier: Disables ESLint rules that conflict with Prettier
 const eslintConfig = [
-    ...compat.extends("next/core-web-vitals", "next/typescript"),
+    ...compat.extends("next/core-web-vitals", "next/typescript", "prettier"),
 ];
 
 export default eslintConfig;
