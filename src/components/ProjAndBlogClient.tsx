@@ -2,14 +2,19 @@
 // Date Created: 2025-04-30
 // ----------------------------------------
 
-'use client';
+"use client";
 
-import ReturnButton from '@/src/components/ReturnButton';
-import BlogHeader from '@/src/components/blog/BlogHeader';
-import BlogContent from '@/src/components/blog/BlogContent';
-import ImageModal from '@/src/components/blog/ImageModal';
-import { useImageModal } from '@/src/hooks/useImageModal';
-import Breadcrumbs from '@/src/components/Breadcrumbs';
+import dynamic from "next/dynamic";
+import ReturnButton from "@/src/components/ReturnButton";
+import BlogHeader from "@/src/components/blog/BlogHeader";
+import BlogContent from "@/src/components/blog/BlogContent";
+import { useImageModal } from "@/src/hooks/useImageModal";
+import Breadcrumbs from "@/src/components/Breadcrumbs";
+
+// Lazy load ImageModal component since it's only needed when an image is clicked
+const ImageModal = dynamic(() => import("@/src/components/blog/ImageModal"), {
+    ssr: false,
+});
 
 interface ContentPage {
     slug: string;
@@ -22,10 +27,10 @@ interface ContentPage {
 
 interface ContentPageClientProps {
     post: ContentPage | null;
-    contentType?: 'blog' | 'project';
+    contentType?: "blog" | "project";
 }
 
-export default function ContentPageClient({ post, contentType = 'blog' }: ContentPageClientProps) {
+export default function ContentPageClient({ post, contentType = "blog" }: ContentPageClientProps) {
     const { selectedImage, isSmallScreen, closeModal } = useImageModal();
 
     if (!post) {
@@ -37,52 +42,42 @@ export default function ContentPageClient({ post, contentType = 'blog' }: Conten
     }
 
     // Structured data for SEO
-    const structuredData = contentType === 'blog' ? {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": post.title,
-        "datePublished": post.date,
-        "author": {
-            "@type": "Person",
-            "name": "Zian Huang"
-        },
-        "publisher": {
-            "@type": "Person",
-            "name": "Zian Huang"
-        }
-    } : {
-        "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        "headline": post.title,
-        "datePublished": post.date,
-        "author": {
-            "@type": "Person",
-            "name": "Zian Huang"
-        }
-    };
+    const structuredData =
+        contentType === "blog"
+            ? {
+                  "@context": "https://schema.org",
+                  "@type": "BlogPosting",
+                  headline: post.title,
+                  datePublished: post.date,
+                  author: {
+                      "@type": "Person",
+                      name: "Zian Huang",
+                  },
+                  publisher: {
+                      "@type": "Person",
+                      name: "Zian Huang",
+                  },
+              }
+            : {
+                  "@context": "https://schema.org",
+                  "@type": "CreativeWork",
+                  headline: post.title,
+                  datePublished: post.date,
+                  author: {
+                      "@type": "Person",
+                      name: "Zian Huang",
+                  },
+              };
 
     return (
         <div className="content_container">
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-            />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             <Breadcrumbs />
             <ReturnButton />
-            <BlogHeader 
-                title={post.title}
-                date={post.date}
-                githubUrl={post.githubUrl}
-            />
+            <BlogHeader title={post.title} date={post.date} githubUrl={post.githubUrl} />
             <BlogContent content={post.content} />
 
-            {selectedImage && (
-                <ImageModal 
-                    image={selectedImage}
-                    isSmallScreen={isSmallScreen}
-                    onClose={closeModal}
-                />
-            )}
+            {selectedImage && <ImageModal image={selectedImage} isSmallScreen={isSmallScreen} onClose={closeModal} />}
         </div>
     );
 }
