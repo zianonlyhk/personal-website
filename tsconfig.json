@@ -1,11 +1,7 @@
 {
     "compilerOptions": {
         "target": "ES2017",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
+        "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
         "strict": true,
@@ -13,16 +9,16 @@
         "incremental": true,
         "module": "esnext",
         "esModuleInterop": true,
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
+        "noUncheckedIndexedAccess": true,
+        "noImplicitReturns": true,
         "baseUrl": ".",
         "paths": {
             // --- Such that I can use @/ to refer to the root of the project --- //
-            "@/*": [
-                "./*"
-            ]
+            "@/*": ["./*"]
         },
         "plugins": [
             {
@@ -30,13 +26,6 @@
             }
         ]
     },
-    "include": [
-        "next-env.d.ts",
-        ".next/types/**/*.ts",
-        "**/*.ts",
-        "**/*.tsx"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+    "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+    "exclude": ["node_modules"]
 }
